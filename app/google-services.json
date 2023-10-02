@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "81932630380",
+    "firebase_url": "https://goodphone-687e7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "goodphone-687e7",
+    "storage_bucket": "goodphone-687e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81932630380:android:c857844685b5445c2c5b49",
+        "android_client_info": {
+          "package_name": "com.example.goodphone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADKgeR-BA8qln5bXLmRh6sDsr1OlJz3R0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
