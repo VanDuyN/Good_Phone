@@ -60,13 +60,16 @@ public class LogIn extends AppCompatActivity {
         String password = edtPassword.getText().toString().trim();
         //Goi firebas Auth
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        //kiem tra email
+
+        //validate email
         String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         boolean emailValidate = patternMatches(email, regexPattern);
         if (emailValidate){
+
             //kiểm tra tài khoản mật khẩu
             if (password.trim().length() >= 8){
                 progressDialog.show();
+
                 // kiểm tra email password trên hệ thống
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
