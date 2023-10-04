@@ -9,7 +9,6 @@
     <ImageView
         android:layout_width="347dp"
         android:layout_height="265dp"
-        android:src="@drawable/logoMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +21,7 @@
         android:layout_width="241dp"
         android:layout_height="152dp"
         android:layout_marginBottom="50dp"
-        android:src="@drawable/btnContinue"
+        android:src="@drawable/btncontinue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
