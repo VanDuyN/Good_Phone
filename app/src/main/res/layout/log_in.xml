@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:text="Login"
+            android:text="Đăng nhập"
             android:textSize="150px"
             android:textStyle="bold"
             tools:ignore="MissingConstraints"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Password"
+            android:text="Mật khẩu"
             android:textColor="@color/black"
             android:textSize="50px"
             android:textStyle="normal"
@@ -123,7 +123,7 @@
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="bottom|start"
             android:orientation="vertical">
 
@@ -144,14 +144,14 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_line_black"
-            android:backgroundTint="@color/white"
-            android:text="Login"
-            android:textColor="@color/black"
+
+            android:text="Đăng nhập"
+            android:textColor="@color/white"
             android:textSize="25dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
