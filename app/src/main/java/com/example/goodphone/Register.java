@@ -69,33 +69,31 @@ public class Register extends AppCompatActivity {
         regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         emailValidate = patternMatches(email.trim(), regexPattern);
         phoneValidate = validatePhoneNumber(phone.trim(),PHONE_NUMBER_PATTERN);
-
+        //validate email
         if (emailValidate){
-            if (password.trim().length() >= 8)
-            {
+            //validate password
+            if (password.trim().length() >= 8) {
+                //validate name
                 if (!firstName.trim().isEmpty() && !lastName.trim().isEmpty()){
+                    //valudate phone
                     if(phone.trim().length() == 10 && phoneValidate){
+                        //validate dia chi
                         if (!address.trim().isEmpty()){
                             createUser();
                         }else{
-                            Toast.makeText(Register.this, "Địa chỉ không được để trống",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                         }
                     }else {
-                        Toast.makeText(Register.this, "Số điện thoại có 10 số và bắt đầu bằng 0 hoặc +84",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Số điện thoại có 10 số và bắt đầu bằng 0 hoặc +84", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(Register.this, "Họ và tên không được để trống",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "Họ và tên không được để trống", Toast.LENGTH_SHORT).show();
                 }
             }else {
-                Toast.makeText(Register.this, "Mật khẩu phải từ 8 kí tự trở lên",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "Mật khẩu phải từ 8 kí tự trở lên", Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(Register.this, "Kiểm tra lại email",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "Kiểm tra lại email", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -142,11 +140,10 @@ public class Register extends AppCompatActivity {
                                                 return;
                                             }
                                         });
-
                             }
                         } else {
                             progressDialog.dismiss();
-                            Toast.makeText(Register.this, "Kiểm tra lại thông tin đăng ký",
+                            Toast.makeText(Register.this, "email đã tồn tại",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
