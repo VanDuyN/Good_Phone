@@ -14,10 +14,12 @@
         android:visibility="visible"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/img_return"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back_left" />
         <ImageView
+            android:id="@+id/img_main"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/green_light"
@@ -34,13 +36,14 @@
         android:layout_marginBottom="10dp">
 
         <RelativeLayout
-            android:id="@+id/nameProductDetail"
+            android:id="@+id/rltlo_name"
             android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/btn_favourite"
                 android:layout_width="35dp"
                 android:layout_height="45dp"
                 android:layout_alignParentEnd="true"
@@ -57,6 +60,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/name_Product_Detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/priceDetail"
@@ -71,10 +75,11 @@
             android:id="@+id/optionPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nameProductDetail"
+            android:layout_below="@id/rltlo_name"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/btn_Buy_Now"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
@@ -97,6 +102,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/btn_Add_Cart"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
@@ -133,6 +139,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_Product_Information"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bảo hành 18 tháng tại trung tâm bảo hành Chính hãng. 1 đổi 1 trong 30 ngày nếu có lỗi phần cứng từ nhà sản xuất."
@@ -176,15 +183,13 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:text="Kích thước màn hình" />
-
                     <TextView
+                        android:id="@+id/tv_Screen_Size"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="6.1 inches" />
                 </TableRow>
-
                 <TableRow android:padding="5dp">
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_gravity="center_vertical"
@@ -192,6 +197,7 @@
                         android:text="Công nghệ màn hình" />
 
                     <TextView
+                        android:id="@+id/tv_Screen_Technology"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Super Retina XDR OLED" />
@@ -208,6 +214,7 @@
                         android:text="Camera sau" />
 
                     <TextView
+                        android:id="@+id/tv_Rear_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Camera chính: 48MP\nCamera chính: 48MP\nCamera Tele: 12MP " />
@@ -222,6 +229,7 @@
                         android:text="Camera trước" />
 
                     <TextView
+                        android:id="@+id/tv_Font_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="12MP" />
@@ -238,6 +246,7 @@
                         android:text="Bộ nhớ trong" />
 
                     <TextView
+                        android:id="@+id/tv_Rom"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="128 GB" />
@@ -252,6 +261,7 @@
                         android:text="Chipset" />
 
                     <TextView
+                        android:id="@+id/tv_Chipset"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Apple A16 Bionic" />
@@ -268,6 +278,7 @@
                         android:text="Tính năng màn hình" />
 
                     <TextView
+                        android:id="@+id/tv_Screen_Feature"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Dynamic Island\nHDR display\nTrue Tone\nWide color (P3)\nHaptic Touch\nLớp phủ oleophobia chống dấu vân tay\nĐộ sáng tối đa: 2000 nits " />
@@ -275,6 +286,7 @@
             </TableLayout>
 
             <TextView
+                android:id="@+id/tv_Detail"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/line_grey_light"
@@ -292,7 +304,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/decriptionDetail"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/line_grey_light"
             android:orientation="vertical">
 

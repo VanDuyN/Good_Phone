@@ -41,7 +41,7 @@ public class MotionLayout extends AppCompatActivity {
             checkUser();
         }else {
             progressDialog.dismiss();
-            Intent i =  new Intent(MotionLayout.this,MainActivity.class);
+            Intent i =  new Intent(MotionLayout.this,ListProduct.class);
             startActivity(i);
             finishAffinity();
         }
@@ -51,7 +51,7 @@ public class MotionLayout extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                progressDialog.setMessage("Đăng khởi động vui lòng chờ");
+                progressDialog.setMessage("Đang khởi động vui lòng chờ");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
                 checkUserLogin();
