@@ -99,6 +99,8 @@ public class Register extends AppCompatActivity {
     }
     public void createUser(){
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        progressDialog.setMessage("Đăng ký vui lòng chờ");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
