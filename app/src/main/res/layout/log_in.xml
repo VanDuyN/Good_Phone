@@ -106,6 +106,7 @@
             android:layout_height="35dp"
             android:background="@drawable/bg_edt_intro"
             android:padding="5dp"
+            android:inputType="textPassword"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="521dp" />
@@ -133,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bạn chưa có tài khoản ? "
                 android:textColor="@color/black"
+
                 android:textSize="10dp" />
 
             <TextView

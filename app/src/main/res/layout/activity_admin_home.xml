@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin_Home">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/btnQLSP"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_edt_intro"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img_QLSP"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_prdmng" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_QLSP"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:text="Quản lý sản phẩm"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btnQLKH"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_edt_intro"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img_QLKH"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_user_mng" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_QLKH"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:text="Quản lý sản phẩm"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/btn_Logout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_edt_intro"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/img_logout"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_logout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_logout"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:text="Đăng xuất"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
