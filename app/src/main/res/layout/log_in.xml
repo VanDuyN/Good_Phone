@@ -59,6 +59,7 @@
             android:layout_marginBottom="50dp"
             android:text="Đăng nhập"
             android:textSize="150px"
+            android:textColor="@color/black"
             android:textStyle="bold"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="20dp"
@@ -148,10 +149,11 @@
             android:id="@+id/btnLogin"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/bg_line_black"
-
             android:text="Đăng nhập"
-            android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
