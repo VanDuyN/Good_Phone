@@ -146,7 +146,7 @@ public class LogIn extends AppCompatActivity {
                                     finishAffinity();
                                 }else {
                                     progressDialog.dismiss();
-                                    Intent i =  new Intent(LogIn.this,MainActivity.class);
+                                    Intent i =  new Intent(LogIn.this,Home.class);
                                     startActivity(i);
                                     finishAffinity();
                                 }

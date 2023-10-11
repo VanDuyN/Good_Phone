@@ -19,7 +19,7 @@
             android:name=".DetailProduct"
             android:exported="true" />
         <activity
-            android:name=".ListProduct"
+            android:name=".Home"
             android:exported="false" />
         <activity
             android:name=".Intro"

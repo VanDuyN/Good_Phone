@@ -5,20 +5,20 @@
     android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp">
-
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ImageView
-            android:id="@+id/img_Product"
-            android:layout_width="match_parent"
+            android:id="@+id/img_Product_Item"
+            android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:background="@color/green_light"
-            android:src="@drawable/img_phone"/>
+            android:src="@drawable/img_phone" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:orientation="vertical">
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/tv_img_Product"
+                    android:id="@+id/tv_Name_Product_Item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="iPhone 15 Pro 256GB | Chính hãng VN/A "
@@ -37,15 +37,15 @@
                     android:textSize="13dp"
                     android:textColor="@color/black"/>
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/tv_Price_Product_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="25000000"
                         android:textStyle="bold"
-
                         android:textSize="22dp"
                         android:textColor="@color/green_dark"/>
                     <TextView
@@ -75,11 +75,11 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star_rating"/>
                     <TextView
-                        android:id="@+id/tv_Rating"
+                        android:id="@+id/tv_Rating_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4.5"
-                        android:textSize="10dp"/>
+                        android:textSize="12dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                         android:layout_marginRight="5dp"
                         android:text="|"/>
                     <TextView
-                        android:id="@+id/tv_Sold"
+                        android:id="@+id/tv_Sold_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_line_green"
@@ -101,10 +101,9 @@
                     android:gravity="end">
 
                     <ImageView
-                        android:id="@+id/img_Favourite"
+                        android:id="@+id/img_Favourite_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-
                         android:src="@drawable/ic_heart_white" />
                 </LinearLayout>
             </LinearLayout>
