@@ -37,11 +37,10 @@ public class MotionLayout extends AppCompatActivity {
         user =  FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
             uid = user.getUid();
-            Toast.makeText(MotionLayout.this, uid,Toast.LENGTH_SHORT).show();
             checkUser();
         }else {
             progressDialog.dismiss();
-            Intent i =  new Intent(MotionLayout.this,ListProduct.class);
+            Intent i =  new Intent(MotionLayout.this, Home.class);
             startActivity(i);
             finishAffinity();
         }
@@ -82,7 +81,7 @@ public class MotionLayout extends AppCompatActivity {
                                     finishAffinity();
                                 }else {
                                     progressDialog.dismiss();
-                                    Intent i =  new Intent(MotionLayout.this,MainActivity.class);
+                                    Intent i =  new Intent(MotionLayout.this,Home.class);
                                     startActivity(i);
                                     finishAffinity();
                                 }
