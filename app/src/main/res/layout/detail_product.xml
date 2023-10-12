@@ -179,7 +179,7 @@
                 android:background="@drawable/line_grey_light">
 
                 <TableRow
-                    android:background="@color/green_light"
+                    android:background="@drawable/shape_green_light_radiustop"
                     android:padding="5dp">
 
                     <TextView
@@ -273,7 +273,9 @@
                 </TableRow>
 
                 <TableRow
-                    android:background="@color/green_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_green_light_radiusbottom"
                     android:padding="5dp">
 
                     <TextView
@@ -319,7 +321,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/green_light">
+                android:background="@drawable/shape_green_light_radiustop">
 
                 <ImageView
                     android:layout_width="wrap_content"
