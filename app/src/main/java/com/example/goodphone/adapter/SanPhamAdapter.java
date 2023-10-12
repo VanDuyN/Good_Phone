@@ -1,4 +1,4 @@
-package com.example.goodphone;
+package com.example.goodphone.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.goodphone.R;
+import com.example.goodphone.model.SanPham;
 
 import java.util.List;
 
