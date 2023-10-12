@@ -1,4 +1,4 @@
-package com.example.goodphone;
+package com.example.goodphone.model;
 
 public class SanPham {
     private String name;

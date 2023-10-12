@@ -123,7 +123,6 @@ public class LogIn extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassLogin);
         progressDialog = new ProgressDialog(this);
         auth = FirebaseAuth.getInstance();
-
         firestore = FirebaseFirestore.getInstance();
     }
     public void checkUser(){

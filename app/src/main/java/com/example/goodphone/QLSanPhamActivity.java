@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.goodphone.adapter.RecyclerViewItemTouchHelper;
+import com.example.goodphone.adapter.SanPhamAdapter;
+import com.example.goodphone.model.SanPham;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
