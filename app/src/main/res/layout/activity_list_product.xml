@@ -35,7 +35,7 @@
     <Button
         android:background="@drawable/bg_line_black"
         android:backgroundTint="@color/green_dark"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:id="@+id/btn_Login"
         android:layout_width="140dp"
         android:layout_height="wrap_content"

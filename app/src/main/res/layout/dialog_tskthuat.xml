@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/line_grey_light"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_weight="0.05"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:gravity="center_horizontal"
+        android:text="Thông số kỹ thuật"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="27dp"
+        android:background="@drawable/shape_green_dark_radiustop"
+        android:backgroundTint="@color/green_dark"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Màn hình"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Kích thước màn hình" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="6.1 inches" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Công nghệ màn hình" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Super Retina XDR OLED" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiusbottom"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Tính năng màn hình" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Màn OLED 1.5K\nTần số quét 144 Hz\nDolby Vision, HDR10+" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Camera sau"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Camera sau" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Camera chính góc rộng: 50 MP, 1/1.22\nCamera góc siêu rộng: 12 MP\nCamera Tele: 50 MP" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Quay video" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="8K@24fps (HDR)\n4K@24/30/60fp\n1080p@30/120/240/960fps\n1080p@1920fps, gyro-EIS" />
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Camera trước"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Camera trước" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="20 MP" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Quay video trước" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="1080p@30fps" />
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Vi xử lý &amp; đồ họa"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Chipset" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Dimensity 8200" />
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="RAM &amp; Lưu trữ"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Dung Lượng\nRAM" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="5000 mAh" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Bộ nhớ trong" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="256 GB" />
+                    </TableRow>
+
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Pin &amp; Công nghệ sạc"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Pin" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="12 GB" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Công nghệ sạc" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Sạc nhanh 67 W" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Giao tiếp &amp; Kết nối"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Hệ điều hành" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Android 13" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Hỗ trợ mạng" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="5G" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Wifi" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Wifi 6" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Bluetooth" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="v5.3" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiusbottom"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="GPS" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="GPS (L1+L5), GLONASS (G1), BDS (B1I+B1c+B2a), GALILEO (E1+E5a), QZSS (L1+L5), NavIC (L5)" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Thông tin khác"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/line_grey_light">
+
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Chỉ số kháng nước, bụi" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="IP68" />
+                    </TableRow>
+
+                    <TableRow android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="Công nghệ âm thanh" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="Loa âm thanh nổi" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="0.05"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+        <Button
+            android:background="@drawable/shape_green_dark_radiusbottom"
+            android:textColor="@color/white"
+            android:id="@+id/btn_Close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đóng"
+            android:textSize="29dp"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+</LinearLayout>
