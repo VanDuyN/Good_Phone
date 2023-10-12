@@ -51,7 +51,7 @@ public class Admin_Home extends AppCompatActivity {
         finishAffinity();
     }
     public void QLSP(){
-        Intent i= new Intent(Admin_Home.this, DetailProduct.class);
+        Intent i= new Intent(Admin_Home.this, QLSanPhamActivity.class);
         startActivity(i);
     }
     public void init(){

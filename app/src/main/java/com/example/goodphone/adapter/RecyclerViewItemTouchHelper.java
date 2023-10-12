@@ -1,4 +1,4 @@
-package com.example.goodphone;
+package com.example.goodphone.adapter;
 
 import android.graphics.Canvas;
 import android.view.View;
@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.goodphone.ItemTouchHelperListener;
+import com.example.goodphone.adapter.SanPhamAdapter;
 
 public class RecyclerViewItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private ItemTouchHelperListener listener;

@@ -47,6 +47,13 @@ public class Home extends AppCompatActivity {
         showProduct();
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        showProduct();
+    }
+
     public void checkUser(){
         if(user != null){
             btnLogin.setVisibility(View.GONE);
@@ -72,6 +79,7 @@ public class Home extends AppCompatActivity {
                 finishAffinity();
             }
         });
+
     }
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -83,11 +91,11 @@ public class Home extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                String id = document.getId();
                                 String name = document.getString("Name".trim());
-                                int price = Integer.parseInt(document.getString("price"));
-                                int sold = Integer.parseInt(document.getString("sold"));
-                                int sumRating = Integer.parseInt(document.getString("SumRating"));
-
+                                double price =document.getDouble("price");
+                                double sold = document.getDouble("sold");
+                                double sumRating = document.getDouble("SumRating");
                                 FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                                 storageRef = storage.getReference().child("Product");
                                 imageRef = storageRef.child(name +".jpg");
@@ -97,7 +105,7 @@ public class Home extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         String fileUrl = uri.toString();
-                                        arrProduct.add(new List_Product(fileUrl,name,price,sold,sumRating));
+                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
                                         Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
                                         recyclerView.setAdapter(adapter);
                                     }

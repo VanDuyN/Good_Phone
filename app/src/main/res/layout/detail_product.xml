@@ -18,12 +18,16 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back_left" />
+
         <ImageView
             android:id="@+id/img_main"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/green_light"
-            android:src="@drawable/img_phone" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/green_light"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -183,6 +187,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
                         android:text="Kích thước màn hình" />
+
                     <TextView
                         android:id="@+id/tv_Screen_Size"
                         android:layout_width="0dp"
@@ -214,7 +219,7 @@
                         android:text="Camera sau" />
 
                     <TextView
-                        android:id="@+id/tv_Rear_Camera"
+                        android:id="@+id/tv_Font_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Camera chính: 48MP\nCamera chính: 48MP\nCamera Tele: 12MP " />
@@ -229,7 +234,7 @@
                         android:text="Camera trước" />
 
                     <TextView
-                        android:id="@+id/tv_Font_Camera"
+                        android:id="@+id/tv_Rear_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="12MP" />
