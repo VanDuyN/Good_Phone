@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Add_Product"
+    tools:context=".fragment.Add_Product"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
@@ -61,9 +61,12 @@
                             android:layout_weight="1"
                             android:text="Tên sản phẩm" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Samsung a1234" />
                     </TableRow>
 
@@ -75,9 +78,12 @@
                             android:layout_weight="1"
                             android:text="Hãng" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Samsung" />
                     </TableRow>
 
@@ -91,10 +97,12 @@
                             android:layout_weight="1"
                             android:text="Giá" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
-                            android:inputType="number"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="25000000" />
                     </TableRow>
 
@@ -106,9 +114,12 @@
                             android:layout_weight="1"
                             android:text="Số lượng" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="200" />
                     </TableRow>
 
@@ -127,21 +138,11 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
 
-                            <ImageView
+                            <ImageButton
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_margin="1dp"
-                                android:background="@drawable/bg_line_green"
-                                android:padding="2dp"
-                                android:src="@drawable/add_img" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_margin="1dp"
-                                android:background="@drawable/bg_line_green"
-                                android:padding="2dp"
-                                android:src="@drawable/add_img" />
+                                android:background="@drawable/add_img"/>
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>
@@ -177,9 +178,12 @@
                             android:layout_weight="1"
                             android:text="Kích thước màn hình" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="6.1 inches" />
                     </TableRow>
 
@@ -191,9 +195,12 @@
                             android:layout_weight="1"
                             android:text="Công nghệ màn hình" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Super Retina XDR OLED" />
                     </TableRow>
 
@@ -207,9 +214,12 @@
                             android:layout_weight="1"
                             android:text="Tính năng màn hình" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Màn OLED 1.5K\nTần số quét 144 Hz\nDolby Vision, HDR10+" />
                     </TableRow>
                 </TableLayout>
@@ -245,9 +255,12 @@
                             android:layout_weight="1"
                             android:text="Camera sau" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Camera chính góc rộng: 50 MP, 1/1.22\nCamera góc siêu rộng: 12 MP\nCamera Tele: 50 MP" />
                     </TableRow>
 
@@ -259,9 +272,12 @@
                             android:layout_weight="1"
                             android:text="Quay video" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="8K@24fps (HDR)\n4K@24/30/60fp\n1080p@30/120/240/960fps\n1080p@1920fps, gyro-EIS" />
                     </TableRow>
 
@@ -298,9 +314,12 @@
                             android:layout_weight="1"
                             android:text="Camera trước" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="20 MP" />
                     </TableRow>
 
@@ -312,9 +331,12 @@
                             android:layout_weight="1"
                             android:text="Quay video trước" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="1080p@30fps" />
                     </TableRow>
 
@@ -351,9 +373,12 @@
                             android:layout_weight="1"
                             android:text="Chipset" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Dimensity 8200" />
                     </TableRow>
 
@@ -390,10 +415,12 @@
                             android:layout_weight="1"
                             android:text="Dung Lượng\nRAM" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="5000 mAh" />
                     </TableRow>
 
@@ -405,9 +432,12 @@
                             android:layout_weight="1"
                             android:text="Bộ nhớ trong" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="256 GB" />
                     </TableRow>
 
@@ -444,10 +474,12 @@
                             android:layout_weight="1"
                             android:text="Pin" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="12 GB" />
                     </TableRow>
 
@@ -459,9 +491,12 @@
                             android:layout_weight="1"
                             android:text="Công nghệ sạc" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Sạc nhanh 67 W" />
                     </TableRow>
                 </TableLayout>
@@ -497,10 +532,12 @@
                             android:layout_weight="1"
                             android:text="Hệ điều hành" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Android 13" />
                     </TableRow>
 
@@ -513,9 +550,12 @@
                             android:layout_weight="1"
                             android:text="Hỗ trợ mạng" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="5G" />
                     </TableRow>
 
@@ -529,10 +569,12 @@
                             android:layout_weight="1"
                             android:text="Wifi" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Wifi 6" />
                     </TableRow>
 
@@ -544,9 +586,12 @@
                             android:layout_weight="1"
                             android:text="Bluetooth" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="v5.3" />
                     </TableRow>
 
@@ -561,9 +606,12 @@
                             android:layout_weight="1"
                             android:text="GPS" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="GPS (L1+L5), GLONASS (G1), BDS (B1I+B1c+B2a), GALILEO (E1+E5a), QZSS (L1+L5), NavIC (L5)" />
                     </TableRow>
                 </TableLayout>
@@ -599,10 +647,12 @@
                             android:layout_weight="1"
                             android:text="Chỉ số kháng nước, bụi" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
-                            android:layout_gravity="center_vertical"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="IP68" />
                     </TableRow>
 
@@ -614,9 +664,12 @@
                             android:layout_weight="1"
                             android:text="Công nghệ âm thanh" />
 
-                        <TextView
+                        <EditText
                             android:layout_width="0dp"
+                            android:background="null"
                             android:layout_weight="1"
+                            android:textSize="13.5dp"
+                            android:textColor="@color/black_600"
                             android:text="Loa âm thanh nổi" />
                     </TableRow>
                 </TableLayout>
