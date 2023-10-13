@@ -84,7 +84,6 @@ public class Home extends AppCompatActivity {
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setLayoutManager(layoutManager);
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -99,8 +98,6 @@ public class Home extends AppCompatActivity {
                                 FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                                 storageRef = storage.getReference().child("Product");
                                 imageRef = storageRef.child(name +".jpg");
-
-
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
@@ -116,9 +113,6 @@ public class Home extends AppCompatActivity {
                                     }
                                 });
                             }
-                            Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
-                            recyclerView.setAdapter(adapter);
-
                         } else {
                             Toast.makeText(Home.this, "lỗi",Toast.LENGTH_SHORT).show();
                         }

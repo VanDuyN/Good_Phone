@@ -2,18 +2,24 @@ package com.example.goodphone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.goodphone.adapter.Product_adapter;
+import com.example.goodphone.dialog.Dialog_Specifications;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,9 +35,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class DetailProduct extends AppCompatActivity {
-    TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail;
+    TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
     ImageView btnReturn, imgMain,btnAddCart;
-    String id,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature;
+    String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature;
     Double price, sumRating,sold,screenSize;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -55,10 +61,9 @@ public class DetailProduct extends AppCompatActivity {
         super.onRestart();
         loadingData();
     }
-
     public void getPutExtra(){
-        id = getIntent().getStringExtra("id");
-        Log.e("get",id);
+        idProduct = getIntent().getStringExtra("id");
+        Log.e("get",idProduct);
 
     }
     public void init(){
@@ -80,6 +85,7 @@ public class DetailProduct extends AppCompatActivity {
         dbProduct = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
     }
     public void button(){
         btnReturn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +109,7 @@ public class DetailProduct extends AppCompatActivity {
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailProduct.this, "Tính năng đang phát triển",Toast.LENGTH_SHORT).show();
+                setDataDialog();
             }
         });
 
@@ -119,11 +125,25 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
 
+
+    }
+    public void setDataDialog(){
+        final Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
+        dialog_specifications.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
+        dialog_specifications.setCancelable(false);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog_specifications.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+
+        dialog_specifications.show();
+        dialog_specifications.getWindow().setAttributes(lp);
+
     }
 
     public void loadingData(){
         dbProduct.collection("Product")
-                .document(id)
+                .document(idProduct)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -142,6 +162,7 @@ public class DetailProduct extends AppCompatActivity {
                                 frontCamera  = document.getString("frontCamera");
                                 rom  = document.getString("Rom");
                                 chipset  = document.getString("Chipset");
+
 
                                 getData();
 

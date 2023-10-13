@@ -74,6 +74,13 @@ public class List_Product {
         this.favourite = favourite;
     }
 
+    public List_Product(String id, String url_img_product, String nameProduct) {
+        this.id = id;
+        this.url_img_product = url_img_product;
+        this.nameProduct = nameProduct;
+
+    }
+
     public List_Product(String id, String url_img_product, String nameProduct, double price, double sold, double sumRating) {
         this.id = id;
         this.url_img_product = url_img_product;
