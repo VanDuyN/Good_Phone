@@ -52,85 +52,95 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Tên sản phẩm" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Name_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
                             android:textColor="@color/black_600"
-                            android:text="Samsung a1234" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow android:layout_marginBottom="3dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Hãng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Production_Company_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Samsung"
                             android:textColor="@color/black_600"
-                            android:text="Samsung" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiusbottom"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiusbottom">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Giá" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Price_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="25000000"
                             android:textColor="@color/black_600"
-                            android:text="25000000" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow android:layout_marginBottom="3dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Số lượng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Sold_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="200"
                             android:textColor="@color/black_600"
-                            android:text="200" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow
-                        android:background="@drawable/shape_green_light_radiusbottom"
-                        android:padding="5dp">
+                    <TableRow android:background="@drawable/shape_green_light_radiusbottom">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Ảnh" />
 
                         <LinearLayout
@@ -139,11 +149,11 @@
                             android:layout_weight="1">
 
                             <ImageButton
+                                android:id="@+id/btn_Add_Image_Product"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_margin="1dp"
-                                android:background="@drawable/add_img"/>
-
+                                android:background="@drawable/add_img" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>
@@ -170,58 +180,65 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Kích thước màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Size_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="6.1 inches"
                             android:textColor="@color/black_600"
-                            android:text="6.1 inches" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow android:layout_marginBottom="3dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Công nghệ màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Technology_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Super Retina XDR OLED"
                             android:textColor="@color/black_600"
-                            android:text="Super Retina XDR OLED" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow
-                        android:background="@drawable/shape_green_light_radiusbottom"
-                        android:padding="5dp">
+                    <TableRow android:background="@drawable/shape_green_light_radiusbottom">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Tính năng màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Feature_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Màn OLED 1.5K\nTần số quét 144 Hz\nDolby Vision, HDR10+"
                             android:textColor="@color/black_600"
-                            android:text="Màn OLED 1.5K\nTần số quét 144 Hz\nDolby Vision, HDR10+" />
+                            android:textSize="13.5dp" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -247,39 +264,45 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Camera sau" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Rear_Camera_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Camera chính góc rộng: 50 MP, 1/1.22\nCamera góc siêu rộng: 12 MP\nCamera Tele: 50 MP"
                             android:textColor="@color/black_600"
-                            android:text="Camera chính góc rộng: 50 MP, 1/1.22\nCamera góc siêu rộng: 12 MP\nCamera Tele: 50 MP" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Quay video" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Video_Rear_Camera_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="8K@24fps (HDR)\n4K@24/30/60fp\n1080p@30/120/240/960fps\n1080p@1920fps, gyro-EIS"
                             android:textColor="@color/black_600"
-                            android:text="8K@24fps (HDR)\n4K@24/30/60fp\n1080p@30/120/240/960fps\n1080p@1920fps, gyro-EIS" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                 </TableLayout>
@@ -306,39 +329,45 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Camera trước" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Front_Camera_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="20 MP"
                             android:textColor="@color/black_600"
-                            android:text="20 MP" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Quay video trước" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Video_Front_Camera_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="1080p@30fps"
                             android:textColor="@color/black_600"
-                            android:text="1080p@30fps" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                 </TableLayout>
@@ -364,23 +393,24 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/line_grey_light">
 
-                    <TableRow
-                        android:background="@drawable/shape_green_light"
-                        android:padding="5dp">
+                    <TableRow android:background="@drawable/shape_green_light">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Chipset" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Chipset_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Dimensity 8200"
                             android:textColor="@color/black_600"
-                            android:text="Dimensity 8200" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                 </TableLayout>
@@ -407,39 +437,48 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Dung Lượng\nRAM" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Ram_Product"
                             android:layout_width="0dp"
-                            android:background="null"
+                            android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:paddingLeft="3dp"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="5000 mAh"
                             android:textColor="@color/black_600"
-                            android:text="5000 mAh" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Bộ nhớ trong" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Rom_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="256 GB"
                             android:textColor="@color/black_600"
-                            android:text="256 GB" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                 </TableLayout>
@@ -466,39 +505,45 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Pin" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Pin_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="12 GB"
                             android:textColor="@color/black_600"
-                            android:text="12 GB" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Công nghệ sạc" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Charger_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Sạc nhanh 67 W"
                             android:textColor="@color/black_600"
-                            android:text="Sạc nhanh 67 W" />
+                            android:textSize="13.5dp" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
@@ -524,99 +569,113 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Hệ điều hành" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Operating_System_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Android 13"
                             android:textColor="@color/black_600"
-                            android:text="Android 13" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow android:layout_marginBottom="3dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Hỗ trợ mạng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Network_Support_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="5G"
                             android:textColor="@color/black_600"
-                            android:text="5G" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Wifi" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Wifi_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="Wifi 6"
                             android:textColor="@color/black_600"
-                            android:text="Wifi 6" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow android:padding="5dp">
+                    <TableRow android:layout_marginBottom="3dp">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Bluetooth" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Bluetooth_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="v5.3"
                             android:textColor="@color/black_600"
-                            android:text="v5.3" />
+                            android:textSize="13.5dp" />
                     </TableRow>
 
-                    <TableRow
-                        android:background="@drawable/shape_green_light_radiusbottom"
-                        android:padding="5dp">
+                    <TableRow android:background="@drawable/shape_green_light_radiusbottom">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="GPS" />
+
                         <EditText
+                            android:id="@+id/edt_Add_GPS_Product"
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
+                            android:text="GPS (L1+L5), GLONASS (G1), BDS (B1I+B1c+B2a), GALILEO (E1+E5a), QZSS (L1+L5), NavIC (L5)"
                             android:textColor="@color/black_600"
-                            android:text="GPS (L1+L5), GLONASS (G1), BDS (B1I+B1c+B2a), GALILEO (E1+E5a), QZSS (L1+L5), NavIC (L5)" />
+                            android:textSize="13.5dp" />
                     </TableRow>
                 </TableLayout>
-            </LinearLayout>
 
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -638,60 +697,46 @@
                     android:background="@drawable/line_grey_light">
 
                     <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/shape_green_light_radiustop">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Chỉ số kháng nước, bụi" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Waterproof_Product"
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:background="null"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
                             android:text="IP68"
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
-                    <TableRow android:padding="5dp">
+
+                    <TableRow>
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
+                            android:paddingLeft="3dp"
                             android:text="Công nghệ âm thanh" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Audio_Technology_Product"
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:background="null"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
                             android:text="Loa âm thanh nổi"
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
-                    <TableRow
-                        android:background="@drawable/shape_green_light_radiustop"
-                        android:padding="5dp">
-
-                        <EditText
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:background="null"
-                            android:textColor="@color/black_600"
-                            android:textSize="13.5dp"
-                            android:hint="Thêm thông tin"/>
-
-                        <EditText
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:background="null"
-                            android:textSize="13.5dp"
-                            android:textColor="@color/black_600"
-                            android:hint="" />
-                    </TableRow>
-
                 </TableLayout>
             </LinearLayout>
             <LinearLayout
@@ -712,15 +757,14 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:background="@drawable/line_grey_light"
+                    android:padding="3dp"
+                    android:background="@drawable/bg_line_green"
                     android:textStyle="normal"
                     android:layout_weight="1"
                     android:textSize="13.5dp"
                     android:textColor="@color/black_600"
                     android:hint="Nhập..." />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
