@@ -59,7 +59,7 @@
                     android:layout_alignBottom="@id/img_QLKH"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
-                    android:text="Quản lý sản phẩm"
+                    android:text="Quản lý KH"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
             </RelativeLayout>
