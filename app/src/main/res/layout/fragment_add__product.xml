@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment.Add_Product"
+    android:id="@+id/add_Product_Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
@@ -62,12 +63,12 @@
                             android:text="Tên sản phẩm" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Name_Product"
                             android:layout_width="0dp"
-                            android:background="null"
+                            android:background="@drawable/bg_line_green"
                             android:layout_weight="1"
                             android:textSize="13.5dp"
-                            android:textColor="@color/black_600"
-                            android:text="Samsung a1234" />
+                            android:textColor="@color/black_600"/>
                     </TableRow>
 
                     <TableRow android:padding="5dp">
@@ -79,8 +80,10 @@
                             android:text="Hãng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Production_Company_Product"
                             android:layout_width="0dp"
-                            android:background="null"
+                            android:background="@drawable/bg_line_green"
+                            android:padding="3dp"
                             android:layout_weight="1"
                             android:textSize="13.5dp"
                             android:textColor="@color/black_600"
@@ -98,6 +101,7 @@
                             android:text="Giá" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Price_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -115,6 +119,7 @@
                             android:text="Số lượng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Sold_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -139,6 +144,7 @@
                             android:layout_weight="1">
 
                             <ImageButton
+                                android:id="@+id/btn_Add_Image_Product"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_margin="1dp"
@@ -179,6 +185,7 @@
                             android:text="Kích thước màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Size_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -196,6 +203,7 @@
                             android:text="Công nghệ màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Technology_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -215,6 +223,7 @@
                             android:text="Tính năng màn hình" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Screen_Feature_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -256,6 +265,7 @@
                             android:text="Camera sau" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Rear_Camera_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -273,6 +283,7 @@
                             android:text="Quay video" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Video_Rear_Camera_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -315,6 +326,7 @@
                             android:text="Camera trước" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Front_Camera_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -332,6 +344,7 @@
                             android:text="Quay video trước" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Video_Front_Camera_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -374,6 +387,7 @@
                             android:text="Chipset" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Chipset_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -416,6 +430,7 @@
                             android:text="Dung Lượng\nRAM" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Ram_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -433,6 +448,7 @@
                             android:text="Bộ nhớ trong" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Rom_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -475,6 +491,7 @@
                             android:text="Pin" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Pin_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -492,6 +509,7 @@
                             android:text="Công nghệ sạc" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Charger_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -533,6 +551,7 @@
                             android:text="Hệ điều hành" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Operating_System_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -551,6 +570,7 @@
                             android:text="Hỗ trợ mạng" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Network_Support_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -570,6 +590,7 @@
                             android:text="Wifi" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Wifi_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -587,6 +608,7 @@
                             android:text="Bluetooth" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Bluetooth_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -607,6 +629,7 @@
                             android:text="GPS" />
 
                         <EditText
+                            android:id="@+id/edt_Add_GPS_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -648,6 +671,7 @@
                             android:text="Chỉ số kháng nước, bụi" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Waterproof_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
@@ -665,6 +689,7 @@
                             android:text="Công nghệ âm thanh" />
 
                         <EditText
+                            android:id="@+id/edt_Add_Audio_Technology_Product"
                             android:layout_width="0dp"
                             android:background="null"
                             android:layout_weight="1"
