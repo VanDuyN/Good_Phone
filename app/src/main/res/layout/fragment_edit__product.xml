@@ -649,13 +649,12 @@
 
                         <EditText
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
-                            android:textSize="13.5dp"
+                            android:background="null"
+                            android:text="IP68"
                             android:textColor="@color/black_600"
-                            android:text="IP68" />
+                            android:textSize="13.5dp" />
                     </TableRow>
-
                     <TableRow android:padding="5dp">
 
                         <TextView
@@ -666,14 +665,62 @@
 
                         <EditText
                             android:layout_width="0dp"
-                            android:background="null"
                             android:layout_weight="1"
+                            android:background="null"
+                            android:text="Loa âm thanh nổi"
+                            android:textColor="@color/black_600"
+                            android:textSize="13.5dp" />
+                    </TableRow>
+                    <TableRow
+                        android:background="@drawable/shape_green_light_radiustop"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="null"
+                            android:textColor="@color/black_600"
+                            android:textSize="13.5dp"
+                            android:hint="Thêm thông tin"/>
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="null"
                             android:textSize="13.5dp"
                             android:textColor="@color/black_600"
-                            android:text="Loa âm thanh nổi" />
+                            android:hint="" />
                     </TableRow>
+
                 </TableLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Thêm thông tin"
+                    android:textColor="@color/black_700"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:background="@drawable/line_grey_light"
+                    android:textStyle="normal"
+                    android:layout_weight="1"
+                    android:textSize="13.5dp"
+                    android:textColor="@color/black_600"
+                    android:hint="Nhập..." />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

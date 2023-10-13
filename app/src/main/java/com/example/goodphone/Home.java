@@ -2,6 +2,8 @@ package com.example.goodphone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.goodphone.adapter.Product_adapter;
+import com.example.goodphone.fragment.Navigation_Bar;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,6 +44,9 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_home);
+        Fragment bottomBar = new Navigation_Bar();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
         init();
         button();
         checkUser();

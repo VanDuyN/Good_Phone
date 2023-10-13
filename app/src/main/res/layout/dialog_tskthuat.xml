@@ -5,6 +5,7 @@
     android:layout_margin="10dp"
     android:layout_gravity="center_vertical"
     android:background="@drawable/line_grey_light"
+    android:backgroundTint="@color/white"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
