@@ -5,14 +5,13 @@
     android:id="@+id/add_Product_Fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:layout_gravity="center_vertical"
-    android:background="@drawable/line_grey_light"
+    android:background="@drawable/bg_line_green"
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_weight="0.05"
-        android:layout_height="0dp"
+        android:layout_height="10dp"
         android:padding="5dp"
         android:gravity="center_horizontal"
         android:text="Thêm sản phẩm"
@@ -69,6 +68,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -88,7 +88,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Samsung"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -110,7 +110,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="25000000"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -125,12 +125,12 @@
                             android:text="Số lượng" />
 
                         <EditText
-                            android:id="@+id/edt_Add_Sold_Product"
+                            android:id="@+id/edt_Add_Quantity_Product"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="200"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -151,10 +151,13 @@
 
                             <ImageButton
                                 android:id="@+id/btn_Add_Image_Product"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
                                 android:layout_margin="1dp"
-                                android:background="@drawable/add_img" />
+                                android:scaleType="fitCenter"
+                                android:backgroundTint="@color/green_light"
+                                android:background="@color/green_light"
+                                android:src="@drawable/add_img" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>
@@ -197,7 +200,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="6.1 inches"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -217,7 +220,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Super Retina XDR OLED"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -237,7 +240,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Màn OLED 1.5K\nTần số quét 144 Hz\nDolby Vision, HDR10+"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -281,7 +284,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Camera chính góc rộng: 50 MP, 1/1.22\nCamera góc siêu rộng: 12 MP\nCamera Tele: 50 MP"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -301,7 +304,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="8K@24fps (HDR)\n4K@24/30/60fp\n1080p@30/120/240/960fps\n1080p@1920fps, gyro-EIS"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -346,7 +349,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="20 MP"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -366,7 +369,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="1080p@30fps"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -409,7 +412,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Dimensity 8200"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -457,7 +460,7 @@
                             android:paddingLeft="3dp"
                             android:paddingTop="8dp"
                             android:paddingBottom="8dp"
-                            android:text="5000 mAh"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -477,7 +480,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="256 GB"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -522,7 +525,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="12 GB"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -542,7 +545,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Sạc nhanh 67 W"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -586,7 +589,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Android 13"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -607,7 +610,8 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="5G"
+
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -629,7 +633,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Wifi 6"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -649,7 +653,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="v5.3"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -670,7 +674,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="GPS (L1+L5), GLONASS (G1), BDS (B1I+B1c+B2a), GALILEO (E1+E5a), QZSS (L1+L5), NavIC (L5)"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -714,7 +718,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="IP68"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>
@@ -734,7 +738,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
-                            android:text="Loa âm thanh nổi"
+                            android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>

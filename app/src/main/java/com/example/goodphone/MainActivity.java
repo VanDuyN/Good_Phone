@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogIn);
         btnLogOut = findViewById(R.id.btnLogOut);
         btnsp = findViewById(R.id.btnSanpham);
-
         auth = FirebaseAuth.getInstance();
         user  = auth.getCurrentUser();
         if(user != null){
