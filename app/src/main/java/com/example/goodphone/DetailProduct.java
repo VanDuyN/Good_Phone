@@ -3,6 +3,7 @@ package com.example.goodphone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.goodphone.adapter.Product_adapter;
 import com.example.goodphone.dialog.Dialog_Specifications;
+import com.example.goodphone.fragment.Navigation_Bar;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -63,6 +65,7 @@ public class DetailProduct extends AppCompatActivity {
     }
     public void getPutExtra(){
         idProduct = getIntent().getStringExtra("id");
+
         Log.e("get",idProduct);
 
     }

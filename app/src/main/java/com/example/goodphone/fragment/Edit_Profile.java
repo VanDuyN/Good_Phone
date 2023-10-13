@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.goodphone.R;
 
-public class Edit_Product extends Fragment {
+public class Edit_Profile extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_edit_product, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
 }

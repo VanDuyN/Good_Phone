@@ -46,7 +46,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.customer_home);
         Fragment bottomBar = new Navigation_Bar();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
+        fragmentTransaction.add(R.id.nevigation_bar, bottomBar).commit();
         init();
         button();
         checkUser();

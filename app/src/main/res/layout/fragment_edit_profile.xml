@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.Edit_Profile">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="18dp"
+            android:background="@drawable/line_grey_light">
+
+            <TableRow
+                android:background="@drawable/shape_green_light_radiustop"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:textSize="20dp"
+                    android:text="Họ" />
+
+                <EditText
+                    android:id="@+id/edt_FirstName"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="Đặng" />
+            </TableRow>
+            <TableRow android:padding="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:textSize="20dp"
+                    android:text="Tên" />
+
+                <EditText
+                    android:id="@+id/edt_LastName"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="Phương" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/green_light"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Email"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/edt_Email"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:text="123@gmail.com"
+                    android:textSize="20dp"/>
+            </TableRow>
+
+            <TableRow android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:textSize="20dp"
+                    android:text="Số điện thoại" />
+
+                <EditText
+                    android:id="@+id/edt_PhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="1234567891" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/green_light"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Địa chỉ"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/edt_Address"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="Nhà Bè" />
+            </TableRow>
+
+            <TableRow android:padding="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:textSize="20dp"
+                    android:text="Chức vụ" />
+
+                <EditText
+                    android:id="@+id/edt_Role"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="Nhân viên" />
+            </TableRow>
+
+
+        </TableLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_line_green"
+                android:backgroundTint="@color/green_dark"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:textAllCaps="false"
+                android:text="Lưu"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
