@@ -67,7 +67,7 @@ public class Product_adapter extends RecyclerView.Adapter<Product_adapter.Produc
 
     @Override
     public int getItemCount() {
-        return Math.min(arrProduct.size(),4);
+        return arrProduct.size();
     }
     public class Product_View_Holder extends RecyclerView.ViewHolder{
         TextView txtNameProduct,price,sumRating,sold;

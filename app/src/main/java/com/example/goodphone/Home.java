@@ -40,24 +40,20 @@ public class Home extends AppCompatActivity {
     ArrayList<List_Product> arrProduct= new ArrayList<>();
     RecyclerView recyclerView;
     StorageReference storageRef, imageRef;
+    String id,name;
+    double price,sold,sumRating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_home);
-        Fragment bottomBar = new Navigation_Bar();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
+//        Fragment bottomBar = new Navigation_Bar();
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
         init();
         button();
         checkUser();
         showProduct();
 
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        showProduct();
     }
 
     public void checkUser(){
@@ -89,41 +85,52 @@ public class Home extends AppCompatActivity {
     }
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
+      recyclerView.setLayoutManager(layoutManager);
+
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            storageRef = storage.getReference().child("Product");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();
-                                String name = document.getString("Name".trim());
-                                double price =document.getDouble("price");
-                                double sold = document.getDouble("sold");
-                                double sumRating = document.getDouble("SumRating");
-                                FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
-                                storageRef = storage.getReference().child("Product");
-                                imageRef = storageRef.child(name +".jpg");
-                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        String fileUrl = uri.toString();
-                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
-                                        Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
-                                        recyclerView.setAdapter(adapter);
-                                    }
-                               }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
+                                id = document.getId();
 
-                                    }
-                                });
+                                name = document.getString("Name");
+                                price =document.getDouble("Price");
+                                sold = document.getDouble("Sold");
+                                sumRating = document.getDouble("SumRating");
+                                getImage();
+
                             }
                         } else {
                             Toast.makeText(Home.this, "lỗi",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+    public void getImage(){
+        imageRef = storageRef.child(name +".jpg");
+
+        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                String fileUrl = uri.toString();
+
+                arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
+
+                Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
+
+                recyclerView.setAdapter(adapter);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(Home.this, "anh lỗi",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void init(){
