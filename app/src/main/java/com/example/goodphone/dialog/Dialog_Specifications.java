@@ -35,7 +35,7 @@ public class Dialog_Specifications extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_tskthuat);
         init();
-        //getData();
+        getData();
         click();
 
     }
@@ -56,23 +56,23 @@ public class Dialog_Specifications extends Dialog {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                tvScreenSize.setText(document.getString(""));
-                                tvScreenTechnology.setText(document.getString(""));
-                                tvScreenFeature.setText(document.getString(""));
-                                tvRearCamera.setText(document.getString(""));
-                                tvRearVideo.setText(document.getString(""));
-                                tvFrontCamera.setText(document.getString(""));
-                                tvFontVideo.setText(document.getString(""));
-                                tvRam.setText(document.getString(""));
-                                tvRom.setText(document.getString(""));
-                                tvPin.setText(document.getString(""));
-                                tvCharging.setText(document.getString(""));
-                                tvOperatingSystem.setText(document.getString(""));
-                                tvWifi.setText(document.getString(""));
-                                tvBluetooth.setText(document.getString(""));
-                                tvGPS.setText(document.getString(""));
-                                tvWaterproof.setText(document.getString(""));
-                                tvSound.setText(document.getString(""));
+                                tvScreenSize.setText(document.getString("ScreenSize"));
+                                tvScreenTechnology.setText(document.getString("ScreenTechnology"));
+                                tvScreenFeature.setText(document.getString("ScreenFeature"));
+                                tvRearCamera.setText(document.getString("RearCamera"));
+                                tvRearVideo.setText(document.getString("VideoRearCamera"));
+                                tvFrontCamera.setText(document.getString("FrontCamera"));
+                                tvFontVideo.setText(document.getString("VideoFrontCamera"));
+                                tvRam.setText(document.getString("Ram"));
+                                tvRom.setText(document.getString("Rom"));
+                                tvPin.setText(document.getString("Pin"));
+                                tvCharging.setText(document.getString("Charger"));
+                                tvOperatingSystem.setText(document.getString("OperatingSystem"));
+                                tvWifi.setText(document.getString("Wifi"));
+                                tvBluetooth.setText(document.getString("Bluetooth"));
+                                tvGPS.setText(document.getString("GPS"));
+                                tvWaterproof.setText(document.getString("Waterproof"));
+                                tvSound.setText(document.getString("AudioTechnology"));
                             } else {
                                 Toast.makeText(context, "Lỗi lấy dữ liệu",Toast.LENGTH_SHORT).show();
                             }
@@ -103,5 +103,6 @@ public class Dialog_Specifications extends Dialog {
         tvNetwork = findViewById(R.id.tv_Network_T);
         tvChipset = findViewById(R.id.tv_Chipset);
         btn_Close= findViewById(R.id.btn_Close);
+        dbProduct = FirebaseFirestore.getInstance();
     }
 }

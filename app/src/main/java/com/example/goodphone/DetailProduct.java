@@ -37,8 +37,8 @@ import com.google.firebase.storage.StorageReference;
 public class DetailProduct extends AppCompatActivity {
     TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
     ImageView btnReturn, imgMain,btnAddCart;
-    String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature;
-    Double price, sumRating,sold,screenSize;
+    String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
+    Double price, sumRating,sold;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
@@ -153,13 +153,13 @@ public class DetailProduct extends AppCompatActivity {
                                 // lay du lieu tu database
 
                                 nameProduct = document.getString("Name".trim());
-                                price = document.getDouble("price");
+                                price = document.getDouble("Price");
                                 sumRating = document.getDouble("SumRating");
-                                screenSize = document.getDouble("screenSize");
-                                screenFeature = document.getString("screenFeature");
-                                screenTechnology = document.getString("screenTechnology");
+                                screenSize = document.getString("ScreenSize");
+                                screenFeature = document.getString("ScreenFeature");
+                                screenTechnology = document.getString("ScreenTechnology");
                                 rearCamera  = document.getString("Rear_Camera");
-                                frontCamera  = document.getString("frontCamera");
+                                frontCamera  = document.getString("FrontCamera");
                                 rom  = document.getString("Rom");
                                 chipset  = document.getString("Chipset");
 

@@ -42,6 +42,7 @@ import java.util.Map;
 
 public class Add_Product extends Fragment {
     private View view;
+    QLSanPhamActivity qlSanPhamActivity;
     FirebaseFirestore dbProduct;
     Uri imageUri;
     FirebaseStorage storage;
@@ -156,6 +157,7 @@ public class Add_Product extends Fragment {
                         uploadImageToFirebase(imageUri);
                         Toast.makeText(getContext(), "them thanh cong",
                                 Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -167,10 +169,6 @@ public class Add_Product extends Fragment {
 
 
     }
-
-
-
-
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);

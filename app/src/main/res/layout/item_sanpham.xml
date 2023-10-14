@@ -29,6 +29,7 @@
 
     </LinearLayout>
     <Button
+        android:id="@+id/btn_Delete_SP"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="X"
