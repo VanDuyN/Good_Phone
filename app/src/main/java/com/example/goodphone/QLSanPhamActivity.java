@@ -36,8 +36,10 @@ import java.util.List;
 
 public class QLSanPhamActivity extends AppCompatActivity{
     private RecyclerView rcvSanPham;
+
+
     private SanPhamAdapter adapter;
-    private List<List_Product> mListSanPham;
+    private List<List_Product> arrProduct;
     private RelativeLayout rootView;
     StorageReference storageRef, imageRef;
     FirebaseUser user;
@@ -57,6 +59,13 @@ public class QLSanPhamActivity extends AppCompatActivity{
         getListSanPham();
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reload();
+    }
+
     public void setClick(){
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,15 +81,18 @@ public class QLSanPhamActivity extends AppCompatActivity{
         });
 
     }
+    public void reload(){
+        arrProduct.clear();
+        getListSanPham();
+    }
     public void sendDataToFragment(){
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.root_view,new Add_Product());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-    private void getListSanPham(){
-        List<List_Product> arrProduct= new ArrayList<>();
+    public void getListSanPham(){
+        arrProduct= new ArrayList<>();
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
