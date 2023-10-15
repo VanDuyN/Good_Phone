@@ -10,11 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.goodphone.QLSanPhamActivity;
 import com.example.goodphone.R;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,7 +32,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
     Context context;
     FirebaseFirestore dbFirestore;
     FirebaseStorage storage;
-    StorageReference storageReference;
+    private int pst;
+    StorageReference storageReference,imageRef;
+
     public SanPhamAdapter(List<List_Product> mListSanPham){
         this.mListSanPham = mListSanPham;
     }
@@ -63,18 +67,24 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                storage = FirebaseStorage.getInstance();
-                                storageReference = storage.getReference();
-                                storageReference.child("Product/"+mListSanPham.get(position).nameProduct+".jpg");
-                                storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");;
+                                storageReference = storage.getReference().child("Product");
+                                imageRef= storageReference.child(mListSanPham.get(position).nameProduct+".jpg");
+                                imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        // File deleted successfully
+                                        pst= position;
+                                        mListSanPham.remove(pst);
+                                        notifyItemRemoved(pst);
+                                        notifyItemRangeChanged(pst, mListSanPham.size());
+
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
+
                                     @Override
                                     public void onFailure(@NonNull Exception exception) {
-                                        // Uh-oh, an error occurred!
+                                        Toast.makeText(context, "Xoá LOI",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -114,10 +124,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
 
         }
     }
-    public void removeItem (int index){
-        mListSanPham.remove(index);
-        notifyItemRemoved(index);
-        notifyItemRangeChanged(index,mListSanPham.size());
-    }
+
 
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogOut">
+    tools:context=".Register">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -153,6 +153,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_edt_intro"
             android:padding="5dp"
+            android:inputType="number"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="35dp"
             tools:layout_editor_absoluteY="438dp" />

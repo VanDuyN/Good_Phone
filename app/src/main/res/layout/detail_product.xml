@@ -219,7 +219,7 @@
                         android:text="Camera sau" />
 
                     <TextView
-                        android:id="@+id/tv_Font_Camera"
+                        android:id="@+id/tv_Rear_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="Camera chính: 48MP\nCamera chính: 48MP\nCamera Tele: 12MP " />
@@ -234,7 +234,7 @@
                         android:text="Camera trước" />
 
                     <TextView
-                        android:id="@+id/tv_Rear_Camera"
+                        android:id="@+id/tv_Front_Camera"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="12MP" />

@@ -68,7 +68,7 @@ public class Dialog_Specifications extends Dialog {
                                 tvPin.setText(document.getString("Pin"));
                                 tvCharging.setText(document.getString("Charger"));
                                 tvOperatingSystem.setText(document.getString("OperatingSystem"));
-                                tvWifi.setText(document.getString("Wifi"));
+                                tvWifi.setText(document.getString("WifiProduct"));
                                 tvBluetooth.setText(document.getString("Bluetooth"));
                                 tvGPS.setText(document.getString("GPS"));
                                 tvWaterproof.setText(document.getString("Waterproof"));

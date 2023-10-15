@@ -110,6 +110,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
+                            android:inputType="number"
                             android:hint="Nhập..."
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
@@ -131,6 +132,7 @@
                             android:background="@drawable/bg_line_green"
                             android:padding="3dp"
                             android:hint="Nhập..."
+                            android:inputType="number"
                             android:textColor="@color/black_600"
                             android:textSize="13.5dp" />
                     </TableRow>

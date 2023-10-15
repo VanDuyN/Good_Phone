@@ -60,40 +60,40 @@ public class Register extends AppCompatActivity {
         });
     }
     public void validate(){
-        email = edtEmail.getText().toString();
-        password = edtPassword.getText().toString();
-        firstName = edtFirstName.getText().toString();
-        lastName = edtLastName.getText().toString();
-        phone = edtPhoneNumber.getText().toString();
-        address = edtAddress.getText().toString();
+        email = edtEmail.getText().toString().trim();
+        password = edtPassword.getText().toString().trim();
+        firstName = edtFirstName.getText().toString().trim();
+        lastName = edtLastName.getText().toString().trim();
+        phone = edtPhoneNumber.getText().toString().trim();
+        address = edtAddress.getText().toString().trim();
         regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         emailValidate = patternMatches(email.trim(), regexPattern);
         phoneValidate = validatePhoneNumber(phone.trim(),PHONE_NUMBER_PATTERN);
         //validate email
         if (emailValidate){
             //validate password
-            if (password.trim().length() >= 8) {
+            if (password.length() >= 8 && password.length() <= 50) {
                 //validate name
-                if (!firstName.trim().isEmpty() && !lastName.trim().isEmpty()){
+                if (!firstName.isEmpty() && !lastName.isEmpty() && lastName.length() <= 30 && firstName.length() <= 30){
                     //valudate phone
-                    if(phone.trim().length() == 10 && phoneValidate){
+                    if(phoneValidate){
                         //validate dia chi
-                        if (!address.trim().isEmpty()){
+                        if (!address.trim().isEmpty() && address.length() <= 200){
                             createUser();
                         }else{
-                            Toast.makeText(Register.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Địa chỉ không được để trống và không quá 200 ký tự", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(Register.this, "Số điện thoại có 10 số và bắt đầu bằng 0 hoặc +84", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(Register.this, "Họ và tên không được để trống", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "Họ và tên không được để trống và không quá 30 ký tự", Toast.LENGTH_SHORT).show();
                 }
             }else {
-                Toast.makeText(Register.this, "Mật khẩu phải từ 8 kí tự trở lên", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "Mật khẩu phải từ 8 kí tự trở lên và không quá 50 ký tự", Toast.LENGTH_SHORT).show();
             }
         }else{
-            Toast.makeText(Register.this, "Kiểm tra lại email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Register.this, "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -113,12 +113,12 @@ public class Register extends AppCompatActivity {
                                 String uid = user.getUid();
                                 Map<String, Object> users = new HashMap<>();
                                 users.put("id",uid);
-                                users.put("firstName",firstName.trim());
-                                users.put("lastName",lastName.trim());
-                                users.put("email",email.trim());
-                                users.put("address",address.trim());
-                                users.put("phoneNumber",phone.trim());
-                                users.put("password",password.trim() );
+                                users.put("firstName",firstName);
+                                users.put("lastName",lastName);
+                                users.put("email",email);
+                                users.put("address",address);
+                                users.put("phoneNumber",phone);
+                                users.put("password",password);
                                 users.put("role","Khách hàng");
                                 db.collection("User").document(uid)
                                         .set(users)

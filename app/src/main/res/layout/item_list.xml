@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:background="@color/green_light"
-            android:src="@drawable/img_phone" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
