@@ -46,7 +46,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
     FirebaseAuth auth;
     FirebaseFirestore dbProduct;
     ImageButton btnExit;
-    Button btnAddProduct;
+    Button btnAddProduct,btnRefresh;
     Add_Product add_product;
     ViewPager viewPager;
 
@@ -77,6 +77,12 @@ public class QLSanPhamActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 sendDataToFragment();
+            }
+        });
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reload();
             }
         });
 
@@ -134,6 +140,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
         rcvSanPham = findViewById(R.id.rcv_sanpham);
         add_product = new Add_Product();
         btnExit =  findViewById(R.id.btn_Exit_QLSP);
+        btnRefresh = findViewById(R.id.btnRefresh);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 

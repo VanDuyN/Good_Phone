@@ -95,13 +95,13 @@ public class LogIn extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     progressDialog.dismiss();
-                                    Toast.makeText(LogIn.this, "Kiểm tra lại Email và mật khẩu", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LogIn.this, "Tài khoản không tồn tại vui lòng kiểm tra lại tài khoản và mật khẩu", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             }
             else {
-                Toast.makeText(LogIn.this, "Vui lòng Kiểm tra lại mật khẩu mật khẩu phải từ 8 kí tự trở lên",Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogIn.this, "Vui lòng Kiểm tra lại mật khẩu mật",Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 return;
             }

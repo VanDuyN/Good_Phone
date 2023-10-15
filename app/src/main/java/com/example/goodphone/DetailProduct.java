@@ -76,7 +76,7 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenSize= findViewById(R.id.tv_Screen_Size);
         tvScreenTechnology= findViewById(R.id.tv_Screen_Technology);
         tvRearCamera= findViewById(R.id.tv_Rear_Camera);
-        tvFontCamera= findViewById(R.id.tv_Font_Camera);
+        tvFontCamera= findViewById(R.id.tv_Front_Camera);
         tvRom= findViewById(R.id.tv_Rom);
         tvChipset= findViewById(R.id.tv_Chipset);
         tvScreenFeature= findViewById(R.id.tv_Screen_Feature);
@@ -117,15 +117,13 @@ public class DetailProduct extends AppCompatActivity {
     public void getData(){
         tvNameProductDetail.setText(nameProduct);
         tvPriceDetail.setText(price.toString());
-        tvScreenSize.setText(screenSize.toString() +" inch");
+        tvScreenSize.setText(screenSize.toString());
         tvChipset.setText(chipset);
         tvFontCamera.setText(frontCamera);
         tvRearCamera.setText(rearCamera);
         tvRom.setText(rom );
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
-
-
     }
     public void setDataDialog(){
         final Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
@@ -158,12 +156,10 @@ public class DetailProduct extends AppCompatActivity {
                                 screenSize = document.getString("ScreenSize");
                                 screenFeature = document.getString("ScreenFeature");
                                 screenTechnology = document.getString("ScreenTechnology");
-                                rearCamera  = document.getString("Rear_Camera");
+                                rearCamera  = document.getString("RearCamera");
                                 frontCamera  = document.getString("FrontCamera");
                                 rom  = document.getString("Rom");
                                 chipset  = document.getString("Chipset");
-
-
                                 getData();
 
                                 FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
