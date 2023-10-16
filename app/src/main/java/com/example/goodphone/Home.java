@@ -1,17 +1,26 @@
 package com.example.goodphone;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.goodphone.adapter.Product_adapter;
@@ -40,24 +49,26 @@ public class Home extends AppCompatActivity {
     ArrayList<List_Product> arrProduct= new ArrayList<>();
     RecyclerView recyclerView;
     StorageReference storageRef, imageRef;
+    String id,name;
+    AlertDialog.Builder builder;
+
+    Dialog dialog;
+    TextView tvTitleConfirm,tvDetailConfirm;
+    Button btnConfirm, btnRefuse;
+
+    double price,sold,sumRating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_home);
-        Fragment bottomBar = new Navigation_Bar();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.nevigation_bar, bottomBar).commit();
+//        Fragment bottomBar = new Navigation_Bar();
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
         init();
         button();
         checkUser();
         showProduct();
 
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        showProduct();
     }
 
     public void checkUser(){
@@ -79,51 +90,97 @@ public class Home extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth.signOut();
-                Intent i= new Intent(Home.this, Home.class);
-                startActivity(i);
-                finishAffinity();
+                openDialog(Gravity.CENTER);
             }
         });
 
     }
+    public void openDialog(int gravity){
+        dialog =  new Dialog(Home.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comfirm);
+        Window window = dialog.getWindow();
+        if(window == null ){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
+        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
+        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        tvTitleConfirm.setText("Xác nhận đăng xuất");
+        tvDetailConfirm.setText("Bạn có chắc là muốn đăng xuất không");
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent intent= new Intent(Home.this, Home.class);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+        dialog.show();
+        btnRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
+      recyclerView.setLayoutManager(layoutManager);
+
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            storageRef = storage.getReference().child("Product");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();
-                                String name = document.getString("Name".trim());
-                                double price =document.getDouble("price");
-                                double sold = document.getDouble("sold");
-                                double sumRating = document.getDouble("SumRating");
-                                FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
-                                storageRef = storage.getReference().child("Product");
-                                imageRef = storageRef.child(name +".jpg");
-                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        String fileUrl = uri.toString();
-                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
-                                        Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
-                                        recyclerView.setAdapter(adapter);
-                                    }
-                               }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception exception) {
+                                id = document.getId();
 
-                                    }
-                                });
+                                name = document.getString("Name");
+                                price =document.getDouble("Price");
+                                sold = document.getDouble("Sold");
+                                sumRating = document.getDouble("SumRating");
+                                getImage();
+
                             }
                         } else {
                             Toast.makeText(Home.this, "lỗi",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+    public void getImage(){
+        imageRef = storageRef.child(name +".jpg");
+
+        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                String fileUrl = uri.toString();
+
+                arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
+
+                Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
+
+                recyclerView.setAdapter(adapter);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(Home.this, "anh lỗi",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void init(){
@@ -133,5 +190,6 @@ public class Home extends AppCompatActivity {
         dbProduct = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        builder = new AlertDialog.Builder(Home.this);
     }
 }
