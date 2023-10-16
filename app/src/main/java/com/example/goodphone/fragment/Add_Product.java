@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -42,8 +43,10 @@ import java.util.Map;
 
 public class Add_Product extends Fragment {
     private View view;
+    RecyclerView recyclerView;
     FirebaseFirestore dbProduct;
     Uri imageUri;
+    QLSanPhamActivity  qlSanPhamActivity;
     FirebaseStorage storage;
     Button btnAdd, btnExit;
     int RESULT_OK = -1;
@@ -56,7 +59,9 @@ public class Add_Product extends Fragment {
     String Name, ProductionCompany,ScreenSize,ScreenTechnology,ScreenFeature,RearCamera,
             VideoRearCamera,FrontCamera,VideoFrontCamera,Chipset,Ram,Rom,Pin,Charger,OperatingSystem,NetworkSupport,
             WifiProduct,Bluetooth,GPS,Waterproof,AudioTechnology;
-    int Price,Quantity;
+
+
+    double Price,Quantity;
     public Add_Product(){
     }
     @Override
@@ -66,19 +71,26 @@ public class Add_Product extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        qlSanPhamActivity = (QLSanPhamActivity) getActivity();
+        qlSanPhamActivity.reload();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add__product, container, false);
         init();
         button();
-        //addProduct();
         return view;
     }
     public void button(){
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addProduct();
+                setData();
+                checkData();
             }
         });
         btnExit.setOnClickListener(new View.OnClickListener() {
@@ -97,31 +109,183 @@ public class Add_Product extends Fragment {
             }
         });
     }
+    public void setData(){
+        if (!(edtPrice.getText().toString()).isEmpty()  ){
+            if(!(edtQuantity.getText().toString()).isEmpty()){
+                Name = edtName.getText().toString();
+                Price =Double.parseDouble(edtPrice.getText().toString());
+                ProductionCompany = edtProductionCompanyProduct.getText().toString();
+                Quantity = Double.parseDouble(edtQuantity.getText().toString());
+                ScreenSize = edtScreenSize.getText().toString();
+                ScreenFeature = edtScreenFeature.getText().toString();
+                ScreenTechnology = edtScreenTechnology.getText().toString();
+                RearCamera = edtRearCamera.getText().toString();
+                VideoRearCamera = edtRearCamera.getText().toString();
+                FrontCamera = edtFrontCamera.getText().toString();
+                VideoFrontCamera = edtFrontCamera.getText().toString();
+                Chipset = edtChipset.getText().toString();
+                Ram = edtRam.getText().toString();
+                Rom = edtRom.getText().toString();
+                Pin = edtPin.getText().toString();
+                Charger = edtCharging.getText().toString();
+                OperatingSystem = edtOperatingSystem.getText().toString();
+                NetworkSupport = edtNetwork.getText().toString();
+                WifiProduct = edtWifi.getText().toString();
+                Bluetooth = edtBluetooth.getText().toString();
+                GPS = edtGPS.getText().toString();
+                Waterproof = edtWaterproof.getText().toString();
+                AudioTechnology = edtSound.getText().toString();
+            }else{
+                Name = edtName.getText().toString();
+                Price = 1;
+                ProductionCompany = edtProductionCompanyProduct.getText().toString();
+                Quantity = 0;
+                ScreenSize = edtScreenSize.getText().toString();
+                ScreenFeature = edtScreenFeature.getText().toString();
+                ScreenTechnology = edtScreenTechnology.getText().toString();
+                RearCamera = edtRearCamera.getText().toString();
+                VideoRearCamera = edtRearCamera.getText().toString();
+                FrontCamera = edtFrontCamera.getText().toString();
+                VideoFrontCamera = edtFrontCamera.getText().toString();
+                Chipset = edtChipset.getText().toString();
+                Ram = edtRam.getText().toString();
+                Rom = edtRom.getText().toString();
+                Pin = edtPin.getText().toString();
+                Charger = edtCharging.getText().toString();
+                OperatingSystem = edtOperatingSystem.getText().toString();
+                NetworkSupport = edtNetwork.getText().toString();
+                WifiProduct = edtWifi.getText().toString();
+                Bluetooth = edtBluetooth.getText().toString();
+                GPS = edtGPS.getText().toString();
+                Waterproof = edtWaterproof.getText().toString();
+                AudioTechnology = edtSound.getText().toString();
+            }
+        }else {
+            Name = edtName.getText().toString();
+            Price = 0;
+            ProductionCompany = edtProductionCompanyProduct.getText().toString();
+            Quantity = 1;
+            ScreenSize = edtScreenSize.getText().toString();
+            ScreenFeature = edtScreenFeature.getText().toString();
+            ScreenTechnology = edtScreenTechnology.getText().toString();
+            RearCamera = edtRearCamera.getText().toString();
+            VideoRearCamera = edtRearCamera.getText().toString();
+            FrontCamera = edtFrontCamera.getText().toString();
+            VideoFrontCamera = edtFrontCamera.getText().toString();
+            Chipset = edtChipset.getText().toString();
+            Ram = edtRam.getText().toString();
+            Rom = edtRom.getText().toString();
+            Pin = edtPin.getText().toString();
+            Charger = edtCharging.getText().toString();
+            OperatingSystem = edtOperatingSystem.getText().toString();
+            NetworkSupport = edtNetwork.getText().toString();
+            WifiProduct = edtWifi.getText().toString();
+            Bluetooth = edtBluetooth.getText().toString();
+            GPS = edtGPS.getText().toString();
+            Waterproof = edtWaterproof.getText().toString();
+            AudioTechnology = edtSound.getText().toString();
+        }
+
+    }
+    public void checkData(){
+
+        if (!Name.trim().isEmpty()) {
+            if (!ProductionCompany.trim().isEmpty()) {
+                if (!ScreenSize.trim().isEmpty()) {
+                    if (!ScreenTechnology.trim().isEmpty()) {
+                        if (!ScreenFeature.trim().isEmpty()) {
+                            if (!RearCamera.trim().isEmpty()) {
+                                if (!VideoRearCamera.trim().isEmpty()) {
+                                    if (!FrontCamera.trim().isEmpty()) {
+                                        if (!VideoFrontCamera.trim().isEmpty()) {
+                                            if (!Chipset.trim().isEmpty()) {
+                                                if (!Ram.trim().isEmpty()) {
+                                                    if (!Rom.trim().isEmpty()) {
+                                                        if (!Pin.trim().isEmpty()) {
+                                                            if (!Charger.trim().isEmpty()) {
+                                                                if (!OperatingSystem.trim().isEmpty()) {
+                                                                    if (!NetworkSupport.trim().isEmpty()) {
+                                                                        if (!WifiProduct.trim().isEmpty()) {
+                                                                            if (!Bluetooth.trim().isEmpty()) {
+                                                                                if (!GPS.trim().isEmpty()) {
+                                                                                    if (!Waterproof.trim().isEmpty()) {
+                                                                                        if (!AudioTechnology.trim().isEmpty()) {
+                                                                                            if(Price > 0){
+                                                                                                if(Quantity > 0){
+                                                                                                        addProduct();
+                                                                                                    }else {
+                                                                                                        Toast.makeText(getContext(), "Không được bỏ trống số lượng và lớn hơn 0", Toast.LENGTH_SHORT).show();
+                                                                                                    }
+                                                                                            }else{
+                                                                                                Toast.makeText(getContext(), "Không được bỏ trống Tiền và lớn hơn 0", Toast.LENGTH_SHORT).show();
+                                                                                            }
+                                                                                        } else {
+                                                                                            Toast.makeText(getContext(), "Không được bỏ trống công nghệ âm thanh", Toast.LENGTH_SHORT).show();
+                                                                                        }
+                                                                                    } else {
+                                                                                        Toast.makeText(getContext(), "Không được bỏ trống chỉ số kháng nước, bụi", Toast.LENGTH_SHORT).show();
+                                                                                    }
+                                                                                } else {
+                                                                                    Toast.makeText(getContext(), "Không được bỏ trống GPS", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            } else {
+                                                                                Toast.makeText(getContext(), "Không được bỏ trống Bluetooth", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        } else {
+                                                                            Toast.makeText(getContext(), "Không được bỏ trống wifi", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    } else {
+                                                                        Toast.makeText(getContext(), "Không được bỏ trống hỗ trợ mạng", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                } else {
+                                                                    Toast.makeText(getContext(), "Không được bỏ trống hệ điều hành", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            } else {
+                                                                Toast.makeText(getContext(), "Không được bỏ trống công nghệ xạc", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        } else {
+                                                            Toast.makeText(getContext(), "Không được bỏ trống Pin", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Không được bỏ trống bộ nhớ tron", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {
+                                                    Toast.makeText(getContext(), "Không được bỏ trống dung lượng Ram", Toast.LENGTH_SHORT).show();
+                                                }
+                                            } else {
+                                                Toast.makeText(getContext(), "Không được bỏ trống Chipset", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(getContext(), "Không được bỏ trống quay video camera trước", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(getContext(), "Không được bỏ trống camera trước", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(getContext(), "Không được bỏ trống quay video camera sau", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(getContext(), "Không được bỏ trống camera sau", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getContext(), "Không được bỏ trống tính năng màn hình", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Không được bỏ trống công nghệ màn hình", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Không được bỏ trống kính thước màn hình", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Không được bỏ trống hãng sản phẩm", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Không được bỏ trống Tên", Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
     public void addProduct(){
-        Name = edtName.getText().toString();
-        Price = Integer.parseInt(edtPrice.getText().toString());
-        ProductionCompany = edtProductionCompanyProduct.getText().toString();
-        Quantity = Integer.parseInt(edtQuantity.getText().toString());
-        ScreenSize = edtScreenSize.getText().toString();
-        ScreenFeature = edtScreenFeature.getText().toString();
-        ScreenTechnology = edtScreenTechnology.getText().toString();
-        RearCamera = edtRearCamera.getText().toString();
-        VideoRearCamera = edtRearCamera.getText().toString();
-        FrontCamera = edtFrontCamera.getText().toString();
-        VideoFrontCamera = edtFrontCamera.getText().toString();
-        Chipset = edtChipset.getText().toString();
-        Ram = edtRam.getText().toString();
-        Rom = edtRom.getText().toString();
-        Pin = edtPin.getText().toString();
-        Charger = edtCharging.getText().toString();
-        OperatingSystem = edtOperatingSystem.getText().toString();
-        NetworkSupport = edtNetwork.getText().toString();
-        WifiProduct = edtWifi.getText().toString();
-        Bluetooth = edtBluetooth.getText().toString();
-        GPS = edtGPS.getText().toString();
-        Waterproof = edtWaterproof.getText().toString();
-        AudioTechnology = edtSound.getText().toString();
         Map<String,Object> data = new HashMap<>();
         data.put("Name", Name);
         data.put("Price", Price);
@@ -154,8 +318,12 @@ public class Add_Product extends Fragment {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         uploadImageToFirebase(imageUri);
-                        Toast.makeText(getContext(), "them thanh cong",
+                        Toast.makeText(getContext(), "Thêm thành công",
                                 Toast.LENGTH_SHORT).show();
+                        qlSanPhamActivity = (QLSanPhamActivity) getActivity();
+                        qlSanPhamActivity.reload();
+
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -167,10 +335,6 @@ public class Add_Product extends Fragment {
 
 
     }
-
-
-
-
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
@@ -182,6 +346,7 @@ public class Add_Product extends Fragment {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             btnAddImage.setImageURI(imageUri);
+
         }
     }
     private void uploadImageToFirebase(Uri imageUri) {
@@ -218,5 +383,7 @@ public class Add_Product extends Fragment {
         storage= FirebaseStorage.getInstance();
         btnAddImage = view.findViewById(R.id.btn_Add_Image_Product);
         edtQuantity = view.findViewById(R.id.edt_Add_Quantity_Product);
+        recyclerView = view.findViewById(R.id.rcv_sanpham);
+
     }
 }

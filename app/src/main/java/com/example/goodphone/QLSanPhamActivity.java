@@ -36,15 +36,17 @@ import java.util.List;
 
 public class QLSanPhamActivity extends AppCompatActivity{
     private RecyclerView rcvSanPham;
+
+
     private SanPhamAdapter adapter;
-    private List<List_Product> mListSanPham;
+    private List<List_Product> arrProduct;
     private RelativeLayout rootView;
     StorageReference storageRef, imageRef;
     FirebaseUser user;
     FirebaseAuth auth;
     FirebaseFirestore dbProduct;
     ImageButton btnExit;
-    Button btnAddProduct;
+    Button btnAddProduct,btnRefresh;
     Add_Product add_product;
     ViewPager viewPager;
 
@@ -57,6 +59,13 @@ public class QLSanPhamActivity extends AppCompatActivity{
         getListSanPham();
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        reload();
+    }
+
     public void setClick(){
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,17 +79,26 @@ public class QLSanPhamActivity extends AppCompatActivity{
                 sendDataToFragment();
             }
         });
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reload();
+            }
+        });
 
     }
+    public void reload(){
+        arrProduct.clear();
+        getListSanPham();
+    }
     public void sendDataToFragment(){
-
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.root_view,new Add_Product());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-    private void getListSanPham(){
-        List<List_Product> arrProduct= new ArrayList<>();
+    public void getListSanPham(){
+        arrProduct= new ArrayList<>();
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -122,6 +140,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
         rcvSanPham = findViewById(R.id.rcv_sanpham);
         add_product = new Add_Product();
         btnExit =  findViewById(R.id.btn_Exit_QLSP);
+        btnRefresh = findViewById(R.id.btnRefresh);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 

@@ -153,6 +153,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_line_green"
             android:padding="5dp"
+            android:inputType="number"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="35dp"
             tools:layout_editor_absoluteY="438dp" />
