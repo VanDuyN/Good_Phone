@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green_light"
+    android:layout_margin="5dp">
+    <TextView
+        android:id="@+id/tv_Title_Confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Xác nhận"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:background="@color/green_dark"/>
+    <View
+        android:layout_below="@+id/tv_Title_Confirm"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"/>
+    <TextView
+        android:id="@+id/tv_Detail_Confirm"
+        android:layout_below="@+id/tv_Title_Confirm"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:text="Xac nhan"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/green_light"
+        android:padding="10dp"/>
+    <View
+        android:id="@+id/v"
+        android:layout_below="@+id/tv_Detail_Confirm"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"/>
+    <LinearLayout
+        android:layout_below="@+id/v"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_Refuse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Từ chối"
+            android:textSize="25dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/bg_line_green"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1.9"/>
+        <Button
+            android:id="@+id/btn_Confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25dp"
+            android:text="Xác nhận"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/green_dark"
+            android:background="@drawable/bg_line_green"/>
+    </LinearLayout>
+</RelativeLayout>
