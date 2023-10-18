@@ -50,7 +50,7 @@ public class Home extends AppCompatActivity {
     ArrayList<List_Product> arrProduct= new ArrayList<>();
     RecyclerView recyclerView;
     StorageReference storageRef, imageRef;
-    String id,name, nameImg;
+    String id,name;
     AlertDialog.Builder builder;
 
     Dialog dialog;
@@ -92,12 +92,12 @@ public class Home extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog(Gravity.CENTER);
+                openDialogConfirm(Gravity.CENTER);
             }
         });
 
     }
-    public void openDialog(int gravity){
+    public void openDialogConfirm(int gravity){
         dialog =  new Dialog(Home.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_comfirm);
@@ -146,8 +146,8 @@ public class Home extends AppCompatActivity {
                             FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                             storageRef = storage.getReference().child("Product");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nameImg = document.getString("Name");
-                                imageRef = storageRef.child(nameImg +".jpg");
+
+                                imageRef = storageRef.child(document.getId() +".jpg");
 
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
@@ -159,7 +159,6 @@ public class Home extends AppCompatActivity {
                                         price = getPrice != null ? getPrice.intValue() : 0;
                                         sold = getSold != null ? getSold.intValue() : 0;
                                         sumRating = document.getDouble("SumRating");
-                                        Log.e("price", String.valueOf(price));
                                         String fileUrl = uri.toString();
 
                                         arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
@@ -182,25 +181,6 @@ public class Home extends AppCompatActivity {
                         }
                     }
                 });
-    }
-    public void getImage(){
-        imageRef = storageRef.child(name +".jpg");
-
-        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                String fileUrl = uri.toString();
-                arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
-                Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
-                recyclerView.setAdapter(adapter);
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(Home.this, "anh lỗi",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     public void init(){

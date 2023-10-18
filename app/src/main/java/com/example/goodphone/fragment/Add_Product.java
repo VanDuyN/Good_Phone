@@ -1,23 +1,30 @@
 package com.example.goodphone.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -49,14 +56,18 @@ public class Add_Product extends Fragment {
     QLSanPhamActivity  qlSanPhamActivity;
     FirebaseStorage storage;
     Button btnAdd, btnExit;
+    Button btnConfirm, btnRefuse;
+    TextView tvTitleConfirm,tvDetailConfirm;
+    Dialog dialog;
     int RESULT_OK = -1;
     ImageButton btnAddImage;
+    boolean isImage = false;
     private static final int PICK_IMAGE_REQUEST = 1;
     EditText edtScreenSize,edtScreenTechnology,edtScreenFeature,edtRearCamera,edtRearVideo,
             edtFrontCamera,edtFontVideo,edtChipset,edtRam,edtRom,edtPin,edtCharging,edtName,
             edtOperatingSystem,edtNetwork,edtWifi,edtBluetooth, edtGPS,edtWaterproof,edtSound,
             edtPrice,edtProductionCompanyProduct,edtQuantity;
-    String Name, ProductionCompany,ScreenSize,ScreenTechnology,ScreenFeature,RearCamera,
+    String  Name,ProductionCompany,ScreenSize,ScreenTechnology,ScreenFeature,RearCamera,idProduct,
             VideoRearCamera,FrontCamera,VideoFrontCamera,Chipset,Ram,Rom,Pin,Charger,OperatingSystem,NetworkSupport,
             WifiProduct,Bluetooth,GPS,Waterproof,AudioTechnology;
 
@@ -212,8 +223,12 @@ public class Add_Product extends Fragment {
                                                                                         if (!AudioTechnology.trim().isEmpty()) {
                                                                                             if(Price > 0){
                                                                                                 if(Quantity > 0){
-                                                                                                        addProduct();
-                                                                                                    }else {
+                                                                                                    if(isImage == true){
+                                                                                                        openDialogConfirm(Gravity.CENTER);
+                                                                                                    }else{
+                                                                                                        Toast.makeText(getContext(), "Bạn chua chọn ảnh", Toast.LENGTH_SHORT).show();
+                                                                                                    }
+                                                                                                }else{
                                                                                                         Toast.makeText(getContext(), "Không được bỏ trống số lượng và lớn hơn 0", Toast.LENGTH_SHORT).show();
                                                                                                     }
                                                                                             }else{
@@ -317,6 +332,7 @@ public class Add_Product extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        idProduct= documentReference.getId();
                         uploadImageToFirebase(imageUri);
                         Toast.makeText(getContext(), "Thêm thành công",
                                 Toast.LENGTH_SHORT).show();
@@ -332,8 +348,42 @@ public class Add_Product extends Fragment {
 
                     }
                 });
+    }
+    public void openDialogConfirm(int gravity){
+        dialog =  new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comfirm);
+        Window window = dialog.getWindow();
+        if(window == null ){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
+        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
+        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        tvTitleConfirm.setText("Xác nhận thêm sản phẩm");
+        tvDetailConfirm.setText("Bạn có chắc là sẽ thêm sản phẩm với toàn bộ thông tin nhu vậy hay không ?");
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                addProduct();
+            }
+        });
+        btnRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -346,11 +396,11 @@ public class Add_Product extends Fragment {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             btnAddImage.setImageURI(imageUri);
-
+            isImage=true;
         }
     }
     private void uploadImageToFirebase(Uri imageUri) {
-        StorageReference storageRef = storage.getReference().child("Product/"+Name+".jpg");
+        StorageReference storageRef = storage.getReference().child("Product/"+idProduct+".jpg");
         storageRef.putFile(imageUri);
     }
 

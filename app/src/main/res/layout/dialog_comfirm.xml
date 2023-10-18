@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_line_green"
     android:layout_margin="5dp">
     <TextView
         android:id="@+id/tv_Title_Confirm"
@@ -20,9 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/tv_Title_Confirm"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:background="@color/green_light"
         android:padding="10dp"
         android:text="Xác nhận cái gì zay?"
         android:textColor="@color/black_800"
@@ -39,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="5dp"
+
             android:gravity="center"
             android:text="Từ chối"
             android:textSize="23dp"
