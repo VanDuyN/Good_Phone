@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cart">
+    <LinearLayout
+        android:id="@+id/title_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="18dp"
+            android:src="@drawable/ic_back_left"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giỏ hàng của bạn"
+            android:textSize="27dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/black_700"
+            android:textFontWeight="600"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/title_cart"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/black_700" />
+    <LinearLayout
+        android:id="@+id/radio_all"
+        android:layout_below="@id/title_cart"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="NotSibling">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Chọn tất cả"
+            android:textSize="16dp"
+            android:textColor="@color/black_700"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/radio_all"
+        android:id="@+id/rcv_sanpham"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <View
+        android:layout_above="@+id/titleBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/black_700" />
+    <LinearLayout
+        android:id="@+id/titleBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:padding="13dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạm tính"
+                android:textFontWeight="600"
+                android:textColor="@color/black_700"
+                android:textSize="18dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/priceTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textFontWeight="700"
+                    android:textSize="20dp"
+                    android:textColor="@color/green_dark"
+                    android:text="1"/>
+                <TextView
+                    android:layout_toRightOf="@id/priceTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textFontWeight="700"
+                    android:textSize="20dp"
+                    android:textColor="@color/green_dark"
+                    android:text="₫"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/bg_line_green"
+                android:backgroundTint="@color/green_dark"
+                android:text="Thanh Toán"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
