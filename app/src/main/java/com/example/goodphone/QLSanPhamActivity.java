@@ -48,7 +48,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
     ImageButton btnExit;
     Button btnAddProduct,btnRefresh;
     Add_Product add_product;
-    ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +104,12 @@ public class QLSanPhamActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
+                            storageRef = storage.getReference().child("Product");
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String id = document.getId();
                                 String name = document.getString("Name".trim());
-                                FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
-                                storageRef = storage.getReference().child("Product");
+
                                 imageRef = storageRef.child(name +".jpg");
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override

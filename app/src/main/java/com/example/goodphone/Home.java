@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -49,14 +50,15 @@ public class Home extends AppCompatActivity {
     ArrayList<List_Product> arrProduct= new ArrayList<>();
     RecyclerView recyclerView;
     StorageReference storageRef, imageRef;
-    String id,name;
+    String id,name, nameImg;
     AlertDialog.Builder builder;
 
     Dialog dialog;
     TextView tvTitleConfirm,tvDetailConfirm;
     Button btnConfirm, btnRefuse;
+    int sold,price;
 
-    double price,sold,sumRating;
+    Double sumRating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,35 +127,56 @@ public class Home extends AppCompatActivity {
                 finishAffinity();
             }
         });
-        dialog.show();
         btnRefuse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
             }
         });
+        dialog.show();
     }
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-      recyclerView.setLayoutManager(layoutManager);
-
+        recyclerView.setLayoutManager(layoutManager);
         dbProduct.collection("Product").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                             storageRef = storage.getReference().child("Product");
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                id = document.getId();
+                                nameImg = document.getString("Name");
+                                imageRef = storageRef.child(nameImg +".jpg");
 
-                                name = document.getString("Name");
-                                price =document.getDouble("Price");
-                                sold = document.getDouble("Sold");
-                                sumRating = document.getDouble("SumRating");
-                                getImage();
+                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        id = document.getId();
+                                        name = document.getString("Name");
+                                        Double getPrice = document.getDouble("Price");
+                                        Double getSold = document.getDouble("Sold");
+                                        price = getPrice != null ? getPrice.intValue() : 0;
+                                        sold = getSold != null ? getSold.intValue() : 0;
+                                        sumRating = document.getDouble("SumRating");
+                                        Log.e("price", String.valueOf(price));
+                                        String fileUrl = uri.toString();
+
+                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
+
+                                        Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
+                                        recyclerView.setAdapter(adapter);
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        Toast.makeText(Home.this, "anh lỗi",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
                             }
+
                         } else {
                             Toast.makeText(Home.this, "lỗi",Toast.LENGTH_SHORT).show();
                         }
@@ -166,14 +189,11 @@ public class Home extends AppCompatActivity {
         imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-
                 String fileUrl = uri.toString();
-
                 arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
-
                 Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
-
                 recyclerView.setAdapter(adapter);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
