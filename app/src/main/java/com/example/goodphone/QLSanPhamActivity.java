@@ -110,7 +110,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
                                 String id = document.getId();
                                 String name = document.getString("Name".trim());
 
-                                imageRef = storageRef.child(name +".jpg");
+                                imageRef = storageRef.child(id +".jpg");
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {

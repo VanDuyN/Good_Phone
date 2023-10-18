@@ -3,6 +3,7 @@ package com.example.goodphone.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,9 +40,10 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
     FirebaseFirestore dbFirestore;
     FirebaseStorage storage;
     private int pst;
-    String id ;
+    private String id ;
     StorageReference storageReference,imageRef;
     Edit_Product edit_product;
+    Bundle bundle;
 
     public SanPhamAdapter(List<List_Product> mListSanPham){
         this.mListSanPham = mListSanPham;
@@ -69,8 +71,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         holder.layoutForeGround.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                id = sanPham.id;
-                edit_product.setIdProduct(id);
+                id = mListSanPham.get(position).id;
                 openFragment();
             }
         });
@@ -85,7 +86,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
                             public void onSuccess(Void aVoid) {
                                 storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");;
                                 storageReference = storage.getReference().child("Product");
-                                imageRef= storageReference.child(mListSanPham.get(position).nameProduct+".jpg");
+                                imageRef= storageReference.child(mListSanPham.get(position).id+".jpg");
                                 imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -116,9 +117,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         });
     }
     public void openFragment(){
+        bundle.putString("id",id);
+        edit_product.setArguments(bundle);
         FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.root_view, new Edit_Product());
+        fragmentTransaction.replace(R.id.root_view, edit_product);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -145,6 +148,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
             btnDelete = itemView.findViewById(R.id.btn_Delete_SP);
             dbFirestore = FirebaseFirestore.getInstance();
             edit_product = new Edit_Product();
+            bundle = new Bundle();
 
         }
     }

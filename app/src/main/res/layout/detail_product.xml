@@ -64,15 +64,6 @@
                 android:textSize="29dp"
                 android:textStyle="bold" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/priceDetail"
-                android:text="₫"
-                android:layout_marginTop="5dp"
-                android:textSize="23dp"
-                android:textColor="@color/green_dark"/>
-
-            <TextView
                 android:id="@+id/name_Product_Detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

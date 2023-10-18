@@ -152,11 +152,13 @@
 
                             <ImageButton
                                 android:id="@+id/btn_Edit_Image_Product"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
                                 android:layout_margin="1dp"
                                 android:scaleType="fitCenter"
-                                android:background="@drawable/add_img" />
+                                android:backgroundTint="@color/green_light"
+                                android:background="@color/green_light"
+                                android:src="@drawable/add_img" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>

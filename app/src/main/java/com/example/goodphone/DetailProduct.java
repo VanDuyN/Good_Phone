@@ -43,7 +43,7 @@ public class DetailProduct extends AppCompatActivity {
     TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
     ImageView btnReturn, imgMain,btnAddCart;
     String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
-    Double  sumRating,sold;
+    Double  sumRating;
     int price;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -116,7 +116,7 @@ public class DetailProduct extends AppCompatActivity {
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setDataDialog();
+                openDialog();
             }
         });
 
@@ -135,15 +135,14 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
     }
-    public void setDataDialog(){
+    public void openDialog(){
         final Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
         dialog_specifications.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
-        dialog_specifications.setCancelable(false);
+        dialog_specifications.setCancelable(true);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog_specifications.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-
         dialog_specifications.show();
         dialog_specifications.getWindow().setAttributes(lp);
 
@@ -174,7 +173,7 @@ public class DetailProduct extends AppCompatActivity {
 
                                 FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                                 storageRef = storage.getReference().child("Product");
-                                imageRef = storageRef.child(nameProduct +".jpg");
+                                imageRef = storageRef.child(idProduct +".jpg");
 
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
