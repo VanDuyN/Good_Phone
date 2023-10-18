@@ -70,6 +70,7 @@ public class Edit_Product extends Fragment {
         storage= FirebaseStorage.getInstance();
         editImage = view.findViewById(R.id.btn_Edit_Image_Product);
         edtQuantity = view.findViewById(R.id.edt_Edit_Quantity_Product);
+
     }
     public void setIdProduct(String idProduct) {
         this.idProduct = idProduct;
