@@ -152,8 +152,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
         btnConfirm = dialog.findViewById(R.id.btn_Confirm);
         btnRefuse = dialog.findViewById(R.id.btn_Refuse);
-        tvTitleConfirm.setText("Xác nhận chỉnh sửa");
-        tvDetailConfirm.setText("Bạn có chắc là lưu thông tin điện thoại như vậy không ?");
+        tvTitleConfirm.setText("Xác nhận xóa");
+        tvDetailConfirm.setText("Bạn có chắc là muốn xóa điện thoại này hay không ?");
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
