@@ -153,8 +153,8 @@
 
                             <ImageButton
                                 android:id="@+id/btn_Add_Image_Product"
-                                android:layout_width="100dp"
-                                android:layout_height="100dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_margin="1dp"
                                 android:scaleType="fitCenter"
                                 android:background="@drawable/add_img" />

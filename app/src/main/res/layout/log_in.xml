@@ -80,11 +80,13 @@
         <EditText
             android:id="@+id/edtEmailLogin"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Nhập email"
+            android:layout_height="35dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_edt_intro"
-            android:padding="10dp"
+            android:background="@drawable/bg_line_green"
+            android:hint="Nhập email của bạn"
+            android:textColorHint="@color/black_400"
+            android:textSize="13dp"
+            android:padding="5dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="35dp"
             tools:layout_editor_absoluteY="438dp" />
@@ -104,10 +106,12 @@
         <EditText
             android:id="@+id/edtPassLogin"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_edt_intro"
-            android:padding="10dp"
-            android:hint="Nhập mật khẩu"
+            android:layout_height="35dp"
+            android:background="@drawable/bg_line_green"
+            android:hint="Nhập mật khẩu của bạn"
+            android:textColorHint="@color/black_400"
+            android:textSize="13dp"
+            android:padding="5dp"
             android:inputType="textPassword"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="0dp"
@@ -157,7 +161,7 @@
             android:background="@drawable/bg_line_black"
             android:text="Đăng nhập"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:textColor="@color/green_dark"
             android:textSize="22dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

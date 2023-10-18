@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.Info_Profile">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@drawable/line_grey_light">
+
+        <TableRow
+            android:background="@drawable/shape_green_light_radiustop"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:textSize="20dp"
+                android:text="Họ" />
+
+            <TextView
+                android:id="@+id/tv_FirstName"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Đặng" />
+        </TableRow>
+        <TableRow android:padding="5dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:textSize="20dp"
+                android:text="Tên" />
+
+            <TextView
+                android:id="@+id/tv_LastName"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Phương" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/green_light"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:text="Email"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_Email"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="123@gmail.com"
+                android:textSize="20dp"/>
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:textSize="20dp"
+                android:text="Số điện thoại" />
+
+            <TextView
+                android:id="@+id/tv_PhoneNumber"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="1234567891" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/green_light"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:text="Địa chỉ"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_Address"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Nhà Bè" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                android:textSize="20dp"
+                android:text="Chức vụ" />
+
+            <TextView
+                android:id="@+id/tv_Role"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="Nhân viên" />
+        </TableRow>
+
+
+    </TableLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/ic_logOut"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/ic_log_out" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_logOut"
+            android:text="Đăng xuất"
+            android:textSize="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/black_600"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
+
+</RelativeLayout>
