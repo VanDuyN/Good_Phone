@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_return"
+            android:layout_margin="25dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back_left" />
@@ -62,6 +63,14 @@
                 android:textColor="@color/green_dark"
                 android:textSize="29dp"
                 android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/priceDetail"
+                android:text="₫"
+                android:layout_marginTop="5dp"
+                android:textSize="23dp"
+                android:textColor="@color/green_dark"/>
 
             <TextView
                 android:id="@+id/name_Product_Detail"
@@ -94,21 +103,21 @@
                 android:text="MUA NGAY"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="25dp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:layout_weight="0.25"
                 android:background="@drawable/bg_line_green"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/btn_Add_Cart"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_cart" />
 
@@ -119,7 +128,7 @@
                     android:text="Thêm vào giỏ"
                     android:textAlignment="center"
                     android:textColor="@color/black_800"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
         </LinearLayout>
 
