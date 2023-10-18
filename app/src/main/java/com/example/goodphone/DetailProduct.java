@@ -36,11 +36,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class DetailProduct extends AppCompatActivity {
     TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
     ImageView btnReturn, imgMain,btnAddCart;
     String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
-    Double price, sumRating,sold;
+    Double  sumRating,sold;
+    int price;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
@@ -118,8 +122,11 @@ public class DetailProduct extends AppCompatActivity {
 
     }
     public void getData(){
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
+        String formattedNumber = currencyFormat.format(price);
         tvNameProductDetail.setText(nameProduct);
-        tvPriceDetail.setText(price.toString());
+        tvPriceDetail.setText(formattedNumber);
         tvScreenSize.setText(screenSize.toString());
         tvChipset.setText(chipset);
         tvFontCamera.setText(frontCamera);
@@ -152,9 +159,9 @@ public class DetailProduct extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 // lay du lieu tu database
-
                                 nameProduct = document.getString("Name".trim());
-                                price = document.getDouble("Price");
+                                Double getPrice = document.getDouble("Price");
+                                price = getPrice != null ? getPrice.intValue() : 0;
                                 sumRating = document.getDouble("SumRating");
                                 screenSize = document.getString("ScreenSize");
                                 screenFeature = document.getString("ScreenFeature");

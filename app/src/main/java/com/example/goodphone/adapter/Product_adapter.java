@@ -27,12 +27,13 @@ import com.example.goodphone.model.List_Product;
 
 
 import java.security.PublicKey;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class Product_adapter extends RecyclerView.Adapter<Product_adapter.Product_View_Holder>{
     Context myContext;
     List<List_Product> arrProduct;
-    String id;
 
     public Product_adapter(Context context,List<List_Product> list_products){
         this.myContext = context;
@@ -47,7 +48,11 @@ public class Product_adapter extends RecyclerView.Adapter<Product_adapter.Produc
 
     @Override
     public void onBindViewHolder(@NonNull Product_View_Holder holder, @SuppressLint("RecyclerView") int position) {
-        holder.price.setText(String.valueOf(arrProduct.get(position).price));
+        double priceValue = arrProduct.get(position).price;
+        Locale locale = new Locale("vi", "VN"); // Định dạng tiền tệ cho Việt Nam
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
+        String formattedPrice = currencyFormat.format(priceValue);
+        holder.price.setText(formattedPrice);
         holder.sold.setText("Đã bán: "+String.valueOf(arrProduct.get(position).sold));
         holder.txtNameProduct.setText(arrProduct.get(position).nameProduct);
         holder.sumRating.setText(String.valueOf(arrProduct.get(position).sumRating));

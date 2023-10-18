@@ -3,10 +3,17 @@ package com.example.goodphone;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,14 +36,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
-    Button btnRegister;
+    Button btnRegister,btnRefuse,btnConfirm;
     EditText edtFirstName, edtLastName, edtEmail,edtPassword, edtAddress, edtPhoneNumber;
-    TextView btnLoginNow;
+    TextView btnLoginNow, tvDetailConfirm,tvTitleConfirm;
     ProgressDialog progressDialog;
 
     String email,password,firstName,lastName, phone, address,regexPattern ;
     private static final String PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9])(\\d{7})$";
     boolean emailValidate,phoneValidate;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +87,7 @@ public class Register extends AppCompatActivity {
                     if(phoneValidate){
                         //validate dia chi
                         if (!address.trim().isEmpty() && address.length() <= 200){
-                            createUser();
+                            openDialog(Gravity.CENTER);
                         }else{
                             Toast.makeText(Register.this, "Địa chỉ không được để trống và không quá 200 ký tự", Toast.LENGTH_SHORT).show();
                         }
@@ -150,6 +158,41 @@ public class Register extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    public void openDialog(int gravity){
+        dialog =  new Dialog(Register.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comfirm);
+        Window window = dialog.getWindow();
+        if(window == null ){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
+        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
+        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        tvTitleConfirm.setText("Xác nhận đang ký tài khoản mới");
+        tvDetailConfirm.setText("Bạn có chắc là muốn đăng ký tài khoản này với thông tin trên không");
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createUser();
+            }
+        });
+        btnRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     public static boolean patternMatches(String input, String regexPattern){
         Pattern pattern = Pattern.compile(regexPattern);

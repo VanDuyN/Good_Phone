@@ -2,6 +2,7 @@ package com.example.goodphone.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.goodphone.QLSanPhamActivity;
 import com.example.goodphone.R;
+import com.example.goodphone.fragment.Add_Product;
+import com.example.goodphone.fragment.Edit_Product;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +39,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
     FirebaseFirestore dbFirestore;
     FirebaseStorage storage;
     private int pst;
+    String id ;
     StorageReference storageReference,imageRef;
+    Edit_Product edit_product;
 
     public SanPhamAdapter(List<List_Product> mListSanPham){
         this.mListSanPham = mListSanPham;
@@ -58,6 +66,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
         holder.tvName.setText(sanPham.nameProduct);
         holder.imageView.setImageResource(sanPham.image_Main);
         String image = mListSanPham.get(position).url_img_product;
+        holder.layoutForeGround.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                id = sanPham.id;
+                edit_product.setIdProduct(id);
+                openFragment();
+            }
+        });
         Glide.with(context).load(image).centerCrop().into(holder.imageView);
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +115,13 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
             }
         });
     }
+    public void openFragment(){
+        FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.root_view, new Edit_Product());
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public int getItemCount() {
@@ -121,6 +144,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
             layoutForeGround = itemView.findViewById(R.id.layout_foreground);
             btnDelete = itemView.findViewById(R.id.btn_Delete_SP);
             dbFirestore = FirebaseFirestore.getInstance();
+            edit_product = new Edit_Product();
 
         }
     }
