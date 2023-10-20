@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/img_main"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -42,10 +42,14 @@
 
         <RelativeLayout
             android:id="@+id/rltlo_name"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/btn_favourite"
@@ -63,6 +67,7 @@
                 android:textColor="@color/green_dark"
                 android:textSize="29dp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/name_Product_Detail"
                 android:layout_width="wrap_content"
@@ -72,6 +77,40 @@
                 android:textColor="@color/black_900"
                 android:textSize="23dp"
                 android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rltRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_Product_Detail">
+                <RatingBar
+                    android:id="@+id/rating_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="-55dp"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5" />
+
+                <TextView
+                    android:id="@+id/numRatingDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="-40dp"
+                    android:layout_toRightOf="@id/rating_detail"
+                    android:text="3"
+                    android:textColor="@color/black_500"
+                    android:textSize="18dp" />
+                <TextView
+                    android:layout_toRightOf="@id/numRatingDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/black_500"
+                    android:text="Lượt đánh giá"/>
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -122,13 +161,75 @@
                     android:textSize="13dp" />
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutComment"
+            android:layout_below="@id/optionPay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/line_grey_light"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/shape_green_light_radiustop"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/green_dark"
+                android:text="Bình luận"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:padding="3dp"
+                    android:src="@drawable/profile_avt"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_NameUser_Comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/black_800"
+                        android:textStyle="bold"
+                        android:text="Dang Phuong"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="Sản phẩm giá hợp lý, giá săn sale cmt mang tính săn xu"
+                        android:maxLines="2"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/black_200" />
+            <TextView
+                android:id="@+id/btn_CommentView"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="@color/black_600"
+                android:text="Xem lượt đánh giá cũ hơn"/>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/decriptionDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/optionPay"
-            android:layout_margin="10dp"
+            android:layout_below="@id/layoutComment"
             android:background="@drawable/line_grey_light"
             android:orientation="vertical"
             android:padding="10dp"
@@ -156,10 +257,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/descriptionVoucher"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/line_grey_light"
             android:orientation="vertical"
             android:padding="10dp"
@@ -311,9 +408,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/decriptionDetail"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/line_grey_light"
             android:orientation="vertical">

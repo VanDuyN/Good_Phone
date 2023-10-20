@@ -178,8 +178,8 @@ public class Register extends AppCompatActivity {
         tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
         btnConfirm = dialog.findViewById(R.id.btn_Confirm);
         btnRefuse = dialog.findViewById(R.id.btn_Refuse);
-        tvTitleConfirm.setText("Xác nhận đang ký tài khoản mới");
-        tvDetailConfirm.setText("Bạn có chắc là muốn đăng ký tài khoản này với thông tin trên không");
+        tvTitleConfirm.setText("Xác nhận đăng ký tài khoản mới");
+        tvDetailConfirm.setText("Bạn có chắc là muốn đăng ký tài khoản này với thông tin trên không ?");
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

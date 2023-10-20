@@ -31,16 +31,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
+        android:layout_margin="3dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_Refuse"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="3dp"
             android:layout_weight="1"
-
             android:gravity="center"
             android:text="Từ chối"
-            android:textSize="23dp"
+            android:textSize="20dp"
             android:textColor="@color/green_dark"
             android:textAllCaps="false"
             android:background="@drawable/bg_line_green"/>
@@ -48,9 +49,9 @@
         <Button
             android:id="@+id/btn_Confirm"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:textSize="23dp"
+            android:textSize="20dp"
             android:text="Xác nhận"
             android:textColor="@color/white"
             android:textAllCaps="false"
