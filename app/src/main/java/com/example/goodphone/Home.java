@@ -45,17 +45,13 @@ public class Home extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth auth;
     FirebaseStorage storage;
-    Button btnLogin,btnLogout;
+    Button btnLogin;
     FirebaseFirestore dbProduct;
     ArrayList<List_Product> arrProduct= new ArrayList<>();
     RecyclerView recyclerView;
     StorageReference storageRef, imageRef;
     String id,name;
     AlertDialog.Builder builder;
-
-    Dialog dialog;
-    TextView tvTitleConfirm,tvDetailConfirm;
-    Button btnConfirm, btnRefuse;
     int sold,price;
 
     Double sumRating;
@@ -63,10 +59,9 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_home);
-//        Fragment bottomBar = new Navigation_Bar();
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.add(R.id.fragment_navigationBar, bottomBar).commit();
+
         init();
+        fragmentHome();
         button();
         checkUser();
         showProduct();
@@ -74,10 +69,8 @@ public class Home extends AppCompatActivity {
     }
 
     public void checkUser(){
-        if(user != null){
+        if(user != null) {
             btnLogin.setVisibility(View.GONE);
-        }else{
-            btnLogout.setVisibility(View.GONE);
         }
 
     }
@@ -89,52 +82,9 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialogConfirm(Gravity.CENTER);
-            }
-        });
 
     }
-    public void openDialogConfirm(int gravity){
-        dialog =  new Dialog(Home.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_comfirm);
-        Window window = dialog.getWindow();
-        if(window == null ){
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-        dialog.setCancelable(true);
-        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
-        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
-        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
-        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
-        tvTitleConfirm.setText("Xác nhận đăng xuất");
-        tvDetailConfirm.setText("Bạn có chắc là muốn đăng xuất không");
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                Intent intent= new Intent(Home.this, Home.class);
-                startActivity(intent);
-                finishAffinity();
-            }
-        });
-        btnRefuse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
     public void  showProduct(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -145,6 +95,7 @@ public class Home extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                             storageRef = storage.getReference().child("Product");
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 imageRef = storageRef.child(document.getId() +".jpg");
@@ -160,7 +111,6 @@ public class Home extends AppCompatActivity {
                                         sold = getSold != null ? getSold.intValue() : 0;
                                         sumRating = document.getDouble("SumRating");
                                         String fileUrl = uri.toString();
-
                                         arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
 
                                         Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
@@ -182,11 +132,16 @@ public class Home extends AppCompatActivity {
                     }
                 });
     }
+    public void fragmentHome(){
+        Fragment bottomBar = new Navigation_Bar();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.nevigation_bar, bottomBar);
+        fragmentTransaction.commit();
+    }
 
     public void init(){
         recyclerView = findViewById(R.id.recycleView_home);
         btnLogin = findViewById(R.id.btn_Login);
-        btnLogout = findViewById(R.id.btnLogOut);
         dbProduct = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
