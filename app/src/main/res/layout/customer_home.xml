@@ -5,91 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".Home">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="0.93">
-
-    <LinearLayout
-        android:id="@+id/lnlo_Share"
+    <RelativeLayout
+        android:id="@+id/loHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toStartOf="@id/btn_Login"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/shape_search"
-        android:padding="2dp">
-
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_search" />
-
-        <EditText
+        android:layout_height="0dp"
+        android:layout_weight="0.93">
+        <LinearLayout
+            android:id="@+id/lnlo_Share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/transparent"
-            android:hint="Tìm kiếm"
-            android:textSize="18dp" />
-    </LinearLayout>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/btn_Login"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/shape_search"
+            android:padding="2dp">
 
-    <Button
-        android:background="@drawable/bg_line_black"
-        android:backgroundTint="@color/green_dark"
-        android:textColor="@color/white"
-        android:id="@+id/btn_Login"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:text="Đăng nhập"
-        android:textSize="19dp"
-        android:textAllCaps="false"
-        android:layout_alignParentRight="true"/>
 
-    <TextView
-        android:id="@+id/tv_Product_Review"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_below="@+id/lnlo_Share"
-        android:layout_marginTop="10dp"
-        android:background="@color/green_light"
-        android:gravity="center|left"
-        android:paddingLeft="10dp"
-        android:text="Sản phẩm"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tv_Product_Review"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_above="@+id/btnLogOut"/>
-    <Button
-        android:background="@drawable/bg_line_green"
-        android:id="@+id/btnLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:text="Dăng xuất"
-        android:textAllCaps="false"
-        android:layout_margin="5dp"
-        android:textSize="25dp"
-        android:backgroundTint="@color/green_dark"
-        android:textColor="@color/white"/>
-</RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:hint="Tìm kiếm"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <Button
+            android:background="@drawable/bg_line_black"
+            android:backgroundTint="@color/green_dark"
+            android:textColor="@color/white"
+            android:id="@+id/btn_Login"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:text="Đăng nhập"
+            android:textSize="19dp"
+            android:textAllCaps="false"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/tv_Product_Review"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_below="@+id/lnlo_Share"
+            android:layout_marginTop="10dp"
+            android:background="@color/green_light"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:text="Sản phẩm"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_Product_Review"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

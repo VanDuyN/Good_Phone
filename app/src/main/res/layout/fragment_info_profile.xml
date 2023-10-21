@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".fragment.Info_Profile">
+    <TextView
+        android:id="@+id/tv_Your_Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="Thông tin cá nhân"
+        android:textColor="@color/white"
+        android:background="@color/green_dark"/>
 <LinearLayout
+    android:layout_below="@+id/tv_Your_Profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -26,11 +38,11 @@
                 android:text="Họ" />
 
             <TextView
-                android:id="@+id/tv_FirstName"
+                android:id="@+id/tv_FirstName_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="20dp"
-                android:text="Đặng" />
+                android:text="" />
         </TableRow>
         <TableRow android:padding="5dp">
             <TextView
@@ -41,11 +53,11 @@
                 android:text="Tên" />
 
             <TextView
-                android:id="@+id/tv_LastName"
+                android:id="@+id/tv_LastName_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:textSize="20dp"
-                android:text="Phương" />
+                android:text=""
+                android:textSize="20dp" />
         </TableRow>
 
         <TableRow
@@ -60,10 +72,10 @@
                 android:textSize="20dp"/>
 
             <TextView
-                android:id="@+id/tv_Email"
+                android:id="@+id/tv_Email_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="123@gmail.com"
+                android:text=""
                 android:textSize="20dp"/>
         </TableRow>
 
@@ -77,11 +89,11 @@
                 android:text="Số điện thoại" />
 
             <TextView
-                android:id="@+id/tv_PhoneNumber"
+                android:id="@+id/tv_PhoneNumber_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="20dp"
-                android:text="1234567891" />
+                android:text="" />
         </TableRow>
 
         <TableRow
@@ -96,11 +108,11 @@
                 android:textSize="20dp"/>
 
             <TextView
-                android:id="@+id/tv_Address"
+                android:id="@+id/tv_Address_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="20dp"
-                android:text="Nhà Bè" />
+                android:text="" />
         </TableRow>
 
         <TableRow android:padding="5dp">
@@ -110,42 +122,48 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0.6"
                 android:textSize="20dp"
-                android:text="Chức vụ" />
+                android:text="Phân loại" />
 
             <TextView
-                android:id="@+id/tv_Role"
+                android:id="@+id/tv_Role_Profile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="20dp"
-                android:text="Nhân viên" />
+                android:text="Khách Hàng" />
         </TableRow>
 
 
     </TableLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:paddingBottom="20dp">
-
-        <ImageButton
-            android:id="@+id/ic_logOut"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/ic_log_out" />
-        <TextView
+        <LinearLayout
+            android:background="@drawable/bg_line_black"
+            android:id="@+id/btn_LogOut_Profile"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ic_logOut"
-            android:text="Đăng xuất"
-            android:textSize="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/black_600"
-            android:textStyle="bold"
-            />
+            android:layout_alignParentBottom="true">
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:background="@drawable/ic_log_out" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="8dp"
+                android:text="Đăng xuất"
+                android:textColor="@color/black_600"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>
