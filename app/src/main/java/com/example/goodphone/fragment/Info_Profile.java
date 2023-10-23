@@ -56,7 +56,6 @@ public class Info_Profile extends Fragment {
         init();
         button();
         checkUser();
-        // Inflate the layout for this fragment
         return view;
     }
     public void checkUser(){
@@ -128,6 +127,7 @@ public class Info_Profile extends Fragment {
                 requireActivity().finishAffinity();
                 Intent i = new Intent(getContext(),Home.class);
                 startActivity(i);
+
             }
         });
         btnRefuse.setOnClickListener(new View.OnClickListener() {
