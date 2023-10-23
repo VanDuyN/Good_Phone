@@ -115,7 +115,6 @@ public class Home extends AppCompatActivity {
 
                                         Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
                                         recyclerView.setAdapter(adapter);
-
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

@@ -33,7 +33,7 @@ Info_Profile info_profile;
         mbtnBar_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.green_dark));
+                mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.green_dark));
                 FragmentManager fragmentManager = ((FragmentActivity) getActivity()).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.loHome, info_profile);

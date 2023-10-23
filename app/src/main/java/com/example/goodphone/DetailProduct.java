@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.goodphone.adapter.Product_adapter;
+import com.example.goodphone.dialog.Dialog_Quantity_Product;
 import com.example.goodphone.dialog.Dialog_Specifications;
 import com.example.goodphone.fragment.Navigation_Bar;
 import com.example.goodphone.model.List_Product;
@@ -37,12 +40,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class DetailProduct extends AppCompatActivity {
     TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
     ImageView btnReturn, imgMain,btnAddCart;
-    String idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
+    String idUser,idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
     Double  sumRating;
     int price;
 
@@ -50,6 +56,7 @@ public class DetailProduct extends AppCompatActivity {
     FirebaseUser user = auth.getCurrentUser();
     FirebaseFirestore dbProduct = FirebaseFirestore.getInstance();
     StorageReference storageRef, imageRef;
+
 
 
     @Override
@@ -104,6 +111,7 @@ public class DetailProduct extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //openDialogQuantity();
                 Toast.makeText(DetailProduct.this, "Tính năng đang phát triển",Toast.LENGTH_SHORT).show();
             }
         });
@@ -116,12 +124,15 @@ public class DetailProduct extends AppCompatActivity {
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog();
+                openDialogSpecifications();
             }
         });
 
     }
     public void getData(){
+        if (user!=null){
+            idUser = user.getUid();
+        }
         Locale locale = new Locale("vi", "VN");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
         String formattedNumber = currencyFormat.format(price);
@@ -135,7 +146,7 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
     }
-    public void openDialog(){
+    public void openDialogSpecifications(){
         final Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
         dialog_specifications.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
         dialog_specifications.setCancelable(true);
@@ -146,6 +157,18 @@ public class DetailProduct extends AppCompatActivity {
         dialog_specifications.show();
         dialog_specifications.getWindow().setAttributes(lp);
 
+    }
+    public  void openDialogQuantity(){
+        final Dialog_Quantity_Product dialogQuantityProduct = new Dialog_Quantity_Product(DetailProduct.this, idProduct,idUser);
+        dialogQuantityProduct.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
+        dialogQuantityProduct.setCancelable(true);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialogQuantityProduct.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.gravity = Gravity.CENTER;
+        dialogQuantityProduct.show();
+        dialogQuantityProduct.getWindow().setAttributes(lp);
     }
 
     public void loadingData(){
@@ -198,5 +221,8 @@ public class DetailProduct extends AppCompatActivity {
                     }
                 });
     }
+    public void addCart(){
+    }
+
 
 }
