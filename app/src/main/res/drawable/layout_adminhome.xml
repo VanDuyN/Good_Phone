@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drawable thứ nhất -->
+    <item android:drawable="@drawable/introa"/>
+
+    <!-- Drawable thứ hai -->
+    <item android:drawable="@drawable/introc"/>
+</layer-list>
