@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Cart">
     <LinearLayout
+
         android:id="@+id/title_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,7 +53,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@+id/radio_all"
-        android:id="@+id/rcv_sanpham"
+        android:id="@+id/rcv_Cart"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -64,10 +65,11 @@
         android:background="@color/black_700" />
     <LinearLayout
         android:id="@+id/titleBottom"
+        android:layout_above="@+id/nevigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+
         android:padding="13dp">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -117,6 +119,10 @@
                 android:textAllCaps="false"/>
         </LinearLayout>
     </LinearLayout>
-
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/nevigation_bar">
+    </FrameLayout>
 </RelativeLayout>

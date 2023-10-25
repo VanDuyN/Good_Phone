@@ -3,6 +3,7 @@ package com.example.goodphone.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,19 +11,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.goodphone.Admin_Home;
 import com.example.goodphone.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Dialog_Quantity_Product extends Dialog {
     Context context;
     String idProduct,idUser;
+
     EditText edtAddQuantity;
     Button btnAddQuantity,btnDeleteQuantity, btnAddQuantityCart;
-    int quantity;
+    int quantity,sumQuantity;
+    int getQuantity;
     Map<String,Object> data;
     FirebaseFirestore dbProduct;
 
@@ -47,7 +52,7 @@ public class Dialog_Quantity_Product extends Dialog {
         btnAddQuantityCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                checkCart();
             }
         });
         btnAddQuantity.setOnClickListener(new View.OnClickListener() {
@@ -81,30 +86,45 @@ public class Dialog_Quantity_Product extends Dialog {
         quantity = Integer.parseInt(edtAddQuantity.getText().toString());
     }
     public void checkCart(){
+        quantity = Integer.parseInt(edtAddQuantity.getText().toString());
+        Log.e("name", String.valueOf(quantity));
         data = new HashMap<>();
-        data.put("idProduct",idProduct);
-        data.put("idUser", idProduct);
-        data.put("quantity", 1);
-        dbProduct.collection("Product")
+        dbProduct.collection("User")
                 .document(idUser)
                 .collection("Cart")
-                .document()
+                .document(idProduct)
                 .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            if (document.contains(idProduct)) {
-                                Object quantity = document.getDouble("Quantity") + 1;
-                                data.put("Quantity", quantity );
-                            } else {
+                            Double getQuantityDB = document.getDouble("quantity");
+                            getQuantity = getQuantityDB != null ? getQuantityDB.intValue() : 0;
+                            sumQuantity = getQuantity + quantity;
+                            if (sumQuantity <= 10){
+                                data.put("quantity", sumQuantity);
 
+                                addCart();
+                            }else {
+                                Toast.makeText(getContext(), "Thêm tối đa 10 bạn đang có " + getQuantity + " trong giỏ hàng" ,Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            // Tài liệu không tồn tại trong Firestore
+                            if (quantity <= 10){
+                                data.put("quantity", quantity);
+                                addCart();
+                            }else {
+                                Toast.makeText(getContext(), "Thêm tối đa 10 sản phẩm" ,Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    } else {
-                        // Xảy ra lỗi khi truy vấn Firestore
                     }
                 });
+    }
+    public void addCart(){
+        dbProduct.collection("User")
+                .document(idUser)
+                .collection("Cart")
+                .document(idProduct)
+                .set(data);
+        Toast.makeText(getContext(), "Thêm thành công " +quantity+ " sản phẩm",Toast.LENGTH_SHORT).show();
+        dismiss();
     }
 }
