@@ -77,13 +77,14 @@
             <ImageView
                 android:layout_width="90dp"
                 android:layout_height="90dp"
+                android:layout_marginTop="25dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/img_user_mng" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="Quản lý khách hàng"
                 android:textColor="@color/black"
                 android:textSize="18sp"
