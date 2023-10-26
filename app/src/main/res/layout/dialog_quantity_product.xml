@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:background="@drawable/line_grey_light"
     android:layout_gravity="bottom"
     android:layout_height="wrap_content"
     android:padding="10dp">
@@ -15,49 +16,45 @@
         android:textColor="@color/black"
         android:text="Nhập số lượng muốn thêm"
         tools:ignore="MissingConstraints" />
-    <EditText
-        android:id="@+id/edt_Quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_line_green"
-        android:padding="7dp"
-        android:inputType="number"
-        android:textSize="20dp"
-        android:text="1"
-        android:layout_margin="5dp"
-        android:hint="Số Lượng"
-        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_Delete_Quantity"
-            android:layout_weight="1"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
-            android:padding="0dp"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/green_dark"
             android:background="@drawable/bg_line_green"
-            android:text="-"/>
+            android:text="-"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edt_Quantity"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:background="@drawable/bg_line_green"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:text="1"/>
         <Button
             android:id="@+id/btn_Add_Quantity"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:padding="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_margin="10dp"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/green_dark"
             android:background="@drawable/bg_line_green"
-            android:layout_weight="1"
-            android:text="+"/>
+            android:text="+"
+            android:textStyle="bold"/>
 
     </LinearLayout>
     <Button

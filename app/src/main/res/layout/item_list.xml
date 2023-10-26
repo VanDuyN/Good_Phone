@@ -14,8 +14,7 @@
         <ImageView
             android:id="@+id/img_Product_Item"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:background="@color/green_light"
+            android:layout_height="180dp"
             />
 
         <LinearLayout
@@ -30,12 +29,12 @@
                 <TextView
                     android:id="@+id/tv_Name_Product_Item"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:text="iPhone 15 Pro 256GB | Chính hãng VN/A "
                     android:maxLines="2"
                     android:ellipsize="none"
                     android:textStyle="bold"
-                    android:textSize="13dp"
+                    android:textSize="11dp"
                     android:textColor="@color/black"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -47,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:text="25000000"
                         android:textStyle="bold"
-                        android:textSize="22dp"
+                        android:textSize="18dp"
                         android:textColor="@color/green_dark"/>
                 </LinearLayout>
 
@@ -63,27 +62,28 @@
                     android:gravity="center_vertical">
                     <ImageView
                         android:id="@+id/imgRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_marginRight="3dp"
                         android:src="@drawable/ic_star_rating"/>
                     <TextView
                         android:id="@+id/tv_Rating_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4.5"
-                        android:textSize="12dp"/>
+                        android:textSize="10dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:layout_marginBottom="2dp"
                         android:text="|"/>
                     <TextView
                         android:id="@+id/tv_Sold_Item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_line_green"
-                        android:textSize="10dp"
+                        android:textSize="9dp"
                         android:text="Đã bán: 4000"
                         android:padding="2dp"/>
                 </LinearLayout>
@@ -95,7 +95,7 @@
                     <ImageView
                         android:id="@+id/img_Favourite_Item"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="17dp"
                         android:src="@drawable/ic_heart_white" />
                 </LinearLayout>
             </LinearLayout>
