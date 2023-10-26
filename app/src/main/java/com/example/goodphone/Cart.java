@@ -10,6 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.goodphone.adapter.Cart_Adapter;
@@ -31,10 +36,12 @@ import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Document;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Cart extends AppCompatActivity {
-    String pid;
     Double getPriceDB,getQuantityDB;
     int price,quantity;
     String uId, pId,nameProduct, imgProduct;
@@ -45,16 +52,34 @@ public class Cart extends AppCompatActivity {
     FirebaseFirestore dbUser,dbProduct ;
     FirebaseUser user;
     FirebaseAuth auth;
+    CheckBox ckbSelectAll;
     ArrayList<List_Product> arrProduct;
+    Cart_Adapter adapter;
+    boolean isChecked;
+    int sumPrice;
+    TextView tvSumPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         init();
+        button();
         getDataUser();
         fragment();
 
+    }
+    public void button(){
+        ckbSelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(ckbSelectAll.isChecked()) {
+                    adapter.selectAllItems();
+                } else {
+                    adapter.clearSelection();
+                }
+            }
+        });
     }
     public void getDataUser(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
@@ -82,6 +107,21 @@ public class Cart extends AppCompatActivity {
                 });
 
     }
+    public void getDataAdapter() {
+        List<List_Product> selectedItems = adapter.getItemsProduct();
+        for (int i = 0; i < selectedItems.size(); i++) {
+            List_Product item = selectedItems.get(i);
+            int price = item.getPrice();
+            int quantity = item.getQuantity();
+            sumPrice += price *quantity;
+            Log.e("e", String.valueOf(sumPrice));
+        }
+        Locale locale = new Locale("vi", "VN");
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
+        String formattedNumber = currencyFormat.format(sumPrice);
+        tvSumPrice.setText(String.valueOf(formattedNumber));
+        sumPrice = 0;
+    }
     public void getDataProduct(String productID, String image){
         dbProduct.collection("Product")
                 .document(productID)
@@ -96,13 +136,16 @@ public class Cart extends AppCompatActivity {
                                 price = getPriceDB != null ? getPriceDB.intValue() : 0;
                                 nameProduct = document.getString("Name");
                                 arrProduct.add(new List_Product(pId,image,nameProduct,price,quantity));
-                                Cart_Adapter adapter= new Cart_Adapter(Cart.this, arrProduct);
+                                adapter= new Cart_Adapter(Cart.this, arrProduct,Cart.this);
                                 recyclerView.setAdapter(adapter);
                             }
                         }
 
                     }
                 });
+    }
+    public void updateCheckBox(boolean isChecked){
+        ckbSelectAll.setChecked(isChecked);
     }
     public void getImgProduct( String productId){
         imgRef = storageRef.child("Product/"+productId +".jpg");
@@ -133,5 +176,7 @@ public class Cart extends AppCompatActivity {
         dbProduct = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+        ckbSelectAll = findViewById(R.id.checkbox_Select_All);
+        tvSumPrice = findViewById(R.id.priceTemp);
     }
 }

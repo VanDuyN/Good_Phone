@@ -52,7 +52,14 @@ public class Dialog_Quantity_Product extends Dialog {
         btnAddQuantityCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkCart();
+                getData();
+                if (quantity > 0 ){
+                    checkCart();
+                }else {
+                    Toast.makeText(getContext(), "Số lượng phải lớn hơn 0" ,Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
         btnAddQuantity.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +88,7 @@ public class Dialog_Quantity_Product extends Dialog {
         btnAddQuantityCart = findViewById(R.id.btn_Add_Quantity_Cart_Product);
         edtAddQuantity = findViewById(R.id.edt_Quantity);
         dbProduct= FirebaseFirestore.getInstance();
+
     }
     public void getData(){
         quantity = Integer.parseInt(edtAddQuantity.getText().toString());

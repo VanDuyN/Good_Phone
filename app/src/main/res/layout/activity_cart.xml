@@ -39,7 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="NotSibling">
-        <RadioButton
+        <CheckBox
+            android:id="@+id/checkbox_Select_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -92,15 +93,8 @@
                     android:textFontWeight="700"
                     android:textSize="20dp"
                     android:textColor="@color/green_dark"
-                    android:text="1"/>
-                <TextView
-                    android:layout_toRightOf="@id/priceTemp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textFontWeight="700"
-                    android:textSize="20dp"
-                    android:textColor="@color/green_dark"
-                    android:text="₫"/>
+                    android:text="00.00 ₫"/>
+
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
