@@ -39,7 +39,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
 public class Info_Profile extends Fragment {
-    Home home;
     LinearLayout btnLogout;
     View view;
     FirebaseAuth auth;
@@ -149,6 +148,6 @@ public class Info_Profile extends Fragment {
         dbUser = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
         btnLogout = view.findViewById(R.id.btn_LogOut_Profile);
-        home = (Home) getActivity();
+
     }
 }

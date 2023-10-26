@@ -1,5 +1,6 @@
 package com.example.goodphone.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.goodphone.Cart;
 import com.example.goodphone.Home;
 import com.example.goodphone.LogIn;
 import com.example.goodphone.Profile;
@@ -21,27 +23,67 @@ import com.example.goodphone.R;
 
 
 public class Navigation_Bar extends Fragment {
-LinearLayout mbtnBar_Profile;
-Info_Profile info_profile;
+View view;
+LinearLayout mbtnBar_Profile,btnBar_Convert,btnBar_Home,btnBar_Cart;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_navigation_bar, container, false);
+        view = inflater.inflate(R.layout.fragment_navigation_bar, container, false);
         init();
-        mbtnBar_Profile = view.findViewById(R.id.btnBar_Profile);
+        setClick();
+
+        return view;
+    }
+    public  void setClick(){
         mbtnBar_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.black_50));
-                FragmentManager fragmentManager = ((FragmentActivity) getActivity()).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.loHome, info_profile);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (getActivity() instanceof Profile){
+                }else if(getActivity() instanceof Home){
+                    Intent i = new Intent(getContext(), Profile.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(getContext(), Profile.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
             }
         });
-        return view;
+        btnBar_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (getActivity() instanceof Home){
+
+                }else{
+                    getActivity().finish();
+                }
+
+            }
+        });
+        btnBar_Cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getActivity() instanceof Cart){
+
+                }else if(getActivity() instanceof Home){
+                    Intent i = new Intent(getContext(), Cart.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(getContext(), Cart.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+
+            }
+        });
+        btnBar_Convert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -51,6 +93,9 @@ Info_Profile info_profile;
     }
 
     public void init(){
-        info_profile = new Info_Profile();
+        mbtnBar_Profile = view.findViewById(R.id.btnBar_Profile);
+        btnBar_Cart= view.findViewById(R.id.btnBar_Cart);
+        btnBar_Convert= view.findViewById(R.id.btnBar_Convert);
+        btnBar_Home= view.findViewById(R.id.btnBar_Home);
     }
 }

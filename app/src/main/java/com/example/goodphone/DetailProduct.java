@@ -111,8 +111,8 @@ public class DetailProduct extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //openDialogQuantity();
-                Toast.makeText(DetailProduct.this, "Tính năng đang phát triển",Toast.LENGTH_SHORT).show();
+                openDialogQuantity();
+
             }
         });
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +147,7 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenFeature.setText(screenFeature);
     }
     public void openDialogSpecifications(){
-        final Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
+        Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
         dialog_specifications.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
         dialog_specifications.setCancelable(true);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -165,8 +165,8 @@ public class DetailProduct extends AppCompatActivity {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialogQuantityProduct.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.gravity = Gravity.CENTER;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.BOTTOM;
         dialogQuantityProduct.show();
         dialogQuantityProduct.getWindow().setAttributes(lp);
     }

@@ -71,9 +71,7 @@ public class MotionLayout extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                // Lấy giá trị của một trường con trong document
                                 String role = document.getString("role");
-                                Toast.makeText(MotionLayout.this, role,Toast.LENGTH_SHORT).show();
                                 if (role.equals("admin") ){
                                     progressDialog.dismiss();
                                     Intent i =  new Intent(MotionLayout.this,Admin_Home.class);

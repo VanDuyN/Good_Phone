@@ -111,8 +111,8 @@ public class Home extends AppCompatActivity {
                                         sold = getSold != null ? getSold.intValue() : 0;
                                         sumRating = document.getDouble("SumRating");
                                         String fileUrl = uri.toString();
-                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
 
+                                        arrProduct.add(new List_Product(id,fileUrl,name,price,sold,sumRating));
                                         Product_adapter adapter= new Product_adapter(Home.this, arrProduct);
                                         recyclerView.setAdapter(adapter);
                                     }
