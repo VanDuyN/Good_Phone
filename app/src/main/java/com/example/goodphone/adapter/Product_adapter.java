@@ -65,7 +65,6 @@ public class Product_adapter extends RecyclerView.Adapter<Product_adapter.Produc
             }
         });
         String url = arrProduct.get(position).url_img_product;
-        Log.e("url", url);
         Glide.with(myContext).load(url).fitCenter().into(holder.imgProduct);
     }
 

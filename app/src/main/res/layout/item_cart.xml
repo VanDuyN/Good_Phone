@@ -4,18 +4,20 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:padding="10dp"
+    android:id="@+id/relativeLayout_Cart"
     android:background="@drawable/bg_line_green">
-    <RadioButton
-        android:id="@+id/radio_item"
+    <CheckBox
+        android:id="@+id/radio_item_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <LinearLayout
-        android:layout_toRightOf="@id/radio_item"
+        android:layout_toRightOf="@id/radio_item_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/img_Product_Cart"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/line_grey_light"/>
@@ -27,22 +29,23 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/tv_Name_Product_Cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Samsung galaxy úm ba la"
+                android:text="--"
                 android:textColor="@color/black_700"
                 android:textSize="14dp"
                 android:maxLines="1"
                 android:ellipsize="none"/>
             <TextView
-                android:id="@+id/priceItem"
+                android:id="@+id/tv_Price_Product_Cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textFontWeight="700"
                 android:textSize="18dp"
                 android:textColor="@color/green_dark"
-                android:text="100000"/>
+                android:text="--"/>
 
         </LinearLayout>
         <LinearLayout
@@ -52,6 +55,7 @@
             android:layout_gravity="center"
             android:gravity="end">
             <ImageButton
+                android:id="@+id/btn_Delete_Product_Cart"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginBottom="10dp"
@@ -62,7 +66,7 @@
                 android:layout_height="match_parent"
                 android:gravity="end">
                 <Button
-                    android:id="@+id/btn_decrease"
+                    android:id="@+id/btn_decrease_cart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
@@ -72,7 +76,8 @@
                     android:backgroundTint="@color/green_dark"
                     android:background="@drawable/bg_line_green"
                     android:text="+"/>
-                <EditText
+                <TextView
+                    android:id="@+id/tv_Quantity_Product_Cart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="2dp"
@@ -82,7 +87,7 @@
                     android:text="1"
                     android:background="@drawable/line_grey_light"/>
                 <Button
-                    android:id="@+id/btn_increase"
+                    android:id="@+id/btn_increase_Cart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"

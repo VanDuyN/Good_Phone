@@ -35,13 +35,15 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/ic_edit_profile" />
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/layout_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:id="@+id/layout_profile">
+        android:layout_weight="0.6">
 
     </RelativeLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
