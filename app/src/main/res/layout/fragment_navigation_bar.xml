@@ -16,10 +16,11 @@
         android:padding="10dp"
         android:gravity="center"
         android:orientation="vertical">
+
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/home_outcolor"/>
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/home_outcolor" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/btnBar_Cart"
@@ -29,8 +30,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:src="@drawable/cart_outcolor"/>
     </LinearLayout>
     <LinearLayout
@@ -41,8 +42,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:src="@drawable/orders"/>
     </LinearLayout>
     <LinearLayout
@@ -53,8 +54,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:src="@drawable/person_outcolor"/>
     </LinearLayout>
 </LinearLayout>
