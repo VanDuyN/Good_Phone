@@ -23,7 +23,7 @@
             android:background="@drawable/line_grey_light"/>
         <LinearLayout
             android:id="@+id/infoItemCart"
-            android:layout_width="wrap_content"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
@@ -36,8 +36,7 @@
                 android:text="--"
                 android:textColor="@color/black_700"
                 android:textSize="14dp"
-                android:maxLines="1"
-                android:ellipsize="none"/>
+                />
             <TextView
                 android:id="@+id/tv_Price_Product_Cart"
                 android:layout_width="wrap_content"

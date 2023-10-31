@@ -77,8 +77,6 @@ public class DetailProduct extends AppCompatActivity {
     public void getPutExtra(){
         idProduct = getIntent().getStringExtra("id");
 
-        Log.e("get",idProduct);
-
     }
     public void init(){
         btnReturn = findViewById(R.id.img_return);
@@ -193,7 +191,6 @@ public class DetailProduct extends AppCompatActivity {
                                 rom  = document.getString("Rom");
                                 chipset  = document.getString("Chipset");
                                 getData();
-
                                 FirebaseStorage storage = FirebaseStorage.getInstance("gs://goodphone-687e7.appspot.com/");
                                 storageRef = storage.getReference().child("Product");
                                 imageRef = storageRef.child(idProduct +".jpg");

@@ -1,10 +1,16 @@
 package com.example.goodphone.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -13,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,19 +27,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.goodphone.Cart;
 import com.example.goodphone.R;
+import com.example.goodphone.fragment.Edit_Product;
 import com.example.goodphone.model.List_Product;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.sql.Struct;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductViewHolder> {
     String idProduct, idUser;
+    int pst, quantityPrd;
     FirebaseAuth auth;
     FirebaseUser user;
     FirebaseFirestore DBUser;
@@ -40,6 +54,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
     List<List_Product> arrProduct;
     Cart mCart = new Cart();
     boolean isAllSelected = false;
+    Dialog dialog;
+    Button btnConfirm, btnRefuse;
+    TextView tvTitleConfirm,tvDetailConfirm;
     List<List_Product> list_products = new ArrayList<>();
     private List<Integer> selectedPositions = new ArrayList<>();
     public Cart_Adapter (Context context, List<List_Product> list_products,Cart cart){
@@ -63,10 +80,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
 
         String formattedPrice = currencyFormat.format(priceValue);
         String quantity = String.valueOf(arrProduct.get(position).quantity);
-
-        auth= FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-
+        DBUser = FirebaseFirestore.getInstance();
         holder.tvNameProduct.setText(arrProduct.get(position).nameProduct);
         holder.tvQuantity.setText(quantity);
         holder.tvPrice.setText(formattedPrice);
@@ -80,8 +94,6 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
                 List_Product item = arrProduct.get(position);
                 item.setChecked(holder.checkBox.isChecked());
                 if (isChecked) {
@@ -96,11 +108,53 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
 
             }
         });
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                idUser = arrProduct.get(position).idUser;
+                idProduct = arrProduct.get(position).id;
+                Log.e("ac", String.valueOf(position));
+                Log.e("ad", idProduct);
+                pst = position;
+                openDialogConfirm(Gravity.CENTER);
+            }
+        });
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                idUser = arrProduct.get(position).idUser;
+                idProduct = arrProduct.get(position).id;
+                quantityPrd = Integer.valueOf(holder.tvQuantity.getText().toString());
+                quantityPrd ++;
+                if (quantityPrd <= 10){
+                    updateQuantityCart();
+                    arrProduct.get(position).setQuantity(quantityPrd);
+                    mCart.getDataAdapter();
+                    notifyDataSetChanged();
+                }
+
+            }
+        });
+        holder.btnSubtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                idUser = arrProduct.get(position).idUser;
+                idProduct = arrProduct.get(position).id;
+                quantityPrd = Integer.valueOf(holder.tvQuantity.getText().toString());
+                quantityPrd --;
+                if (quantityPrd > 0)
+                {
+                    updateQuantityCart();
+                    arrProduct.get(position).setQuantity(quantityPrd);
+                    mCart.getDataAdapter();
+                    notifyDataSetChanged();
+                }
+            }
+        });
 
     }
-    public void deleteCart(){
 
-    }
+
     public List<List_Product> getItemsProduct() {
         list_products.clear();
         for (int i = 0; i < arrProduct.size(); i++) {
@@ -129,9 +183,71 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
         selectedPositions.clear();
         notifyDataSetChanged();
     }
+    public void openDialogConfirm(int gravity){
+        dialog =  new Dialog(myContext);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comfirm);
+        Window window = dialog.getWindow();
+        if(window == null ){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = gravity;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
+        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
+        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        tvTitleConfirm.setText("Xác nhận xóa");
+        tvDetailConfirm.setText("Bạn có chắc là muốn xóa điện thoại này khỏi giỏ hàng hay không ?");
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                deleteCart();
+
+            }
+        });
+        btnRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+    public void deleteCart(){
+        DBUser.collection("User").document(idUser)
+                .collection("Cart")
+                .document(idProduct)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        arrProduct.remove(pst);
+                        notifyItemRemoved(pst);
+                        notifyItemRangeChanged(pst, arrProduct.size());
+                    }
+                });
+    }
+    public void updateQuantityCart(){
+        Map<String, Object> data= new HashMap<>();
+        data.put("quantity",quantityPrd);
+        DBUser.collection("User")
+                .document(idUser)
+                .collection("Cart")
+                .document(idProduct)
+                .set(data);
+    }
     @Override
     public int getItemCount() {
-        return arrProduct.size();
+        if (arrProduct != null){
+            return  arrProduct.size();
+        }
+        return 0;
     }
 
     public class CartProductViewHolder extends RecyclerView.ViewHolder{
