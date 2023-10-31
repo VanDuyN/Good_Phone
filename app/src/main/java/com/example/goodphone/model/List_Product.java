@@ -1,6 +1,7 @@
 package com.example.goodphone.model;
 
 public class List_Product {
+    public String idUser;
     public boolean isChecked;
 
     public boolean isChecked() {
@@ -26,6 +27,14 @@ public class List_Product {
     public int image_Main,price,sold;
     public double sumRating;
     public boolean  favourite;
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -106,7 +115,8 @@ public class List_Product {
         this.sold = sold;
         this.sumRating = sumRating;
     }
-    public List_Product(String id, String url_img_product, String nameProduct, int price,  int quantity) {
+    public List_Product(String uId,String id, String url_img_product, String nameProduct, int price,  int quantity) {
+        this.idUser = uId;
         this.id = id;
         this.url_img_product = url_img_product;
         this.nameProduct = nameProduct;

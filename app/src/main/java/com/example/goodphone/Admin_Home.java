@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Admin_Home extends AppCompatActivity {
-    RelativeLayout btnLogout, btnQLSP, btnQLKH;
+    LinearLayout btnLogout, btnQLSP, btnQLKH, btnProfile;
     FirebaseAuth auth ;
     FirebaseUser user;
 
@@ -43,6 +44,13 @@ public class Admin_Home extends AppCompatActivity {
                 QLSP();
             }
         });
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Admin_Home.this, Profile.class);
+                startActivity(i);
+            }
+        });
     }
     public void Logout(){
         auth.signOut();
@@ -60,6 +68,7 @@ public class Admin_Home extends AppCompatActivity {
         btnQLSP = findViewById(R.id.btnQLSP);
         auth = FirebaseAuth.getInstance();
         user  = auth.getCurrentUser();
+        btnProfile = findViewById(R.id.btn_Profile_Admin);
 
     }
 }

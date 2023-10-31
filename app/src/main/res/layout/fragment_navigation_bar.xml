@@ -7,18 +7,19 @@
     android:id="@+id/fragment_navigationBar"
     tools:context=".fragment.Navigation_Bar"
     android:gravity="center"
+    android:layout_gravity="bottom"
     android:orientation="horizontal">
     <LinearLayout
         android:id="@+id/btnBar_Home"
         android:layout_width="0dp"
         android:layout_weight="0.25"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="13dp"
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/home_outcolor"/>
     </LinearLayout>
     <LinearLayout
@@ -29,8 +30,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/cart_outcolor"/>
     </LinearLayout>
     <LinearLayout
@@ -41,8 +42,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/orders"/>
     </LinearLayout>
     <LinearLayout
@@ -53,8 +54,8 @@
         android:gravity="center"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/person_outcolor"/>
     </LinearLayout>
 </LinearLayout>

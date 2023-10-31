@@ -95,7 +95,6 @@ public class Dialog_Quantity_Product extends Dialog {
     }
     public void checkCart(){
         quantity = Integer.parseInt(edtAddQuantity.getText().toString());
-        Log.e("name", String.valueOf(quantity));
         data = new HashMap<>();
         dbProduct.collection("User")
                 .document(idUser)

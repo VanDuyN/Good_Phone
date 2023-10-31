@@ -4,7 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.Edit_Profile">
+    <TextView
+        android:id="@+id/tv_Your_Profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="Chinh sửa"
+        android:textColor="@color/white"
+        android:background="@color/green_dark"/>
     <LinearLayout
+        android:layout_below="@+id/tv_Your_Profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -26,13 +37,13 @@
                     android:text="Họ" />
 
                 <EditText
-                    android:id="@+id/edt_FirstName"
+                    android:id="@+id/edt_LastName_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="Đặng" />
+                    android:text="--" />
             </TableRow>
             <TableRow android:padding="5dp">
                 <TextView
@@ -43,13 +54,13 @@
                     android:text="Tên" />
 
                 <EditText
-                    android:id="@+id/edt_LastName"
+                    android:id="@+id/edt_FirstName_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="Phương" />
+                    android:text="--" />
             </TableRow>
 
             <TableRow
@@ -63,13 +74,14 @@
                     android:text="Email"
                     android:textSize="20dp"/>
 
-                <EditText
-                    android:id="@+id/edt_Email"
+                <TextView
+                    android:id="@+id/tv_Email_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
-                    android:text="123@gmail.com"
+                    android:textColor="@color/black"
+                    android:text="--"
                     android:textSize="20dp"/>
             </TableRow>
 
@@ -83,13 +95,13 @@
                     android:text="Số điện thoại" />
 
                 <EditText
-                    android:id="@+id/edt_PhoneNumber"
+                    android:id="@+id/edt_PhoneNumber_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="1234567891" />
+                    android:text="--" />
             </TableRow>
 
             <TableRow
@@ -104,13 +116,13 @@
                     android:textSize="20dp"/>
 
                 <EditText
-                    android:id="@+id/edt_Address"
+                    android:id="@+id/edt_Address_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="Nhà Bè" />
+                    android:text="--" />
             </TableRow>
 
             <TableRow android:padding="5dp">
@@ -120,16 +132,17 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.6"
                     android:textSize="20dp"
-                    android:text="Chức vụ" />
+                    android:text="Phân loại" />
 
-                <EditText
-                    android:id="@+id/edt_Role"
+                <TextView
+                    android:id="@+id/tv_Role_edit_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="Nhân viên" />
+                    android:text="--" />
             </TableRow>
 
 
@@ -138,6 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/btn_Save_Profile"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginEnd="18dp"

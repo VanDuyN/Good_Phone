@@ -98,7 +98,7 @@ public class Cart extends AppCompatActivity {
                                 Log.e("id", pId);
                                 getQuantityDB = document.getDouble("quantity");
                                 quantity = getQuantityDB != null ? getQuantityDB.intValue() : 0;
-                                getImgProduct(pId);
+                                getImgProduct(pId,quantity);
                             }
                         } else {
 
@@ -122,7 +122,7 @@ public class Cart extends AppCompatActivity {
         tvSumPrice.setText(String.valueOf(formattedNumber));
         sumPrice = 0;
     }
-    public void getDataProduct(String productID, String image){
+    public void getDataProduct(String productID, String image, int quantity){
         dbProduct.collection("Product")
                 .document(productID)
                 .get()
@@ -135,25 +135,26 @@ public class Cart extends AppCompatActivity {
                                 getPriceDB = document.getDouble("Price");
                                 price = getPriceDB != null ? getPriceDB.intValue() : 0;
                                 nameProduct = document.getString("Name");
-                                arrProduct.add(new List_Product(pId,image,nameProduct,price,quantity));
-                                adapter= new Cart_Adapter(Cart.this, arrProduct,Cart.this);
-                                recyclerView.setAdapter(adapter);
+                                arrProduct.add(new List_Product(uId,productID,image,nameProduct,price,quantity));
                             }
                         }
+                        adapter= new Cart_Adapter(Cart.this, arrProduct,Cart.this);
+                        recyclerView.setAdapter(adapter);
 
                     }
                 });
+
     }
     public void updateCheckBox(boolean isChecked){
         ckbSelectAll.setChecked(isChecked);
     }
-    public void getImgProduct( String productId){
+    public void getImgProduct( String productId, int quantity){
         imgRef = storageRef.child("Product/"+productId +".jpg");
         imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 imgProduct = uri.toString();
-                getDataProduct(productId,imgProduct);
+                getDataProduct(productId,imgProduct,quantity);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

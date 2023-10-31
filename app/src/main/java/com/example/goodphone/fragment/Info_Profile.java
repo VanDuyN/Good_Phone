@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.goodphone.DetailProduct;
 import com.example.goodphone.Home;
+import com.example.goodphone.LogIn;
 import com.example.goodphone.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,26 +47,40 @@ public class Info_Profile extends Fragment {
     FirebaseFirestore dbUser;
     FirebaseUser user;
     Dialog dialog;
-    TextView tvTitleConfirm,tvDetailConfirm,tvFirstName,tvLastName,tvEmail,tvPhoneNumber,tvAddress,tvRole;
+    TextView tvTitleConfirm,tvDetailConfirm,tvFirstName,tvLastName,tvEmail,tvPhoneNumber,tvAddress,tvRole,tvLogout;
     Button btnConfirm, btnRefuse;
+    String role;
+    ImageButton imgLogout;
     String uid;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_info_profile, container, false);
         init();
-        button();
         checkUser();
         return view;
     }
     public void checkUser(){
         if (user != null){
             getDataUser();
+
         }else{
-            btnLogout.setVisibility(View.GONE);
+            imgLogout.setVisibility(View.GONE);
+            tvLogout.setText("Đăng nhập");
+            btnLogout.setGravity(Gravity.CENTER);
+            btnLogout.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_line_green));
+
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getContext(), LogIn.class);
+                    startActivity(i);
+                }
+            });
         }
+
     }
-    public void button(){
+    public void click(){
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,10 +98,18 @@ public class Info_Profile extends Fragment {
                     if (document.exists()) {
                         tvAddress.setText(document.getString("address"));
                         tvEmail.setText(document.getString("email"));
-                        tvRole.setText(document.getString("role"));
+                        role = document.getString("role");
+                        tvRole.setText(role);
                         tvFirstName.setText(document.getString("firstName"));
                         tvLastName.setText(document.getString("lastName"));
                         tvPhoneNumber.setText(document.getString("phoneNumber"));
+                        if (role.equals("admin")){
+                            btnLogout.setVisibility(View.GONE);
+
+                        }
+                        else {
+                            click();
+                        }
                     } else {
                         Toast.makeText(getContext(), "Lỗi lấy dữ liệu",Toast.LENGTH_SHORT).show();
                     }
@@ -143,11 +167,13 @@ public class Info_Profile extends Fragment {
         tvLastName = view.findViewById(R.id.tv_LastName_Profile);
         tvEmail = view.findViewById(R.id.tv_Email_Profile);
         tvPhoneNumber = view.findViewById(R.id.tv_PhoneNumber_Profile);
-        tvRole = view.findViewById(R.id.tv_PhoneNumber_Profile);
+        tvRole = view.findViewById(R.id.tv_Role_Profile);
         auth = FirebaseAuth.getInstance();
         dbUser = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
         btnLogout = view.findViewById(R.id.btn_LogOut_Profile);
+        imgLogout = view.findViewById(R.id.img_Logout);
+        tvLogout = view.findViewById(R.id.tv_Logout);
 
     }
 }
