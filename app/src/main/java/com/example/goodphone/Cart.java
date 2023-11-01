@@ -165,7 +165,7 @@ public class Cart extends AppCompatActivity {
     }
     public void fragment(){
         FragmentTransaction fragmentTransactionBar = getSupportFragmentManager().beginTransaction();
-        fragmentTransactionBar.add(R.id.nevigation_bar, bottomBar).commit();
+        fragmentTransactionBar.add(R.id.navigation_bar, bottomBar).commit();
     }
     public void init(){
         bottomBar = new Navigation_Bar();

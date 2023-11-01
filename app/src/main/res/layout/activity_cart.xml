@@ -31,11 +31,11 @@
         android:layout_below="@+id/title_cart"
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
-        android:background="@color/black_700" />
+        android:background="@color/black_600" />
     <LinearLayout
         android:id="@+id/radio_all"
         android:layout_below="@id/title_cart"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="7dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="NotSibling">
@@ -59,14 +59,13 @@
         android:layout_height="match_parent" />
 
     <View
-
         android:layout_above="@+id/titleBottom"
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
         android:background="@color/black_700" />
     <LinearLayout
         android:id="@+id/titleBottom"
-        android:layout_above="@+id/nevigation_bar"
+        android:layout_above="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -107,7 +106,7 @@
                 android:padding="10dp"
                 android:background="@drawable/bg_line_green"
                 android:backgroundTint="@color/green_dark"
-                android:text="Thanh Toán"
+                android:text="Tiếp Tục"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
@@ -117,6 +116,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/nevigation_bar">
+        android:id="@+id/navigation_bar">
     </FrameLayout>
 </RelativeLayout>
