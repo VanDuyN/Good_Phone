@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_200"
+    tools:context=".fragment.Detail_Order">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:background="@color/green_light"
+            android:padding="20dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_back_left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đơn hàng "
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="đang giao"
+                android:textSize="17dp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:gravity="end">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_order"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TableLayout
+            android:id="@+id/tbl_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_below="@id/title">
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Thời gian đặt hàng"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="02-11-2023 10:12"/>
+            </TableRow>
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Thời gian xác nhận"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="02-11-2023 12:15"/>
+            </TableRow>
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Thời gian nhận hàng"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="02-11-2023 12:15"/>
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/black_300"
+            android:layout_below="@id/tbl_time"/>
+        <LinearLayout
+            android:id="@+id/ln_Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/line">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_location"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ nhận hàng"
+                    android:textColor="@color/black_800"
+                    android:textStyle="bold"
+                    android:textSize="17dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đặng Phương"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0123456789"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gò vấp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="6dp"
+            android:layout_below="@id/ln_Address"
+            android:background="@color/black_300"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_below="@id/line1"/>
+        <TableLayout
+            android:id="@+id/tbl_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_below="@id/list_product">
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Tổng tiền hàng"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="1 000 000đ"/>
+            </TableRow>
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Tổng tiền phí vận chuyển"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="15 000đ"/>
+            </TableRow>
+            <TableRow
+                android:paddingLeft="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.7"
+                    android:text="Thành tiền"
+                    android:textSize="17dp"
+                    android:textColor="@color/black_800"/>
+                <TextView
+                    android:layout_weight="0.3"
+                    android:layout_width="0dp"
+                    android:gravity="end"
+                    android:text="1 000 000đ"
+                    android:textSize="17dp"
+                    android:textColor="@color/green_dark"/>
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:id="@+id/ln_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:gravity="end"
+            android:layout_below="@id/tbl_price">
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_line_green"
+                android:backgroundTint="@color/green_dark"
+                android:text="Đánh giá"
+                android:textSize="16dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
