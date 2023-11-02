@@ -5,21 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_200"
-    tools:context=".Orders">
-    <TextView
-        android:id="@+id/title"
+    tools:context=".admin.Admin_Order">
+    <LinearLayout
+        android:id="@+id/titleOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:text="Đơn mua"
-        android:textSize="27dp"
-        android:textColor="@color/black_700"
-        android:textFontWeight="600"/>
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="18dp"
+            android:src="@drawable/ic_back_left"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Tất cả đơn hàng"
+            android:textSize="27dp"
+            android:textColor="@color/black_700"
+            android:textFontWeight="600"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/titleOrder"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
@@ -31,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="Chờ giao hàng"
+                android:text="Chưa giao"
                 android:textSize="18dp"
                 android:textColor="@color/green_dark"/>
             <View

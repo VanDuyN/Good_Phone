@@ -3,7 +3,6 @@ package com.example.goodphone.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +10,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.goodphone.Admin_Home;
 import com.example.goodphone.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Dialog_Quantity_Product extends Dialog {

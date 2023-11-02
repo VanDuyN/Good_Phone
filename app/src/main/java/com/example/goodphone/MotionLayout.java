@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.goodphone.admin.Admin_Home;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,7 +75,7 @@ public class MotionLayout extends AppCompatActivity {
                                 String role = document.getString("role");
                                 if (role.equals("admin") ){
                                     progressDialog.dismiss();
-                                    Intent i =  new Intent(MotionLayout.this,Admin_Home.class);
+                                    Intent i =  new Intent(MotionLayout.this, Admin_Home.class);
                                     startActivity(i);
                                     finishAffinity();
                                 }else {
