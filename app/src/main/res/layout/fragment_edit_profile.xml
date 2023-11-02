@@ -8,12 +8,12 @@
         android:id="@+id/tv_Your_Profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
+        android:textSize="23dp"
         android:padding="5dp"
         android:gravity="center"
-        android:text="Chinh sửa"
-        android:textColor="@color/white"
-        android:background="@color/green_dark"/>
+        android:text="Chỉnh sửa"
+        android:textColor="@color/black_800"
+        android:background="@color/green_light"/>
     <LinearLayout
         android:layout_below="@+id/tv_Your_Profile"
         android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                 android:backgroundTint="@color/green_dark"
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/white"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:textAllCaps="false"
                 android:text="Lưu"/>
         </RelativeLayout>
