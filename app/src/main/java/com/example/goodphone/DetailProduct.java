@@ -7,15 +7,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +61,9 @@ public class DetailProduct extends AppCompatActivity {
     FirebaseUser user = auth.getCurrentUser();
     FirebaseFirestore dbProduct = FirebaseFirestore.getInstance();
     StorageReference storageRef, imageRef;
-
+    Dialog dialog;
+    Button btnConfirm, btnRefuse;
+    TextView tvTitleConfirm,tvDetailConfirm;
 
 
     @Override
@@ -110,7 +116,12 @@ public class DetailProduct extends AppCompatActivity {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialogQuantity();
+                if (user != null){
+                    openDialogQuantity();
+                }else {
+                    dialogOpenLogin();
+                }
+
 
             }
         });
@@ -127,6 +138,43 @@ public class DetailProduct extends AppCompatActivity {
             }
         });
 
+    }
+    public void dialogOpenLogin(){
+        dialog =  new Dialog(DetailProduct.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comfirm);
+        Window window = dialog.getWindow();
+        if(window == null ){
+            return;
+        }
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
+        tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
+        btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        tvTitleConfirm.setText("Yêu cầu đăng nhập");
+        tvDetailConfirm.setText("Để có thể thức hiện chức năng này bạn cần phải đăng nhập");
+        btnConfirm.setText("Đăng nhập");
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Intent i = new Intent(DetailProduct.this, LogIn.class);
+                startActivity(i);
+            }
+        });
+        btnRefuse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     public void getData(){
         if (user!=null){
