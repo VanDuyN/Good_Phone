@@ -109,7 +109,6 @@ public class QLSanPhamActivity extends AppCompatActivity{
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String id = document.getId();
                                 String name = document.getString("Name".trim());
-
                                 imageRef = storageRef.child(id +".jpg");
                                 imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
@@ -142,9 +141,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
         add_product = new Add_Product();
         btnExit =  findViewById(R.id.btn_Exit_QLSP);
         btnRefresh = findViewById(R.id.btnRefresh);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-
         rcvSanPham.setLayoutManager(linearLayoutManager);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
         rcvSanPham.addItemDecoration(itemDecoration);

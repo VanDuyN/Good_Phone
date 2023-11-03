@@ -123,5 +123,12 @@ public class List_Product {
         this.price = price;
         this.quantity = quantity;
     }
+    public List_Product(String id,  int quantity,int price,String name, String url) {
+        this.id = id;
+        this.quantity = quantity;
+        this.price = price;
+        this.nameProduct = name;
+        this.url_img_product = url;
+    }
 
 }
