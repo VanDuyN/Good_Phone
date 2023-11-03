@@ -7,10 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -55,9 +58,12 @@ public class Cart extends AppCompatActivity {
     CheckBox ckbSelectAll;
     ArrayList<List_Product> arrProduct;
     Cart_Adapter adapter;
-    boolean isChecked;
     int sumPrice;
     TextView tvSumPrice;
+    Button btnOder;
+    List<List_Product> selectedItems;
+    ArrayList<String> listPut;
+    List_Product item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -78,6 +84,14 @@ public class Cart extends AppCompatActivity {
                 } else {
                     adapter.clearSelection();
                 }
+            }
+        });
+        btnOder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Cart.this, Payment.class);
+                i.putStringArrayListExtra("listId",  listPut) ;
+                startActivity(i);
             }
         });
     }
@@ -108,9 +122,11 @@ public class Cart extends AppCompatActivity {
 
     }
     public void getDataAdapter() {
-        List<List_Product> selectedItems = adapter.getItemsProduct();
+        selectedItems = adapter.getItemsProduct();
+        listPut.clear();
         for (int i = 0; i < selectedItems.size(); i++) {
-            List_Product item = selectedItems.get(i);
+            item = selectedItems.get(i);
+            listPut.add(item.getId());
             int price = item.getPrice();
             int quantity = item.getQuantity();
             sumPrice += price *quantity;
@@ -170,6 +186,7 @@ public class Cart extends AppCompatActivity {
     public void init(){
         bottomBar = new Navigation_Bar();
         recyclerView = findViewById(R.id.rcv_Cart);
+        listPut = new ArrayList<>();
         arrProduct= new ArrayList<>();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -179,5 +196,6 @@ public class Cart extends AppCompatActivity {
         storageRef = storage.getReference();
         ckbSelectAll = findViewById(R.id.checkbox_Select_All);
         tvSumPrice = findViewById(R.id.priceTemp);
+        btnOder = findViewById(R.id.btn_Oder_Cart);
     }
 }

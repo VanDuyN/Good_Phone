@@ -104,7 +104,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","OPPO");
+                i.putExtra("productionCompany","OPPO");
                 startActivity(i);
             }
         });
@@ -112,7 +112,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","IPhone");
+                i.putExtra("productionCompany","IPhone");
                 startActivity(i);
             }
         });
@@ -120,7 +120,6 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","all");
                 startActivity(i);
             }
         });
@@ -128,7 +127,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","Xiaomi");
+                i.putExtra("productionCompany","Xiaomi");
                 startActivity(i);
             }
         });
@@ -136,7 +135,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","SamSung");
+                i.putExtra("productionCompany","SamSung");
                 startActivity(i);
             }
         });
@@ -144,11 +143,10 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Product.class);
-                i.putExtra("name","other");
+                i.putExtra("productionCompany","other");
                 startActivity(i);
             }
         });
-
     }
     public void searchView(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

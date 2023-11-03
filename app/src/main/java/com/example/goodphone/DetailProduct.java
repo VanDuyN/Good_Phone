@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.goodphone.adapter.Product_adapter;
+import com.example.goodphone.dialog.Dialog_Other;
 import com.example.goodphone.dialog.Dialog_Quantity_Product;
 import com.example.goodphone.dialog.Dialog_Specifications;
 import com.example.goodphone.fragment.Navigation_Bar;
@@ -116,7 +117,7 @@ public class DetailProduct extends AppCompatActivity {
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailProduct.this, "Tính năng đang phát triển",Toast.LENGTH_SHORT).show();
+                openDialogOther();
             }
         });
         btnDetail.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +156,18 @@ public class DetailProduct extends AppCompatActivity {
         dialog_specifications.show();
         dialog_specifications.getWindow().setAttributes(lp);
 
+    }
+    public void openDialogOther(){
+        final Dialog_Other dialogOther = new Dialog_Other(DetailProduct.this, idProduct);
+        dialogOther.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(DetailProduct.this, android.R.color.transparent)));
+        dialogOther.setCancelable(true);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialogOther.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.BOTTOM;
+        dialogOther.show();
+        dialogOther.getWindow().setAttributes(lp);
     }
     public  void openDialogQuantity(){
         final Dialog_Quantity_Product dialogQuantityProduct = new Dialog_Quantity_Product(DetailProduct.this, idProduct,idUser);

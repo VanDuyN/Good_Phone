@@ -5,37 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cart">
-    <LinearLayout
 
-        android:id="@+id/title_cart"
+    <TextView
+        android:id="@+id/tv"
+        android:padding="7dp"
+        android:background="@color/green_dark"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/ic_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="18dp"
-            android:src="@drawable/ic_back_left"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Giỏ hàng của bạn"
-            android:textSize="27dp"
-            android:layout_marginLeft="30dp"
-            android:textColor="@color/black_700"
-            android:textFontWeight="600"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-
-    <View
-        android:layout_below="@+id/title_cart"
-        android:layout_width="match_parent"
-        android:layout_height="0.7dp"
-        android:background="@color/black_600" />
+        android:layout_height="wrap_content"
+        android:text="Giỏ hàng của bạn"
+        android:textSize="27dp"
+        android:textColor="@color/black"
+        android:textFontWeight="600"
+        android:layout_gravity="center"/>
     <LinearLayout
         android:id="@+id/radio_all"
-        android:layout_below="@id/title_cart"
+        android:layout_below="@id/tv"
         android:layout_marginLeft="7dp"
+        android:layout_marginBottom="1dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="NotSibling">
@@ -53,10 +40,11 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/radio_all"
         android:id="@+id/rcv_Cart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/radio_all"
+        android:layout_marginTop="1dp" />
 
     <View
         android:layout_above="@+id/titleBottom"
@@ -101,12 +89,13 @@
             android:layout_height="wrap_content"
             android:gravity="end">
             <Button
+                android:id="@+id/btn_Oder_Cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/bg_line_green"
                 android:backgroundTint="@color/green_dark"
-                android:text="Tiếp Tục"
+                android:text="Đặt hàng"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
