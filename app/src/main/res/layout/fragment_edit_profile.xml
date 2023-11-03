@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="23dp"
-        android:padding="5dp"
         android:gravity="center"
         android:text="Chỉnh sửa"
         android:textColor="@color/black_800"
@@ -22,7 +21,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="18dp"
+            android:padding="2dp"
             android:background="@drawable/line_grey_light">
 
             <TableRow
@@ -107,16 +106,43 @@
             <TableRow
                 android:background="@color/green_light"
                 android:padding="5dp">
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0.6"
                     android:text="Địa chỉ"
                     android:textSize="20dp"/>
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Tỉnh/Thành Phố"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_Address_City_Profile"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="TP.Hồ Chí Minh" />
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Quận/Huyện"
+                    android:textSize="20dp"/>
 
                 <EditText
-                    android:id="@+id/edt_Address_edit_Profile"
+                    android:id="@+id/edt_Address_District_Profile"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_line_green"
@@ -124,8 +150,47 @@
                     android:textSize="20dp"
                     android:text="--" />
             </TableRow>
+            <TableRow
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Xã/Phường"
+                    android:textSize="20dp"/>
 
-            <TableRow android:padding="5dp">
+                <EditText
+                    android:id="@+id/edt_Address_Wards_Profile"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="" />
+            </TableRow>
+            <TableRow
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.6"
+                    android:text="Số nhà"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/edt_Address_Number_Profile"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_line_green"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="" />
+            </TableRow>
+
+
+            <TableRow
+                android:padding="5dp"
+                android:background="@color/green_light">
 
                 <TextView
                     android:layout_width="0dp"

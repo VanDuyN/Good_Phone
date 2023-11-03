@@ -138,6 +138,14 @@ public class Cart extends AppCompatActivity {
         tvSumPrice.setText(String.valueOf(formattedNumber));
         sumPrice = 0;
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        arrProduct.clear();
+        getDataUser();
+    }
+
     public void getDataProduct(String productID, String image, int quantity){
         dbProduct.collection("Product")
                 .document(productID)

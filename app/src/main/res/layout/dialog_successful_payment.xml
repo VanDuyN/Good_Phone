@@ -39,61 +39,78 @@
             android:layout_height="wrap_content">
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Mã đơn hàng"
                     android:textColor="@color/black_800"/>
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tv_idOther"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.6"
                     android:gravity="end"
                     android:text="NCDHF126213"
                     android:textColor="@color/black_800"/>
             </TableRow>
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Thời gian đặt hàng"
                     android:textColor="@color/black_800"/>
+
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tv_DateTime"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.6"
                     android:gravity="end"
-                    android:text="01-11-2023 15:12"/>
+                    android:text="01-11-2023 15:12" />
             </TableRow>
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Số điện thoại"
                     android:textColor="@color/black_800"/>
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tvPhoneNumber"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.6"
                     android:gravity="end"
                     android:text="0123456789"/>
             </TableRow>
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
                     android:text="Tên người nhận"
                     android:textColor="@color/black_800"/>
+
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tvNameUser"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:gravity="end"
-                    android:text="tên"/>
+                    android:text="tên" />
             </TableRow>
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
                     android:layout_weight="0.4"
                     android:layout_gravity="center_vertical"
                     android:text="Địa chỉ nhận hàng"
                     android:textColor="@color/black_800"/>
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tvAddress"
                     android:layout_width="0dp"
                     android:layout_weight="0.6"
                     android:gravity="end"
@@ -101,18 +118,22 @@
             </TableRow>
             <TableRow>
                 <TextView
+                    android:padding="5dp"
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Tổng tiền đơn hàng"
                     android:textColor="@color/black_800"/>
                 <TextView
+                    android:padding="5dp"
+                    android:id="@+id/tvSumPrice"
                     android:layout_width="0dp"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.6"
                     android:gravity="end"
                     android:text="12 000đ"/>
             </TableRow>
         </TableLayout>
         <Button
+            android:id="@+id/btnContinue"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center"

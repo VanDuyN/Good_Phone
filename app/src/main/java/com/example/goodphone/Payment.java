@@ -2,6 +2,7 @@ package com.example.goodphone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.goodphone.adapter.Cart_Adapter;
 import com.example.goodphone.adapter.Payment_Adapter;
+import com.example.goodphone.dialog.Dialog_Other;
+import com.example.goodphone.dialog.Dialog_Successful_Payment;
 import com.example.goodphone.model.List_Product;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -75,7 +78,7 @@ public class Payment extends AppCompatActivity {
     Payment_Adapter paymentAdapter;
     int quantity, price,sumPrice;
     boolean phoneValidate;
-    String firstName, lastName, phoneNumber, city,district,wards, addressNumber,nameU,phoneNumberN,districtN,wardsN, addressNumberN,nameUN, PHONE_NUMBER_PATTERN;
+    String firstName, lastName, phoneNumber, city,district,wards, addressNumber,nameU,phoneNumberN,districtN,wardsN, addressNumberN,nameUN, PHONE_NUMBER_PATTERN,dateTime,address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,14 +126,13 @@ public class Payment extends AppCompatActivity {
         edtPhoneNumber.setText(phoneNumber);
     }
     public void setDataAddress (){
-        tvCity.setText(city);
+        tvCity.setText("TP. Hồ Chí Minh");
         edtDistrict.setText(district);
         edtWards.setText(wards);
         edtHouseNumber.setText(addressNumber);
     }
     public void getData(){
         PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9])(\\d{7})$";
-
         nameUN = edtName.getText().toString().trim();
         phoneNumberN = edtPhoneNumber.getText().toString().trim();
         districtN = edtDistrict.getText().toString().trim();
@@ -178,10 +180,22 @@ public class Payment extends AppCompatActivity {
         btnConfirm = dialog.findViewById(R.id.btn_Confirm);
         btnRefuse = dialog.findViewById(R.id.btn_Refuse);
         tvTitleConfirm.setText("Xác nhận đặt hàng");
-        tvDetailConfirm.setText("Bạn có chắc là muốn đặt hàng ? \n Xin hãy kiểm tra lại trước khi đặt hàng! ");
+        if (user != null ){
+            tvDetailConfirm.setText("Bạn có chắc là muốn đặt hàng ? \nXin hãy kiểm tra lại trước khi đặt hàng! ");
+        }else {
+            tvDetailConfirm.setText("Bạn có chắc là muốn đặt hàng ? " +
+                    "\nXin hãy kiểm tra lại trước khi đặt hàng! " +
+                    "\nQuý khách đang đặt hàng bằng cách không đăng nhập vui lòng ghi nhớ và kiểm tra số điện thoại thật kĩ trước khi đặt hàng !");
+        }
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (user != null){
+                    addOtherUser();
+                }else {
+                    addOtherNoUser();
+                }
                 dialog.dismiss();
             }
         });
@@ -193,29 +207,38 @@ public class Payment extends AppCompatActivity {
         });
         dialog.show();
     }
-    public void addOtherNoUser(){
-        calendar.setTime(date);
+    public void addOtherUser(){
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
-
+        dateTime = "Ngày: " + day + "/" + month + "/" + year  +" " +"Thời gian: " + hour + ":" + minute + ":" + second;
+        address = addressNumberN +" /"+wardsN +" / "+districtN+" / "+city;
         Map<String,Object> data = new HashMap<>();
-        data.put("Name", nameUN);
-        data.put("phoneNumber", phoneNumberN);
-        data.put("bookingDate","Ngày: " + day + "/" + month + "/" + year  +":" +"Giờ: " + hour + ":" + minute + ":" + second);
-        data.put("Address",addressNumberN +" "+wardsN +" "+districtN+" "+city);
-        DBUser.collection("Other")
-
+        data.put("bookingDate",dateTime);
+        data.put("Address",address);
+        data.put("sumPrice",sumPrice);
+        data.put("status", "Chờ xác nhận");
+        DBUser.collection("User")
+                .document(idUser)
+                .collection("Other")
                 .add(data)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         DocumentReference documentReference = task.getResult();
                         String id = documentReference.getId();
-                        
+                        for(List_Product listProduct : arrProduct){
+                            Map<String,Object> dataDetailOther = new HashMap<>();
+                            idProduct = listProduct.getId();
+                            dataDetailOther.put("idP",idProduct);
+                            dataDetailOther.put("quantity",listProduct.getQuantity());
+                            dataDetailOther.put("price", listProduct.getPrice());
+                            Log.e("",listProduct.getId());
+                            detailOtherUser(id, dataDetailOther,idProduct);
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -224,6 +247,84 @@ public class Payment extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public void detailOtherUser(String id, Map<String,Object> dataDetailOther, String idProduct){
+        DBUser.collection("User")
+                .document(idUser)
+                .collection("Other")
+                .document(id)
+                .collection("OtherDetail")
+                .add(dataDetailOther);
+        deleteCart(id,idProduct);
+    }
+    public void deleteCart(String id,String idProduct){
+        DBUser.collection("User")
+                .document(idUser)
+                .collection("Cart")
+                .document(idProduct)
+                .delete();
+        openDialogSuccessful(id);
+
+    }
+    public void openDialogSuccessful(String id){
+        final Dialog_Successful_Payment dialogSuccessfulPayment = new Dialog_Successful_Payment(Payment.this, id,address,nameUN,dateTime,sumPrice,phoneNumber);
+        dialogSuccessfulPayment.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(Payment.this, android.R.color.transparent)));
+        dialogSuccessfulPayment.setCancelable(true);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialogSuccessfulPayment.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.gravity = Gravity.CENTER;
+        dialogSuccessfulPayment.show();
+        dialogSuccessfulPayment.getWindow().setAttributes(lp);
+
+    }
+    public void addOtherNoUser(){
+        city = tvCity.getText().toString();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+        dateTime = "Ngày: " + day + "/" + month + "/" + year  +" " +"Giờ: " + hour + ":" + minute + ":" + second;
+        address = addressNumberN +" /"+wardsN +" / "+districtN+" / "+city;
+        Map<String,Object> data = new HashMap<>();
+        data.put("Name", nameUN);
+        data.put("phoneNumber", phoneNumberN);
+        data.put("bookingDate",dateTime);
+        data.put("Address",address);
+        data.put("sumPrice",sumPrice );
+        DBUser.collection("Other")
+
+                .add(data)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        DocumentReference documentReference = task.getResult();
+                        String id = documentReference.getId();
+                        Map<String,Object> dataDetailOther = new HashMap<>();
+                        dataDetailOther.put("idP",idProduct);
+                        dataDetailOther.put("quantity",quantity);
+                        dataDetailOther.put("idOther",id);
+                        dataDetailOther.put("price", price);
+                        detailOtherNoUser(id, dataDetailOther);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+    }
+    public void detailOtherNoUser(String id, Map<String,Object> dataDetailOther){
+        DBUser.collection("Other")
+                .document(id)
+                .collection("Detail")
+                .add(dataDetailOther);
     }
     public static boolean validatePhoneNumber(String input, String phoneNumberPattern) {
         Pattern pattern = Pattern.compile(phoneNumberPattern);
@@ -255,7 +356,6 @@ public class Payment extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             DocumentSnapshot document = task.getResult();
-                            city = document.getString("city");
                             addressNumber= document.getString("addressNumber");
                             district = document.getString("district");
                             wards = document.getString("wards");
@@ -274,11 +374,12 @@ public class Payment extends AppCompatActivity {
         setPrice(sumPrice);
     }
     public void setPrice(int sumPrice){
+        sumPrice += 30000;
         Locale locale = new Locale("vi", "VN");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
         String formatSumPriceProduct = currencyFormat.format(sumPrice);
         String formatShippingFee = currencyFormat.format(30000);
-        String formatSumPrice = currencyFormat.format(sumPrice + 30000);
+        String formatSumPrice = currencyFormat.format(sumPrice );
         tvSumPricePayment.setText(formatSumPrice);
         tvShippingFee.setText(formatShippingFee);
         tvSumPriceProduct.setText(formatSumPriceProduct);
@@ -323,7 +424,6 @@ public class Payment extends AppCompatActivity {
                             price = getPriceDB != null ? getPriceDB.intValue() : 0;
                             getImg(id,quantity,price,name);
                             sumPrice(price, quantity);
-
                         }
                     }
                 });
