@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:backgroundTint="@null"
             android:id="@+id/ic_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -70,6 +71,7 @@
                     android:padding="5dp">
 
                     <EditText
+                        android:id="@+id/edt_Name_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -79,6 +81,8 @@
                         android:textColorHint="@color/black_500" />
 
                     <EditText
+                        android:inputType="number"
+                        android:id="@+id/edt_PhoneNumber_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -88,12 +92,16 @@
                         android:textColorHint="@color/black_500" />\
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/info_Address"
-                android:layout_below="@id/info_Customer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_below="@id/info_Customer"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -101,28 +109,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="Thông tin giao hàng"
-                    android:textColor="@color/black_800"
                     android:textAllCaps="true"
+                    android:textColor="@color/black_800"
                     android:textSize="18dp" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
                     android:background="@drawable/line_grey_light"
                     android:backgroundTint="@color/white"
-                    android:orientation="vertical">
-
-                    <EditText
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tv_City_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:background="@null"
-                        android:hint="Tỉnh/Thành phố"
+                        android:text="TP. Hồ Chí Minh"
+                        android:textSize="18dp"
                         android:padding="5dp"
-                        android:textColorHint="@color/black_500" />
+                        android:textColor="@color/black" />
 
                     <EditText
+                        android:id="@+id/edt_District_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -130,7 +139,9 @@
                         android:hint="Quận/Huyện"
                         android:padding="5dp"
                         android:textColorHint="@color/black_500" />
+
                     <EditText
+                        android:id="@+id/edt_Wards_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -139,6 +150,7 @@
                         android:padding="5dp"
                         android:textColorHint="@color/black_500" />
                     <EditText
+                        android:id="@+id/edt_HouseNumber_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -146,7 +158,9 @@
                         android:hint="Số nhà"
                         android:padding="5dp"
                         android:textColorHint="@color/black_500" />
+
                     <EditText
+                        android:id="@+id/edt_NoteAddress_Payment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -156,22 +170,26 @@
                         android:textColorHint="@color/black_500" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/info_Product_Payment"
-                android:layout_below="@id/info_Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="5dp"
-                android:orientation="vertical">
+                android:layout_below="@id/info_Address"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="Thông tin sản phẩm"
-                    android:textColor="@color/black_800"
                     android:textAllCaps="true"
+                    android:textColor="@color/black_800"
                     android:textSize="18dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -207,6 +225,7 @@
                             android:layout_weight="0.7"
                             android:text="Tổng tiền hàng"/>
                         <TextView
+                            android:id="@+id/tv_SumPrice_Product_Payment"
                             android:layout_weight="0.3"
                             android:layout_width="0dp"
                             android:gravity="end"
@@ -217,8 +236,9 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="0.7"
-                            android:text="Tổng tiền phí vận chuyển"/>
+                            android:text="Phí vận chuyển"/>
                         <TextView
+                            android:id="@+id/tv_ShippingFee_Payment"
                             android:layout_weight="0.3"
                             android:layout_width="0dp"
                             android:gravity="end"
@@ -229,14 +249,15 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="0.7"
-                            android:text="Tổng thanh toán"
+                            android:text="Tổng tiền"
                             android:textSize="17dp"
                             android:textColor="@color/black_800"/>
                         <TextView
+                            android:id="@+id/tvSumPrice_Payment"
                             android:layout_weight="0.3"
                             android:layout_width="0dp"
                             android:gravity="end"
-                            android:text="1 000 000đ"
+                            android:text="--"
                             android:textSize="17dp"
                             android:textColor="@color/green_dark"/>
                     </TableRow>
@@ -247,7 +268,7 @@
     </ScrollView>
     <LinearLayout
         android:id="@+id/titleBottom"
-        android:layout_above="@+id/navigation_bar"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/line_grey_light"
         android:backgroundTint="@color/white"
         android:layout_width="match_parent"
@@ -284,22 +305,16 @@
             android:layout_height="wrap_content"
             android:gravity="end">
             <Button
+                android:id="@+id/btn_Oder_Payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:background="@drawable/bg_line_green"
                 android:backgroundTint="@color/green_dark"
-                android:text="Thanh Toán"
+                android:text="Đặt hàng"
                 android:textSize="20dp"
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
         </LinearLayout>
-
     </LinearLayout>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/navigation_bar">
-    </FrameLayout>
 </RelativeLayout>

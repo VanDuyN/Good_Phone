@@ -62,8 +62,12 @@ public class Dialog_Quantity_Product extends Dialog {
         btnAddQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quantity++;
-                edtAddQuantity.setText(String.valueOf(quantity));
+                if (quantity < 10){
+                    quantity++;
+                    edtAddQuantity.setText(String.valueOf(quantity));
+                }else {
+
+                }
             }
         });
         btnDeleteQuantity.setOnClickListener(new View.OnClickListener() {

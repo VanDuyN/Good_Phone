@@ -53,7 +53,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
     Bundle bundle;
     Button btnConfirm, btnRefuse;
     TextView tvTitleConfirm,tvDetailConfirm;
-    AlertDialog.Builder builder;
     Dialog dialog;
 
     public SanPhamAdapter(List<List_Product> mListSanPham){
