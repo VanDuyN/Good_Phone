@@ -1,15 +1,17 @@
-package com.example.goodphone;
+package com.example.goodphone.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.goodphone.LogIn;
+import com.example.goodphone.Profile;
+import com.example.goodphone.QLSanPhamActivity;
+import com.example.goodphone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
