@@ -38,8 +38,9 @@ public class Profile extends AppCompatActivity {
         init();
         click();
         checkProfile();
-        getDataDB();
         fragment();
+        fragmentNavigationBar();
+
     }
 
     public void click(){
@@ -70,8 +71,12 @@ public class Profile extends AppCompatActivity {
         fragmentTransactionBar.add(R.id.nevigation_bar, bottomBar).commit();
     }
     public void checkProfile(){
-        if (user== null){
+        if (user == null){
             btn_editProfile.setVisibility(View.GONE);
+            btnExitProfile.setVisibility(View.GONE);
+        }else{
+
+            getDataDB();
         }
     }
     public void checkUser(){

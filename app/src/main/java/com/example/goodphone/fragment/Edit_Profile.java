@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,9 +47,9 @@ public class Edit_Profile extends Fragment {
     FirebaseFirestore dbUser;
     View view;
     Button btnSave;
-    EditText edtAddress,edtPhoneNumber,edtLastName,edtFirstName;
+    EditText edtDistrict, edtWards, edtNumber,edtPhoneNumber,edtLastName,edtFirstName;
     TextView tvRole,tvEmail;
-    String idUser,address, phoneNumber,lastName,firstName,email,addressOld, phoneNumberOld,lastNameOld,firstNameOld,emailOld;
+    String idUser,district,wards,number, phoneNumber,lastName,firstName,districtOld,wardsOld,numberOld, phoneNumberOld,lastNameOld,firstNameOld,emailOld;
     Profile profile;
 
     @Override
@@ -78,19 +79,21 @@ public class Edit_Profile extends Fragment {
     }
     public void getData(){
         phoneNumber = edtPhoneNumber.getText().toString().trim();
-        address = edtAddress.getText().toString().trim();
         lastName = edtLastName.getText().toString().trim();
         firstName = edtFirstName.getText().toString().trim();
+        district = edtDistrict.getText().toString().trim();
+        wards = edtWards.getText().toString();
+        number = edtNumber.getText().toString();
     }
     public void setData(){
         tvEmail.setText(emailOld.trim());
         edtPhoneNumber.setText(phoneNumberOld.trim());
-        edtAddress.setText(addressOld.trim());
         edtLastName.setText(lastNameOld.trim());
         edtFirstName.setText(firstNameOld.trim());
     }
     public void setDataDB(){
         Map<String,Object> data = new HashMap<>();
+        Map<String,Object> dataAddress = new HashMap<>();
         if(firstName != firstNameOld){
             data.put("firstName",firstName);
         }
@@ -100,13 +103,47 @@ public class Edit_Profile extends Fragment {
         if(phoneNumber != phoneNumberOld){
             data.put("phoneNumber",phoneNumber);
         }
-        if (address != addressOld) {
-            data.put("address",address);
+        if (districtOld != district) {
+            dataAddress.put("district",district);
         }
+        if (wards != wardsOld);{
+            dataAddress.put("wards",wards);
+        }
+        if (number != numberOld);{
+            dataAddress.put("addressNumber",number);
+        }
+
         if (data != null){
             DocumentReference updateUser =  dbUser.collection("User").document(idUser);
-            updateUser.update(data);
+            updateUser.update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
         }
+        if (dataAddress != null){
+            DocumentReference updateUser =  dbUser.collection("User").document(idUser).collection("Address").document("Home");
+            updateUser.update(dataAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            dbUser.collection("User").document(idUser).collection("Address").document("Home").set(dataAddress);
+                        }
+                    });
+        }
+
     }
     public void getDataDB(){
         dbUser.collection("User")
@@ -117,14 +154,48 @@ public class Edit_Profile extends Fragment {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                addressOld = document.getString("address");
                                 emailOld = document.getString("email");
-                                tvRole.setText(document.getString("role"));
+                                String role = document.getString("role");
+                                if (role.equals("khachhang")){
+                                    tvRole.setText("Khách hàng");
+                                }else {
+                                    tvRole.setText("Quản lý");
+                                }
+
                                 firstNameOld = document.getString("firstName");
                                 lastNameOld = document.getString("lastName");
                                 phoneNumberOld = document.getString("phoneNumber");
+                                getAddress();
                                 setData();
                             }
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
+    }
+    public void getAddress(){
+        dbUser.collection("User")
+                .document(idUser)
+                .collection("Address")
+                .document("Home")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                districtOld  = document.getString("district");
+                                wardsOld = document.getString("wards");
+                                numberOld = document.getString("addressNumber");
+                                edtDistrict.setText(districtOld.trim());
+                                edtWards.setText(wardsOld.trim());
+                                edtNumber.setText(numberOld.trim());
+                            }
+
                         }
                     }
                 })
@@ -137,7 +208,9 @@ public class Edit_Profile extends Fragment {
     }
     public void init(){
         btnSave = view.findViewById(R.id.btn_Save_Profile);
-        edtAddress = view.findViewById(R.id.edt_Address_edit_Profile);
+        edtDistrict = view.findViewById(R.id.edt_Address_District_Profile);
+        edtWards = view.findViewById(R.id.edt_Address_Wards_Profile);
+        edtNumber= view.findViewById(R.id.edt_Address_Number_Profile);
         edtFirstName=view.findViewById(R.id.edt_FirstName_edit_Profile);
         edtLastName = view.findViewById(R.id.edt_LastName_edit_Profile);
         edtPhoneNumber = view.findViewById(R.id.edt_PhoneNumber_edit_Profile);

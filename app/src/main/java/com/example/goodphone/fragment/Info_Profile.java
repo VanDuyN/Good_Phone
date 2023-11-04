@@ -99,13 +99,16 @@ public class Info_Profile extends Fragment {
                         tvAddress.setText(document.getString("address"));
                         tvEmail.setText(document.getString("email"));
                         role = document.getString("role");
-                        tvRole.setText(role);
+                        if (role.equals("khachhang")){
+                            tvRole.setText("Khách hàng");
+                        }else {
+                            tvRole.setText("Quản lý");
+                        }
                         tvFirstName.setText(document.getString("firstName"));
                         tvLastName.setText(document.getString("lastName"));
                         tvPhoneNumber.setText(document.getString("phoneNumber"));
                         if (role.equals("admin")){
                             btnLogout.setVisibility(View.GONE);
-
                         }
                         else {
                             click();

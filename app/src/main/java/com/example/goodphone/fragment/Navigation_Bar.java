@@ -119,7 +119,22 @@ public class Navigation_Bar extends Fragment {
         btnBar_Convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Chức năng đang phát triển",Toast.LENGTH_SHORT).show();
+                if (getActivity() instanceof Profile){
+
+                }else if(getActivity() instanceof Home){
+                    Intent i = new Intent(getContext(), Profile.class);
+                    startActivity(i);
+                    getActivity().overridePendingTransition(0,0);
+                }else{
+                    mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.green_dark));
+                    btnBar_Home.setBackgroundColor(getResources().getColor(R.color.white));
+                    btnBar_Cart.setBackgroundColor(getResources().getColor(R.color.white));
+                    btnBar_Convert.setBackgroundColor(getResources().getColor(R.color.white));
+                    Intent i = new Intent(getContext(), Profile.class);
+                    startActivity(i);
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0,0);
+                }
             }
         });
     }
