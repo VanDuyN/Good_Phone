@@ -32,6 +32,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -44,6 +45,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.type.DateTime;
 
 import java.text.NumberFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,8 +73,6 @@ public class Payment extends AppCompatActivity {
     Button btnConfirm, btnRefuse;
     TextView tvTitleConfirm,tvDetailConfirm;
     Dialog dialog;
-    Calendar calendar;
-    Date date= new Date();
     RecyclerView recyclerView;
     ArrayList<String> listId ;
     List<List_Product> arrProduct;
@@ -78,7 +81,8 @@ public class Payment extends AppCompatActivity {
     Payment_Adapter paymentAdapter;
     int quantity, price,sumPrice;
     boolean phoneValidate;
-    String firstName, lastName, phoneNumber, city,district,wards, addressNumber,nameU,phoneNumberN,districtN,wardsN, addressNumberN,nameUN, PHONE_NUMBER_PATTERN,dateTime,address;
+    Timestamp timestamp;
+    String firstName, lastName, phoneNumber, city,district,wards, addressNumber,nameU,phoneNumberN,districtN,wardsN, addressNumberN,nameUN, PHONE_NUMBER_PATTERN,address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,16 +212,34 @@ public class Payment extends AppCompatActivity {
         dialog.show();
     }
     public void addOtherUser(){
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        int second = calendar.get(Calendar.SECOND);
-        dateTime = "Ngày: " + day + "/" + month + "/" + year  +" " +"Thời gian: " + hour + ":" + minute + ":" + second;
-        address = addressNumberN +" /"+wardsN +" / "+districtN+" / "+city;
+        Map<String,Object> dataAddress = new HashMap<>();
+        if (addressNumberN != address ){
+            dataAddress.put("addressNumber", addressNumberN);
+        }
+        if (wardsN != wards){
+            dataAddress.put("wards", wardsN);
+        }
+        if (district != districtN){
+            dataAddress.put("district", districtN);
+        }
+        if (dataAddress != null){
+            DocumentReference updateUser =  DBUser.collection("User").document(idUser).collection("Address").document("Home");
+            updateUser.update(dataAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            DBUser.collection("User").document(idUser).collection("Address").document("Home").set(dataAddress);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                        }
+                    });
+        }
+        timestamp = Timestamp.now();
+        address = addressNumberN +" /"+wardsN +" / "+districtN+" / "+"TP. Hồ Chí Minh";
         Map<String,Object> data = new HashMap<>();
-        data.put("bookingDate",dateTime);
+        data.put("bookingDate",timestamp);
         data.put("Address",address);
         data.put("sumPrice",sumPrice);
         data.put("status", "Chờ xác nhận");
@@ -236,7 +258,6 @@ public class Payment extends AppCompatActivity {
                             dataDetailOther.put("idP",idProduct);
                             dataDetailOther.put("quantity",listProduct.getQuantity());
                             dataDetailOther.put("price", listProduct.getPrice());
-                            Log.e("",listProduct.getId());
                             detailOtherUser(id, dataDetailOther,idProduct);
                         }
                     }
@@ -268,7 +289,7 @@ public class Payment extends AppCompatActivity {
 
     }
     public void openDialogSuccessful(String id){
-        final Dialog_Successful_Payment dialogSuccessfulPayment = new Dialog_Successful_Payment(Payment.this, id,address,nameUN,dateTime,sumPrice,phoneNumber);
+        final Dialog_Successful_Payment dialogSuccessfulPayment = new Dialog_Successful_Payment(Payment.this, id,address,nameUN,timestamp,sumPrice,phoneNumberN);
         dialogSuccessfulPayment.getWindow().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(Payment.this, android.R.color.transparent)));
         dialogSuccessfulPayment.setCancelable(true);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -278,25 +299,18 @@ public class Payment extends AppCompatActivity {
         lp.gravity = Gravity.CENTER;
         dialogSuccessfulPayment.show();
         dialogSuccessfulPayment.getWindow().setAttributes(lp);
-
     }
     public void addOtherNoUser(){
         city = tvCity.getText().toString();
-        calendar.setTime(date);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        int second = calendar.get(Calendar.SECOND);
-        dateTime = "Ngày: " + day + "/" + month + "/" + year  +" " +"Giờ: " + hour + ":" + minute + ":" + second;
+        timestamp = Timestamp.now();
         address = addressNumberN +" /"+wardsN +" / "+districtN+" / "+city;
         Map<String,Object> data = new HashMap<>();
         data.put("Name", nameUN);
         data.put("phoneNumber", phoneNumberN);
-        data.put("bookingDate",dateTime);
+        data.put("bookingDate",timestamp);
         data.put("Address",address);
         data.put("sumPrice",sumPrice );
+        data.put("status", "Chờ xác nhận");
         DBUser.collection("Other")
 
                 .add(data)
@@ -320,11 +334,17 @@ public class Payment extends AppCompatActivity {
                     }
                 });
     }
+
     public void detailOtherNoUser(String id, Map<String,Object> dataDetailOther){
         DBUser.collection("Other")
                 .document(id)
                 .collection("Detail")
-                .add(dataDetailOther);
+                .add(dataDetailOther).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        openDialogSuccessful(documentReference.getId());
+                    }
+                });
     }
     public static boolean validatePhoneNumber(String input, String phoneNumberPattern) {
         Pattern pattern = Pattern.compile(phoneNumberPattern);
@@ -470,7 +490,6 @@ public class Payment extends AppCompatActivity {
         tvSumPricePayment = findViewById(R.id.pricePayment);
         btnBack = findViewById(R.id.ic_back);
         btnOder = findViewById(R.id.btn_Oder_Payment);
-        calendar =Calendar.getInstance();
 
     }
 }

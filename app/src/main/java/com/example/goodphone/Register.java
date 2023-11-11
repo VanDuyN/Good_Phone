@@ -37,11 +37,11 @@ import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
     Button btnRegister,btnRefuse,btnConfirm;
-    EditText edtFirstName, edtLastName, edtEmail,edtPassword, edtAddress, edtPhoneNumber;
+    EditText edtFirstName, edtLastName, edtEmail,edtPassword, edtPhoneNumber;
     TextView btnLoginNow, tvDetailConfirm,tvTitleConfirm;
     ProgressDialog progressDialog;
 
-    String email,password,firstName,lastName, phone, address,regexPattern ;
+    String email,password,firstName,lastName, phone,regexPattern ;
     private static final String PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9])(\\d{7})$";
     boolean emailValidate,phoneValidate;
     Dialog dialog;
@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
         firstName = edtFirstName.getText().toString().trim();
         lastName = edtLastName.getText().toString().trim();
         phone = edtPhoneNumber.getText().toString().trim();
-        address = edtAddress.getText().toString().trim();
+
         regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         emailValidate = patternMatches(email.trim(), regexPattern);
         phoneValidate = validatePhoneNumber(phone.trim(),PHONE_NUMBER_PATTERN);
@@ -86,11 +86,9 @@ public class Register extends AppCompatActivity {
                     //valudate phone
                     if(phoneValidate){
                         //validate dia chi
-                        if (!address.trim().isEmpty() && address.length() <= 200){
+
                             openDialog(Gravity.CENTER);
-                        }else{
-                            Toast.makeText(Register.this, "Địa chỉ không được để trống và không quá 200 ký tự", Toast.LENGTH_SHORT).show();
-                        }
+
                     }else {
                         Toast.makeText(Register.this, "Số điện thoại có 10 số và bắt đầu bằng 0 hoặc +84", Toast.LENGTH_SHORT).show();
                     }
@@ -124,7 +122,6 @@ public class Register extends AppCompatActivity {
                                 users.put("firstName",firstName);
                                 users.put("lastName",lastName);
                                 users.put("email",email);
-                                users.put("address",address);
                                 users.put("phoneNumber",phone);
                                 users.put("password",password);
                                 users.put("role","Khách hàng");
@@ -210,7 +207,6 @@ public class Register extends AppCompatActivity {
         edtFirstName = findViewById(R.id.edtTenRe);
         edtLastName = findViewById(R.id.edtHoRe);
         edtEmail = findViewById(R.id.edtEmailRe);
-        edtAddress = findViewById(R.id.edtAddressRe);
         edtPhoneNumber = findViewById(R.id.edtSdtRe);
         edtPassword = findViewById(R.id.edtPassRe);
         progressDialog = new ProgressDialog(this);

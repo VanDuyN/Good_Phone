@@ -6,7 +6,8 @@
     android:background="@color/black_200"
     tools:context=".fragment.Cancel_Order">
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewCancel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

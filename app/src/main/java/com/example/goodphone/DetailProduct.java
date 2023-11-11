@@ -51,11 +51,11 @@ import java.util.Map;
 import java.util.Objects;
 
 public class DetailProduct extends AppCompatActivity {
-    TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold;
+    TextView tvPriceDetail, tvNameProductDetail, btnBuyNow, tvProductInformation,tvScreenSize,tvScreenTechnology,tvRearCamera,tvFontCamera,tvRom,tvChipset,tvScreenFeature,btnDetail,tvSold,tvQuantity;
     ImageView btnReturn, imgMain,btnAddCart;
     String idUser,idProduct,nameProduct,screenTechnology,rearCamera,frontCamera,rom,chipset,screenFeature,screenSize;
     Double  sumRating;
-    int price;
+    int price,Quantity;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
@@ -95,6 +95,7 @@ public class DetailProduct extends AppCompatActivity {
         tvScreenSize= findViewById(R.id.tv_Screen_Size);
         tvScreenTechnology= findViewById(R.id.tv_Screen_Technology);
         tvRearCamera= findViewById(R.id.tv_Rear_Camera);
+        tvQuantity = findViewById(R.id.tv_Quantity);
         tvFontCamera= findViewById(R.id.tv_Front_Camera);
         tvRom= findViewById(R.id.tv_Rom);
         tvChipset= findViewById(R.id.tv_Chipset);
@@ -183,6 +184,7 @@ public class DetailProduct extends AppCompatActivity {
         Locale locale = new Locale("vi", "VN");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(locale);
         String formattedNumber = currencyFormat.format(price);
+        String quantity = String.valueOf(Quantity);
         tvNameProductDetail.setText(nameProduct);
         tvPriceDetail.setText(formattedNumber);
         tvScreenSize.setText(screenSize.toString());
@@ -192,6 +194,7 @@ public class DetailProduct extends AppCompatActivity {
         tvRom.setText(rom );
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
+        tvQuantity.setText("Số Lượng còn lại: "+quantity);
     }
     public void openDialogSpecifications(){
         Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
@@ -249,6 +252,7 @@ public class DetailProduct extends AppCompatActivity {
                                 screenTechnology = document.getString("ScreenTechnology");
                                 rearCamera  = document.getString("RearCamera");
                                 frontCamera  = document.getString("FrontCamera");
+                                Quantity = document.getDouble("Quantity").intValue();
                                 rom  = document.getString("Rom");
                                 chipset  = document.getString("Chipset");
                                 getData();
@@ -278,8 +282,6 @@ public class DetailProduct extends AppCompatActivity {
                         }
                     }
                 });
-    }
-    public void addCart(){
     }
 
 

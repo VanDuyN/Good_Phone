@@ -96,7 +96,7 @@ public class Info_Profile extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        tvAddress.setText(document.getString("address"));
+                        getAddress();
                         tvEmail.setText(document.getString("email"));
                         role = document.getString("role");
                         if (role.equals("khachhang")){
@@ -121,6 +121,25 @@ public class Info_Profile extends Fragment {
                 }
             }
         });
+    }
+    public void getAddress(){
+        dbUser.collection("User").document(uid)
+                .collection("Address")
+                .document("Home")
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.getString("addressNumber") != null){
+                            tvAddress.setText(documentSnapshot.getString("addressNumber")+"/" + documentSnapshot.getString("wards") +"/"+ documentSnapshot.getString("district")+"/TP. Hồ Chí Minh");
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
     }
     public void openDialogConfirm(int gravity){
         dialog =  new Dialog(getContext());

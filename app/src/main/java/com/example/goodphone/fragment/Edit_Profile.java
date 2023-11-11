@@ -133,7 +133,6 @@ public class Edit_Profile extends Fragment {
             updateUser.update(dataAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -161,7 +160,6 @@ public class Edit_Profile extends Fragment {
                                 }else {
                                     tvRole.setText("Quản lý");
                                 }
-
                                 firstNameOld = document.getString("firstName");
                                 lastNameOld = document.getString("lastName");
                                 phoneNumberOld = document.getString("phoneNumber");

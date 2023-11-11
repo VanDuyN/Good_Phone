@@ -5,10 +5,40 @@
     android:layout_height="match_parent"
     tools:context=".admin.Admin_Complete_Order">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Khách hàng không tài khoản"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:padding="10dp"
+                android:background="@color/green_dark"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView_oder_no_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Khách hàng có tài khoản"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                android:padding="10dp"
+                android:background="@color/green_dark"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView_oder_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

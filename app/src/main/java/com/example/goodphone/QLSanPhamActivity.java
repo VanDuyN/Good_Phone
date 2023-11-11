@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +49,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
     ImageButton btnExit;
     Button btnAddProduct,btnRefresh;
     Add_Product add_product;
+    SearchView searchView;
 
 
     @Override
@@ -56,6 +58,7 @@ public class QLSanPhamActivity extends AppCompatActivity{
         setContentView(R.layout.activity_qlsanpham);
         init();
         setClick();
+        searchView();
         getListSanPham();
 
     }
@@ -64,6 +67,20 @@ public class QLSanPhamActivity extends AppCompatActivity{
     protected void onRestart() {
         super.onRestart();
         reload();
+    }
+    public void searchView(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
     }
 
     public void setClick(){
@@ -131,12 +148,26 @@ public class QLSanPhamActivity extends AppCompatActivity{
                     }
                 });
     }
+    public void filterList(String txt){
+        List<List_Product> filterList = new ArrayList<>();
+        for (List_Product listProduct : arrProduct){
+            if(listProduct.getNameProduct().toLowerCase().contains(txt.toLowerCase())){
+                filterList.add(listProduct);
+            }
+        }
+        if (filterList.isEmpty()){
+
+        }else {
+            adapter.setFilterAdapter(filterList);
+        }
+    }
     public void init(){
         auth = FirebaseAuth.getInstance();
         user  = auth.getCurrentUser();
         dbProduct = FirebaseFirestore.getInstance();
         btnAddProduct = findViewById(R.id.btn_Add_Product);
         rootView= findViewById(R.id.root_view);
+        searchView = findViewById(R.id.search_view_admin);
         rcvSanPham = findViewById(R.id.rcv_sanpham);
         add_product = new Add_Product();
         btnExit =  findViewById(R.id.btn_Exit_QLSP);
@@ -145,8 +176,6 @@ public class QLSanPhamActivity extends AppCompatActivity{
         rcvSanPham.setLayoutManager(linearLayoutManager);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
         rcvSanPham.addItemDecoration(itemDecoration);
-
-
     }
 
 

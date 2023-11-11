@@ -54,6 +54,10 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.SanPhamV
     Button btnConfirm, btnRefuse;
     TextView tvTitleConfirm,tvDetailConfirm;
     Dialog dialog;
+    public void setFilterAdapter(List<List_Product> filterAdapter){
+        this.mListSanPham = filterAdapter;
+        notifyDataSetChanged();
+    }
 
     public SanPhamAdapter(List<List_Product> mListSanPham){
         this.mListSanPham = mListSanPham;

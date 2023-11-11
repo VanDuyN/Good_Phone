@@ -148,7 +148,7 @@
                     android:background="@drawable/bg_line_green"
                     android:padding="3dp"
                     android:textSize="20dp"
-                    android:text="--" />
+                    android:text="" />
             </TableRow>
             <TableRow
                 android:padding="5dp">

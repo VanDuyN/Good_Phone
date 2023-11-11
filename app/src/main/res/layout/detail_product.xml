@@ -97,8 +97,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="2dp"
                     android:src="@drawable/ic_star_rating"/>
-
-
                 <TextView
                     android:id="@+id/numRatingDetail"
                     android:layout_width="wrap_content"
@@ -116,6 +114,13 @@
                     android:textSize="18dp"
                     android:textColor="@color/black_500"
                     android:text="Lượt đánh giá"/>
+                <TextView
+                    android:layout_marginRight="1dp"
+                    android:textSize="18dp"
+                    android:id="@+id/tv_Quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
         </RelativeLayout>

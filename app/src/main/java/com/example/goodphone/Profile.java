@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity {
         click();
         checkProfile();
         fragment();
-        fragmentNavigationBar();
+
 
     }
 
@@ -75,8 +75,8 @@ public class Profile extends AppCompatActivity {
             btn_editProfile.setVisibility(View.GONE);
             btnExitProfile.setVisibility(View.GONE);
         }else{
-
             getDataDB();
+            btn_editProfile.setVisibility(View.VISIBLE);
         }
     }
     public void checkUser(){

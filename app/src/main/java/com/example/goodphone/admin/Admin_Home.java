@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Admin_Home extends AppCompatActivity {
-    LinearLayout btnLogout, btnQLSP, btnQLKH, btnProfile;
+    LinearLayout btnLogout, btnQLSP, btnQLKH, btnProfile,btnShipping;
     FirebaseAuth auth ;
     FirebaseUser user;
 
@@ -53,6 +53,13 @@ public class Admin_Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        btnShipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Admin_Home.this, Admin_Order.class);
+                startActivity(i);
+            }
+        });
     }
     public void Logout(){
         auth.signOut();
@@ -66,6 +73,7 @@ public class Admin_Home extends AppCompatActivity {
     }
     public void init(){
         btnLogout = findViewById(R.id.btn_Logout);
+        btnShipping = findViewById(R.id.btn_Shipping);
         btnQLKH = findViewById(R.id.btnQLKH);
         btnQLSP = findViewById(R.id.btnQLSP);
         auth = FirebaseAuth.getInstance();
