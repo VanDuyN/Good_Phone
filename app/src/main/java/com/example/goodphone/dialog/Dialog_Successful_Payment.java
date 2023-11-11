@@ -12,9 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.goodphone.R;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.type.Date;
+import com.google.type.DateTime;
 
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Dialog_Successful_Payment extends Dialog {
@@ -23,16 +29,17 @@ public class Dialog_Successful_Payment extends Dialog {
     FirebaseFirestore DBUser;
     Button btnContinue;
     int sumPrice;
-    String address,nameU,dateTime,phoneNumber;
+    String address,nameU,phoneNumber;
+    Timestamp timestamp;
     TextView tvName,tvPhoneNumber,tvAddress,tvSumPrice,tvID,tvDateTime;
-    public Dialog_Successful_Payment(@NonNull Context context, String idP,String address, String nameUN,String dateTime,int sumPrice,String phoneNumberN) {
+    public Dialog_Successful_Payment(@NonNull Context context, String idP, String address, String nameUN, Timestamp dateTime, int sumPrice, String phoneNumberN) {
         super(context);
         this.context = context;
         this.idProduct = idP;
         this.address = address;
         this.sumPrice = sumPrice;
         this.nameU = nameUN;
-        this.dateTime = dateTime;
+        this.timestamp = dateTime;
         this.phoneNumber = phoneNumberN;
     }
 
@@ -68,7 +75,11 @@ public class Dialog_Successful_Payment extends Dialog {
         String formatSumPrice = currencyFormat.format(sumPrice);
         tvAddress.setText(address);
         tvSumPrice.setText(formatSumPrice);
-        tvDateTime.setText(dateTime);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime dateTime = LocalDateTime.ofInstant(timestamp.toDate().toInstant(), ZoneId.systemDefault());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            tvDateTime.setText(dateTime.format(formatter).toString());
+        }
         tvID.setText(idProduct);
         tvPhoneNumber.setText(phoneNumber);
         tvName.setText(nameU);

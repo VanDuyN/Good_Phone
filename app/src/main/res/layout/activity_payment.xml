@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:text="Thanh toán"
+            android:text="Đặt hàng"
             android:textSize="27dp"
             android:textColor="@color/black_700"
             android:textFontWeight="600"/>

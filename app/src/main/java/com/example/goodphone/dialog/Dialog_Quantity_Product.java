@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.goodphone.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -24,7 +25,7 @@ public class Dialog_Quantity_Product extends Dialog {
     EditText edtAddQuantity;
     Button btnAddQuantity,btnDeleteQuantity, btnAddQuantityCart;
     int quantity,sumQuantity;
-    int getQuantity;
+    int getQuantity, getQuamtityDB;
     Map<String,Object> data;
     FirebaseFirestore dbProduct;
 
@@ -43,6 +44,7 @@ public class Dialog_Quantity_Product extends Dialog {
         init();
         getData();
         click();
+        getQuantity();
 
     }
     public void click(){
@@ -50,7 +52,9 @@ public class Dialog_Quantity_Product extends Dialog {
             @Override
             public void onClick(View view) {
                 getData();
-                if (quantity > 0 ){
+                if (quantity > getQuamtityDB){
+                    Toast.makeText(getContext(), "Số lượng phải nhỏ hơn trong kho" ,Toast.LENGTH_SHORT).show();
+                }else if (quantity > 0 ){
                     checkCart();
                 }else {
                     Toast.makeText(getContext(), "Số lượng phải lớn hơn 0" ,Toast.LENGTH_SHORT).show();
@@ -123,6 +127,16 @@ public class Dialog_Quantity_Product extends Dialog {
                                 Toast.makeText(getContext(), "Thêm tối đa 10 sản phẩm" ,Toast.LENGTH_SHORT).show();
                             }
                         }
+                    }
+                });
+    }
+    public void getQuantity(){
+        dbProduct.collection("Product")
+                .document(idProduct)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        getQuamtityDB = documentSnapshot.getDouble("Quantity").intValue();
                     }
                 });
     }

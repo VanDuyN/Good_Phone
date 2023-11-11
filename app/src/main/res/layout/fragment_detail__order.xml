@@ -20,14 +20,15 @@
                 android:id="@+id/mini_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đơn hàng "
+                android:text="Đơn hàng: "
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="đang giao"
+                android:text="Đang chờ xác nhận"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -50,37 +51,41 @@
                 android:paddingLeft="5dp">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Thời gian đặt hàng"/>
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvBookingDate"
+                    android:layout_weight="0.6"
                     android:layout_width="0dp"
                     android:gravity="end"
-                    android:text="02-11-2023 10:12"/>
+                    android:text="00-00-0000 00:00"/>
             </TableRow>
             <TableRow
                 android:paddingLeft="5dp">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Thời gian xác nhận"/>
+
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvConfirmationDate"
                     android:layout_width="0dp"
+                    android:layout_weight="0.6"
                     android:gravity="end"
-                    android:text="02-11-2023 12:15"/>
+                    android:text="00-00-0000 00:00" />
             </TableRow>
             <TableRow
                 android:paddingLeft="5dp">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.4"
                     android:text="Thời gian nhận hàng"/>
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvReceivedDate"
+                    android:layout_weight="0.6"
                     android:layout_width="0dp"
                     android:gravity="end"
-                    android:text="02-11-2023 12:15"/>
+                    android:text="00-00-0000 00:00"/>
             </TableRow>
         </TableLayout>
 
@@ -112,17 +117,20 @@
                     android:textStyle="bold"
                     android:textSize="17dp"/>
                 <TextView
+                    android:id="@+id/tvNameUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đặng Phương"/>
+                    android:text="--"/>
                 <TextView
+                    android:id="@+id/tvPhoneNumberUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0123456789"/>
+                    android:text="--"/>
                 <TextView
+                    android:id="@+id/tvAddressUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gò vấp"/>
+                    android:text="--"/>
             </LinearLayout>
         </LinearLayout>
         <View
@@ -147,10 +155,11 @@
                 android:paddingLeft="5dp">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.5"
                     android:text="Tổng tiền hàng"/>
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvSumPrice"
+                    android:layout_weight="0.5"
                     android:layout_width="0dp"
                     android:gravity="end"
                     android:text="1 000 000đ"/>
@@ -158,11 +167,13 @@
             <TableRow
                 android:paddingLeft="5dp">
                 <TextView
+
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.5"
                     android:text="Tổng tiền phí vận chuyển"/>
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvPriceShipping"
+                    android:layout_weight="0.5"
                     android:layout_width="0dp"
                     android:gravity="end"
                     android:text="15 000đ"/>
@@ -170,13 +181,15 @@
             <TableRow
                 android:paddingLeft="5dp">
                 <TextView
+
                     android:layout_width="0dp"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.5"
                     android:text="Thành tiền"
                     android:textSize="17dp"
                     android:textColor="@color/black_800"/>
                 <TextView
-                    android:layout_weight="0.3"
+                    android:id="@+id/tvSumMoney"
+                    android:layout_weight="0.5"
                     android:layout_width="0dp"
                     android:gravity="end"
                     android:text="1 000 000đ"
@@ -192,14 +205,28 @@
             android:gravity="end"
             android:layout_below="@id/tbl_price">
             <Button
+                android:id="@+id/btnRating"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:background="@drawable/bg_line_green"
                 android:backgroundTint="@color/green_dark"
                 android:text="Đánh giá"
                 android:textSize="16dp"
+                android:visibility="gone"
                 android:textColor="@color/white"/>
-        </LinearLayout>
 
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/bg_line_green"
+                android:backgroundTint="@color/green_dark"
+                android:text="Thoát"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 
 import com.example.goodphone.Payment;
 import com.example.goodphone.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,7 +30,7 @@ public class Dialog_Other extends Dialog {
     EditText edtAddQuantity;
     TextView tvDetail;
     Button btnAddQuantity,btnDeleteQuantity, btnAddQuantityCart;
-    int quantity;
+    int quantity, getQuantityDB;
     FirebaseFirestore dbProduct;
     FirebaseAuth auth;
     FirebaseUser user;
@@ -47,6 +48,7 @@ public class Dialog_Other extends Dialog {
         init();
         getData();
         click();
+        getQuantity();
 
     }
     public void click(){
@@ -54,7 +56,9 @@ public class Dialog_Other extends Dialog {
             @Override
             public void onClick(View view) {
                 getData();
-                if (user != null){
+                if (getQuantityDB < quantity){
+                    Toast.makeText(getContext(), "Số lượng phải nhỏ hơn trong kho" ,Toast.LENGTH_SHORT).show();
+                }else if (user != null){
                     if (quantity > 0 && quantity <= 10 ){
                         Intent i = new Intent(getContext(), Payment.class);
                         i.putExtra("id", idProduct);
@@ -100,6 +104,7 @@ public class Dialog_Other extends Dialog {
                 }
             }
         });
+
         btnDeleteQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +117,16 @@ public class Dialog_Other extends Dialog {
             }
         });
 
+    }
+    public void getQuantity(){
+        dbProduct.collection("Product")
+                .document(idProduct)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        getQuantityDB = documentSnapshot.getDouble("Quantity").intValue();
+                    }
+                });
     }
     public void init(){
         btnAddQuantity = findViewById(R.id.btn_Add_Quantity);

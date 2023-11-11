@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.goodphone.Cart;
 import com.example.goodphone.Home;
 import com.example.goodphone.LogIn;
+import com.example.goodphone.Orders;
 import com.example.goodphone.Profile;
 import com.example.goodphone.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -119,22 +120,27 @@ public class Navigation_Bar extends Fragment {
         btnBar_Convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (getActivity() instanceof Profile){
+                if (user != null){
+                    if (getActivity() instanceof Orders){
 
-                }else if(getActivity() instanceof Home){
-                    Intent i = new Intent(getContext(), Profile.class);
-                    startActivity(i);
-                    getActivity().overridePendingTransition(0,0);
-                }else{
-                    mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.green_dark));
-                    btnBar_Home.setBackgroundColor(getResources().getColor(R.color.white));
-                    btnBar_Cart.setBackgroundColor(getResources().getColor(R.color.white));
-                    btnBar_Convert.setBackgroundColor(getResources().getColor(R.color.white));
-                    Intent i = new Intent(getContext(), Profile.class);
-                    startActivity(i);
-                    getActivity().finish();
-                    getActivity().overridePendingTransition(0,0);
+                    }else if(getActivity() instanceof Home){
+                        Intent i = new Intent(getContext(), Orders.class);
+                        startActivity(i);
+                        getActivity().overridePendingTransition(0,0);
+                    }else{
+                        mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.white));
+                        btnBar_Home.setBackgroundColor(getResources().getColor(R.color.white));
+                        btnBar_Cart.setBackgroundColor(getResources().getColor(R.color.white));
+                        btnBar_Convert.setBackgroundColor(getResources().getColor(R.color.green_dark));
+                        Intent i = new Intent(getContext(), Orders.class);
+                        startActivity(i);
+                        getActivity().finish();
+                        getActivity().overridePendingTransition(0,0);
+                    }
+                }else {
+                    Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
@@ -192,6 +198,11 @@ public class Navigation_Bar extends Fragment {
             btnBar_Home.setBackgroundColor(getResources().getColor(R.color.white));
             btnBar_Cart.setBackgroundColor(getResources().getColor(R.color.white));
             btnBar_Convert.setBackgroundColor(getResources().getColor(R.color.white));
+        }else {
+            mbtnBar_Profile.setBackgroundColor(getResources().getColor(R.color.white));
+            btnBar_Home.setBackgroundColor(getResources().getColor(R.color.white));
+            btnBar_Cart.setBackgroundColor(getResources().getColor(R.color.white));
+            btnBar_Convert.setBackgroundColor(getResources().getColor(R.color.green_dark));
         }
 
     }

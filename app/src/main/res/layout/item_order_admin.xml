@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
+    android:layout_marginTop="5dp"
     android:padding="5dp"
+    android:backgroundTint="@color/white"
     android:id="@+id/relativeLayout_Payment"
     android:background="@drawable/line_grey_light">
     <LinearLayout
@@ -13,7 +15,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="5dp">
         <TextView
-            android:id="@+id/name_item_product"
+            android:id="@+id/tv_name_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đặng Phương"
@@ -21,6 +23,7 @@
             android:textColor="@color/black_700"
             android:textSize="15dp"/>
         <TextView
+            android:id="@+id/tv_Status_Admin_Oder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
@@ -41,7 +44,8 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="0.15"
-            android:background="@drawable/line_grey_light"/>
+            android:src="@drawable/oder"
+            />
         <LinearLayout
             android:id="@+id/infoItemPayment"
             android:layout_width="0dp"
@@ -51,50 +55,24 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/tv_Name_Product_Payment"
+                android:id="@+id/tv_Id_Admin_Oder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="17dp"
                 android:text="--"
                 android:textColor="@color/black_700"
-                android:textSize="13dp"
+                android:textSize="14dp"
                 android:maxLines="1"
                 android:ellipsize="none"/>
             <TextView
-                android:id="@+id/tv_Price_Product_Payment"
+                android:id="@+id/tv_DateTime_Admin_Order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textFontWeight="700"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@color/black_700"
                 android:text="--"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="0.15"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity="end">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="end">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="x"/>
-                <TextView
-                    android:id="@+id/tv_Quantity_Product_Payment"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:text="1"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
     <RelativeLayout
@@ -105,7 +83,7 @@
         android:layout_below="@id/item_product_order"
         android:layout_marginLeft="5dp">
         <TextView
-            android:id="@+id/amount_product_item_order"
+            android:id="@+id/tv_amount_product_item_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -114,20 +92,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/amount_product_item_order"
+            android:layout_toRightOf="@id/tv_amount_product_item_order"
             android:text="sản phẩm"
             android:textSize="13dp"/>
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/total_price_item_order"
+            android:layout_toLeftOf="@id/tv_total_price_item_admin_order"
             android:text="Thành tiền: "
             android:textSize="16dp"
             android:textStyle="bold"
             android:textColor="@color/black_800"/>
         <TextView
-            android:id="@+id/total_price_item_order"
+            android:id="@+id/tv_total_price_item_admin_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -141,6 +119,7 @@
         android:layout_marginTop="5dp"
         android:layout_below="@id/rlv_price_item_order">
         <Button
+            android:id="@+id/btn_Detail_Oder"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"
@@ -150,6 +129,7 @@
             android:textColor="@color/black_600"
             android:textAllCaps="false"/>
         <Button
+            android:id="@+id/btn_cancel_admin"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"
@@ -161,6 +141,7 @@
             android:textAllCaps="false"
             android:textColor="@color/green_dark"/>
         <Button
+            android:id="@+id/btn_Confirm_Admin"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"
