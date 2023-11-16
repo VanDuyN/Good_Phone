@@ -99,7 +99,7 @@ public class Info_Profile extends Fragment {
                         getAddress();
                         tvEmail.setText(document.getString("email"));
                         role = document.getString("role");
-                        if (role.equals("khachhang")){
+                        if (role.equals("Khách hàng")){
                             tvRole.setText("Khách hàng");
                         }else {
                             tvRole.setText("Quản lý");

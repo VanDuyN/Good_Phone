@@ -38,6 +38,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -136,7 +137,7 @@ public class Payment extends AppCompatActivity {
         edtHouseNumber.setText(addressNumber);
     }
     public void getData(){
-        PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9])(\\d{7})$";
+        PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9]|9[0-9])(\\d{7})$";
         nameUN = edtName.getText().toString().trim();
         phoneNumberN = edtPhoneNumber.getText().toString().trim();
         districtN = edtDistrict.getText().toString().trim();
@@ -252,6 +253,7 @@ public class Payment extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         DocumentReference documentReference = task.getResult();
                         String id = documentReference.getId();
+                        Log.e("id", id);
                         for(List_Product listProduct : arrProduct){
                             Map<String,Object> dataDetailOther = new HashMap<>();
                             idProduct = listProduct.getId();
@@ -259,6 +261,7 @@ public class Payment extends AppCompatActivity {
                             dataDetailOther.put("quantity",listProduct.getQuantity());
                             dataDetailOther.put("price", listProduct.getPrice());
                             detailOtherUser(id, dataDetailOther,idProduct);
+                            deleteQuantity(idProduct,listProduct.getQuantity());
                         }
                     }
                 })
@@ -266,6 +269,19 @@ public class Payment extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
+                    }
+                });
+    }
+    public void deleteQuantity(String idProduct,int quantity){
+        Log.e("no", idProduct);
+        DBProduct.collection("Product")
+                .document(idProduct)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Double qtt = documentSnapshot.getDouble("Quantity");
+                        DocumentReference reference1 = DBProduct.collection("Product").document(idProduct);
+                        reference1.update("Quantity", qtt - quantity);
                     }
                 });
     }
@@ -319,12 +335,13 @@ public class Payment extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         DocumentReference documentReference = task.getResult();
                         String id = documentReference.getId();
+                        Log.e("id",id);
                         Map<String,Object> dataDetailOther = new HashMap<>();
                         dataDetailOther.put("idP",idProduct);
                         dataDetailOther.put("quantity",quantity);
-                        dataDetailOther.put("idOther",id);
                         dataDetailOther.put("price", price);
                         detailOtherNoUser(id, dataDetailOther);
+                        deleteQuantity(idProduct,quantity);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -342,7 +359,8 @@ public class Payment extends AppCompatActivity {
                 .add(dataDetailOther).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        openDialogSuccessful(documentReference.getId());
+
+                        openDialogSuccessful(id);
                     }
                 });
     }

@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.goodphone.Home;
 import com.example.goodphone.Profile;
@@ -40,6 +41,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Edit_Profile extends Fragment {
     FirebaseAuth auth;
@@ -51,6 +54,8 @@ public class Edit_Profile extends Fragment {
     TextView tvRole,tvEmail;
     String idUser,district,wards,number, phoneNumber,lastName,firstName,districtOld,wardsOld,numberOld, phoneNumberOld,lastNameOld,firstNameOld,emailOld;
     Profile profile;
+    String PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9]|9[0-9])(\\d{7})$";
+    boolean phoneValidate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,12 +73,6 @@ public class Edit_Profile extends Fragment {
             public void onClick(View view) {
                 getData();
                 setDataDB();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.remove(Edit_Profile.this);
-                transaction.commit();
-                profile = (Profile) getActivity();
-                profile.reLoading();
             }
         });
     }
@@ -112,7 +111,18 @@ public class Edit_Profile extends Fragment {
         if (number != numberOld);{
             dataAddress.put("addressNumber",number);
         }
-
+        phoneValidate = validatePhoneNumber(phoneNumber,PHONE_NUMBER_PATTERN);
+        if (!phoneValidate){
+            Toast.makeText(getContext(), "Kiểm tra lại số điện thoại", Toast.LENGTH_SHORT).show();
+            return;
+        }else {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.remove(Edit_Profile.this);
+            transaction.commit();
+            profile = (Profile) getActivity();
+            profile.reLoading();
+        }
         if (data != null){
             DocumentReference updateUser =  dbUser.collection("User").document(idUser);
             updateUser.update(data).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -144,6 +154,11 @@ public class Edit_Profile extends Fragment {
         }
 
     }
+    public static boolean validatePhoneNumber(String input, String phoneNumberPattern) {
+        Pattern pattern = Pattern.compile(phoneNumberPattern);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
     public void getDataDB(){
         dbUser.collection("User")
                 .document(idUser)
@@ -155,7 +170,7 @@ public class Edit_Profile extends Fragment {
                             if (document.exists()) {
                                 emailOld = document.getString("email");
                                 String role = document.getString("role");
-                                if (role.equals("khachhang")){
+                                if (role.equals("Khách hàng")){
                                     tvRole.setText("Khách hàng");
                                 }else {
                                     tvRole.setText("Quản lý");

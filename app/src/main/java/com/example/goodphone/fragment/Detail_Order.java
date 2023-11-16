@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ public class Detail_Order extends Fragment {
     Button btnBack, btnRating;
     StorageReference storageRef, imgRef;
     FirebaseStorage img;
-    TextView tvStatus, tvBookingDate, tvConfirmationDate,tvReceivedDate,tvName,tvSdt,tvAddress, tvSumPrice,tvPriceShipping,tvSumMoney;
+    TextView tvStatus, tvBookingDate, tvConfirmationDate,tvReceivedDate,tvName,tvSdt,tvAddress, tvSumPrice,tvPriceShipping,tvSumMoney,tvReason;
     RecyclerView recyclerView;
     Timestamp bookingDate,confirmationDate, receivedDate;
     View view;
@@ -62,6 +63,7 @@ public class Detail_Order extends Fragment {
     String status,url;
     Payment_Adapter adapter ;
     List<List_Product> arrProducts = new ArrayList<>();
+    RelativeLayout relativeLayoutReason;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,6 +85,7 @@ public class Detail_Order extends Fragment {
         });
     }
     public void getOderDetail(){
+        arrProducts.clear();
         db.collection("User")
                 .document(user.getUid())
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -123,7 +126,7 @@ public class Detail_Order extends Fragment {
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                             tvBookingDate.setText(dateTime.format(formatter).toString());
                         }
-                        if (status.equals("Đang giao hàng")){
+                        if (!status.equals("Chờ xác nhận") && !status.equals("Quản lý hủy") && !status.equals("Khách hàng hủy")){
                             confirmationDate = documentSnapshot.getTimestamp("confirmationDate");
                             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                 LocalDateTime dateTime = LocalDateTime.ofInstant(confirmationDate.toDate().toInstant(), ZoneId.systemDefault());
@@ -143,6 +146,10 @@ public class Detail_Order extends Fragment {
                         }
                         tvAddress.setText(documentSnapshot.getString("Address"));
                         tvStatus.setText(documentSnapshot.getString("status"));
+                        if (status.equals("Quản lý hủy") || status.equals("Khách hàng hủy")){
+                            relativeLayoutReason.setVisibility(View.VISIBLE);
+                            tvReason.setText(documentSnapshot.getString("reason"));
+                        }
                     }
                 });
         db.collection("User")
@@ -204,8 +211,12 @@ public class Detail_Order extends Fragment {
         user = auth.getCurrentUser();
         img = FirebaseStorage.getInstance();
         storageRef = img.getReference();
+
         idOder = getArguments().getString("idOder");
+
+        relativeLayoutReason = view.findViewById(R.id.relativeLayout_Reason);
         btnBack = view.findViewById(R.id.btnExit);
+        tvReason = view.findViewById(R.id.tv_Reason);
         btnRating = view.findViewById(R.id.btnRating);
         tvStatus = view.findViewById(R.id.tvStatus);
         tvBookingDate =view.findViewById(R.id.tvBookingDate);

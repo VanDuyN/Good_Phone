@@ -34,8 +34,6 @@ public class Cancel_Order extends Fragment {
     FirebaseUser user;
     FirebaseAuth auth;
     FirebaseFirestore db;
-    FirebaseStorage storage;
-    DocumentReference reference;
     RecyclerView recyclerView;
     Timestamp timestamp;
     Oder_Adapter adapter;
@@ -49,6 +47,7 @@ public class Cancel_Order extends Fragment {
         view = inflater.inflate(R.layout.fragment_cancel__order, container, false);
         init();
         getDataDB();
+
         return view;
     }
     public void getDataDB(){

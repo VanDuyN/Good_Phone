@@ -42,7 +42,7 @@ public class Register extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String email,password,firstName,lastName, phone,regexPattern ;
-    private static final String PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9])(\\d{7})$";
+    private static final String PHONE_NUMBER_PATTERN = "^(\\+?84|0)(1[2689]|3[2-9]|5[2689]|7[06789]|8[0-9]|9[0-9])(\\d{7})$";
     boolean emailValidate,phoneValidate;
     Dialog dialog;
     @Override

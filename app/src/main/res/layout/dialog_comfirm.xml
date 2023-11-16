@@ -4,30 +4,50 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_line_green"
     android:layout_margin="5dp">
-    <TextView
-        android:id="@+id/tv_Title_Confirm"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="27dp"
-        android:text="Xác nhận"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:padding="5dp"
-        android:textColor="@color/white"
-        android:background="@drawable/shape_green_dark_radiustop"/>
+        android:layout_height="200dp">
+        <TextView
+            android:id="@+id/tv_Title_Confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="27dp"
+            android:text="Xác nhận"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_green_dark_radiustop"/>
 
-    <TextView
-        android:id="@+id/tv_Detail_Confirm"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tv_Title_Confirm"
-        android:padding="10dp"
-        android:text="Xác nhận cái gì zay?"
-        android:textColor="@color/black_800"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/tv_Detail_Confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Title_Confirm"
+            android:padding="10dp"
+            android:text="Xác nhận cái gì zay?"
+            android:textColor="@color/black_800"
+            android:textSize="20dp" />
 
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edt_Confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Detail_Confirm"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/line_grey_light"
+            android:hint="Nhập lý do"
+            android:padding="4dp"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
     <LinearLayout
-        android:layout_below="@+id/tv_Detail_Confirm"
+        android:layout_below="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="2dp"

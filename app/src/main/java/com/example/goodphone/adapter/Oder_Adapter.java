@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,17 +63,17 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
     Context context;
-    Double getQuantity;
-    Timestamp timestamp;
+    Timestamp timestamp,confirmationDate;
     int quantity, pst;
+    EditText edtConfirm;
     Button btnConfirm, btnRefuse;
     TextView tvTitleConfirm,tvDetailConfirm;
-    AlertDialog.Builder builder;
+
     Dialog dialog;
     DocumentReference reference;
-    boolean isFirstEven = true;
     Bundle bundle ;
     Detail_Order detailOrder = new Detail_Order();
+    String reason;
     public void Oder_Adapter (List<List_Product> data, Context context){
         this.context = context;
         this.data = data;
@@ -120,15 +121,15 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
                     }
                 });
 
-        holder.btnConfirm.setText("Xác nhận");
+        holder.btnConfirmU.setText("Xác nhận");
         holder.tvID.setText("Mã đơn hàng: "+data.get(position).id);
         holder.tvPrice.setText(formattedPrice);
         holder.tvStatus.setText("Trạng thái: "+data.get(position).status);
         if (data.get(position).status.equals("Thành công")){
             holder.btnCancel.setBackground(context.getDrawable(R.drawable.line_grey_light));
             holder.btnCancel.setTextColor(context.getResources().getColor(R.color.black));
-            holder.btnConfirm.setBackground(context.getDrawable(R.drawable.line_grey_light));
-            holder.btnConfirm.setTextColor(context.getResources().getColor(R.color.black));
+            holder.btnConfirmU.setBackground(context.getDrawable(R.drawable.line_grey_light));
+            holder.btnConfirmU.setTextColor(context.getResources().getColor(R.color.black));
         }else if (data.get(position).status.equals("Đã giao cho khách")){
             holder.btnCancel.setBackground(context.getDrawable(R.drawable.line_grey_light));
             holder.btnCancel.setTextColor(context.getResources().getColor(R.color.black));
@@ -136,36 +137,21 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
         }else if (data.get(position).status.equals("Quản lý hủy") || data.get(position).status.equals("Khách hàng hủy")){
             holder.btnCancel.setBackground(context.getDrawable(R.drawable.line_grey_light));
             holder.btnCancel.setTextColor(context.getResources().getColor(R.color.black));
+            holder.btnConfirmU.setBackground(context.getDrawable(R.drawable.line_grey_light));
+            holder.btnConfirmU.setTextColor(context.getResources().getColor(R.color.black));
         }else  {
-            holder.btnConfirm.setBackground(context.getDrawable(R.drawable.line_grey_light));
-            holder.btnConfirm.setTextColor(context.getResources().getColor(R.color.black));
+            holder.btnConfirmU.setBackground(context.getDrawable(R.drawable.line_grey_light));
+            holder.btnConfirmU.setTextColor(context.getResources().getColor(R.color.black));
         }
         reference = db.collection("User").document(user.getUid()).collection("Other").document(data.get(position).id);
-        holder.btnConfirm.setOnClickListener(new View.OnClickListener() {
+        holder.btnConfirmU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (data.get(position).status.equals("Đã giao cho khách")){
                     confirm(data.get(position).id);
-                    pst = position;
-                    db = FirebaseFirestore.getInstance();
-                    db.collection("User")
-                            .document(user.getUid())
-                            .collection("Other")
-                            .document(data.get(position).id)
-                            .collection("OtherDetail")
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            deleteQuantity(document.getDouble("quantity"), document.getString("idP"));
-                                        }
-                                    } else {
+                    data.remove(position);
+                    notifyDataSetChanged();
 
-                                    }
-                                }
-                            });
                 }else {
 
                 }
@@ -185,11 +171,12 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
         holder.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (data.get(position).status.equals("Đã giao cho khách") || (data.get(position).status.equals("Thành công"))){
+                if (data.get(position).status.equals("Đã giao cho khách") || (data.get(position).status.equals("Thành công")) || data.get(position).status.equals("Quản lý hủy") || data.get(position).status.equals("Khách hàng hủy")){
 
                 }else {
                     openDialog(data.get(position).id);
                     pst = position;
+
                 }
 
             }
@@ -215,16 +202,27 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
         tvDetailConfirm = dialog.findViewById(R.id.tv_Detail_Confirm);
         tvTitleConfirm = dialog.findViewById(R.id.tv_Title_Confirm);
         btnConfirm = dialog.findViewById(R.id.btn_Confirm);
+        edtConfirm = dialog.findViewById(R.id.edt_Confirm);
         btnRefuse = dialog.findViewById(R.id.btn_Refuse);
+        edtConfirm.setVisibility(View.VISIBLE);
+
         tvTitleConfirm.setText("Xác nhận hủy");
         btnConfirm.setText("Hủy");
         tvDetailConfirm.setText("Bạn có chắc là muốn hủy đơn hàng này không ?");
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
-                cancelOther(id);
-                data.remove(pst);
+                reason = edtConfirm.getText().toString();
+                if(!reason.isEmpty() && reason.length() >= 10){
+                    dialog.dismiss();
+                    cancelOther(id,reason);
+                    returnQuantity(id);
+                    data.remove(pst);
+                }
+                if (reason.length() < 10){
+                    Toast.makeText(context, "Nhập trên 10 ký tự", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -236,32 +234,50 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
         });
         dialog.show();
     }
+    public void returnQuantity(String id){
+        db.collection("User")
+                .document(user.getUid())
+                .collection("Other")
+                .document(id)
+                .collection("OtherDetail")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                addQuantity(document.getDouble("quantity"), document.getString("idP"));
+                            }
+                        } else {
+
+                        }
+                    }
+                });
+    }
     public void confirm(String id){
+        confirmationDate = Timestamp.now();
         DocumentReference reference = db.collection("User").document(user.getUid()).collection("Other").document(id);
         reference.update("status","Thành công");
+        reference.update("receivedDate",confirmationDate);
     }
-    public void deleteQuantity(Double qt,String id){
+    public void addQuantity(Double qt,String id){
         int qtt = qt != null ? qt.intValue() : 0;
         db.collection("Product")
                 .document(id)
                 .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Double getQtt = documentSnapshot.getDouble("Quantity");
-                        Double sold = documentSnapshot.getDouble("Sold");
+                        Double quantity = documentSnapshot.getDouble("Quantity");
                         DocumentReference reference1 = db.collection("Product").document(id);
-                        reference1.update("Quantity", getQtt - qtt);
-                        reference1.update("Sold", sold + qtt);
-                        data.remove(pst);
-                        notifyDataSetChanged();
-
+                        reference1.update("Quantity",  quantity + qtt);
                     }
                 });
 
     }
-    public void cancelOther(String id){
+    public void cancelOther(String id,String reason){
         DocumentReference reference = db.collection("User").document(user.getUid()).collection("Other").document(id);
         reference.update("status","Khách hàng hủy");
+        reference.update("reason",reason);
         notifyDataSetChanged();
     }
 
@@ -272,7 +288,7 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
 
     public class OderViewHolder extends RecyclerView.ViewHolder{
         TextView tvStatus,tvAmount,tvPrice,tvID,tvDateTime;
-        Button btnConfirm,btnCancel,btnDetail;
+        Button btnConfirmU,btnCancel,btnDetail;
         public OderViewHolder(@NonNull View itemView) {
             super(itemView);
             tvAmount = itemView.findViewById(R.id.amount_product_item_order);
@@ -280,7 +296,7 @@ public class Oder_Adapter extends RecyclerView.Adapter<Oder_Adapter.OderViewHold
             tvPrice = itemView.findViewById(R.id.total_price_item_order);
             tvID = itemView.findViewById(R.id.tv_id_Oder);
             tvDateTime = itemView.findViewById(R.id.tv_DateTime_Order);
-            btnConfirm = itemView.findViewById(R.id.btnConfirm);
+            btnConfirmU = itemView.findViewById(R.id.btnConfirm);
             btnCancel = itemView.findViewById(R.id.btnCancel_Oder);
             btnDetail = itemView.findViewById(R.id.btnDetail);
             bundle = new Bundle();
