@@ -35,17 +35,11 @@
             app:iconifiedByDefault="false"
             app:queryHint="Tìm kiếm" />
         </RelativeLayout>
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayout"
-        android:text="tim kiem"
-        android:textSize="20dp"
-        android:padding="5dp" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="3dp"
         android:id="@+id/recycleView_product"
-        android:layout_below="@+id/tvText"
+        android:layout_below="@+id/relativeLayout"
         android:foregroundGravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

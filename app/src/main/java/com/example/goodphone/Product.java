@@ -73,8 +73,8 @@ public class Product extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                checkSearchView();
                 recyclerView.setAdapter(adapter);
+                checkSearchView();
             }
         };
 
@@ -84,29 +84,6 @@ public class Product extends AppCompatActivity {
         Intent i = getIntent();
         search = i.getStringExtra("search");
         getProductionCompany = i.getStringExtra("productionCompany");
-        if (productionCompany != null){
-            if (search == null)
-             {
-                if (productionCompany.equals("Xiaomi")) {
-                    textView.setText("Hãng điện thoại Xiaomi");
-                } else if (productionCompany.equals("IPhone")) {
-                    textView.setText("Hãng điện thoại Iphone");
-                } else if (productionCompany.equals("OPPO")) {
-                    textView.setText("Hãng điện thoại OPPO");
-                }else if (productionCompany.equals("SamSung")) {
-                    textView.setText("Hãng điện thoại SamSung");
-                }else if (productionCompany.equals("other")) {
-                    textView.setText("Một số điện thoại có hãng khác");
-                }else {
-                    textView.setText("Tất cả điện thoại");
-                }
-            }
-        }else {
-            if (search != null)
-            {
-                textView.setText("Tìm kiếm điện thoại '" +search+"'");
-            }
-        }
     }
     public void getDataDB(){
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2,GridLayoutManager.VERTICAL,false);
@@ -190,44 +167,11 @@ public class Product extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                search = query;
-                if(getProductionCompany == null){
-                    textView.setText("Tìm kiếm ' " +search+"'" );
-                }else if (getProductionCompany.equals("Xiaomi")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + productionCompany);
-                } else if (getProductionCompany.equals("IPhone")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + productionCompany);
-                } else if (getProductionCompany.equals("OPPO")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + productionCompany);
-                }else if (getProductionCompany.equals("SamSung")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + productionCompany);
-                }else if (getProductionCompany.equals("other")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" +" trong hãng khác");
-                }else {
-                    textView.setText("Tìm kiếm ' " +search+"'" );
-                }
-                filterList(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                search = newText;
-                if(getProductionCompany == null){
-                    textView.setText("Tìm kiếm ' " +search+"'" );
-                }else if (getProductionCompany.equals("Xiaomi")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + getProductionCompany);
-                } else if (getProductionCompany.equals("IPhone")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + getProductionCompany);
-                } else if (getProductionCompany.equals("OPPO")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + getProductionCompany);
-                }else if (getProductionCompany.equals("SamSung")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" + " trong hãng " + getProductionCompany);
-                }else if (getProductionCompany.equals("other")) {
-                    textView.setText("Tìm kiếm ' " +search+"'" +" trong hãng khác");
-                }else {
-                    textView.setText("Tìm kiếm ' " +search+"'" );
-                }
                 filterList(newText);
                 return true;
             }
@@ -298,7 +242,7 @@ public class Product extends AppCompatActivity {
         btnExit = findViewById(R.id.btnExitProduct);
         recyclerView = findViewById(R.id.recycleView_product);
         searchView = findViewById(R.id.search_view_product);
-        textView = findViewById(R.id.tvText);
+
         DBProduct = FirebaseFirestore.getInstance();
     }
 }

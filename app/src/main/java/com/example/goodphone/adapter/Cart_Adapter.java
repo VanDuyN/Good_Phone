@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -47,8 +48,7 @@ import java.util.Map;
 public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductViewHolder> {
     String idProduct, idUser;
     int pst, quantityPrd;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseFirestore DBUser;
     Context myContext;
     List<List_Product> arrProduct;
@@ -57,6 +57,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
     Dialog dialog;
     Button btnConfirm, btnRefuse;
     TextView tvTitleConfirm,tvDetailConfirm;
+    int getQuantityPrd;
     List<List_Product> list_products = new ArrayList<>();
     private List<Integer> selectedPositions = new ArrayList<>();
     public Cart_Adapter (Context context, List<List_Product> list_products,Cart cart){
@@ -86,6 +87,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
         holder.tvPrice.setText(formattedPrice);
         Glide.with(myContext).load(arrProduct.get(position).url_img_product).fitCenter().into(holder.imgProduct);
 
+        idUser = arrProduct.get(position).idUser;
+
+
         if (selectedPositions.contains(position)) {
             holder.checkBox.setChecked(true);
         } else {
@@ -113,8 +117,6 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
             public void onClick(View view) {
                 idUser = arrProduct.get(position).idUser;
                 idProduct = arrProduct.get(position).id;
-                Log.e("ac", String.valueOf(position));
-                Log.e("ad", idProduct);
                 pst = position;
                 openDialogConfirm(Gravity.CENTER);
             }
@@ -122,16 +124,14 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                idUser = arrProduct.get(position).idUser;
+
                 idProduct = arrProduct.get(position).id;
                 quantityPrd = Integer.valueOf(holder.tvQuantity.getText().toString());
+
                 quantityPrd ++;
-                if (quantityPrd <= 10){
-                    updateQuantityCart();
-                    arrProduct.get(position).setQuantity(quantityPrd);
-                    mCart.getDataAdapter();
-                    notifyDataSetChanged();
-                }
+
+                getQuantityDB(idProduct,position,quantityPrd);
+
 
             }
         });
@@ -144,11 +144,12 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
                 quantityPrd --;
                 if (quantityPrd > 0)
                 {
-                    updateQuantityCart();
-                    arrProduct.get(position).setQuantity(quantityPrd);
+                    updateQuantityCart(idProduct);
+                    arrProduct.get(pst).setQuantity(quantityPrd);
                     mCart.getDataAdapter();
                     notifyDataSetChanged();
                 }
+
             }
         });
 
@@ -168,6 +169,26 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
 
         }
         return list_products;
+    }
+    public void getQuantityDB(String idProduct, int pst, int quantityPrd){
+        db.collection("Product")
+                .document(idProduct)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        getQuantityPrd = documentSnapshot.getDouble("Quantity").intValue();
+                        if (quantityPrd <= 10 && quantityPrd<=getQuantityPrd){
+                            updateQuantityCart(idProduct);
+                            arrProduct.get(pst).setQuantity(quantityPrd);
+                            mCart.getDataAdapter();
+                            notifyDataSetChanged();
+                        }
+                        if (getQuantityPrd <= 0 ){
+                            arrProduct.remove(pst);
+                        }
+
+                    }
+                });
     }
     public void selectAllItems() {
         isAllSelected = true;
@@ -233,7 +254,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<Cart_Adapter.CartProductV
                     }
                 });
     }
-    public void updateQuantityCart(){
+    public void updateQuantityCart(String idProduct){
         Map<String, Object> data= new HashMap<>();
         data.put("quantity",quantityPrd);
         DBUser.collection("User")

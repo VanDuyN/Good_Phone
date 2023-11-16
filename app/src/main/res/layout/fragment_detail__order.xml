@@ -20,7 +20,7 @@
                 android:id="@+id/mini_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đơn hàng: "
+                android:text="Trạng thái: "
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
@@ -197,13 +197,47 @@
                     android:textColor="@color/green_dark"/>
             </TableRow>
         </TableLayout>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/relativeLayout_Reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_line_green"
+            android:layout_margin="2dp"
+            android:layout_below="@+id/tbl_price">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:text="Lý do hủy"/>
+
+            <TextView
+                android:id="@+id/tv_Reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_margin="2dp"
+                android:background="@color/black_200"
+                android:paddingLeft="10dp"
+                android:paddingTop="3dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:text="123"
+                android:textColor="@color/black_800"
+                android:textSize="17dp" />
+        </RelativeLayout>
+
+
         <LinearLayout
             android:id="@+id/ln_rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:gravity="end"
-            android:layout_below="@id/tbl_price">
+            android:layout_below="@id/relativeLayout_Reason">
             <Button
                 android:id="@+id/btnRating"
                 android:layout_width="150dp"

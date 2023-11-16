@@ -58,7 +58,7 @@ public class Orders extends AppCompatActivity {
                 tvDelivered.setTextColor(getResources().getColor(R.color.green_dark));
                 vDelivered.setBackgroundColor(getResources().getColor(R.color.green_dark));
                 tvWaiting.setTextColor(getResources().getColor(R.color.black));
-                vWaiting.setBackgroundColor(getResources().getColor(R.color.white));
+                vWaiting.setBackgroundColor(getResources().getColor(R.color.black));
                 openFragmentComplete();
             }
         });

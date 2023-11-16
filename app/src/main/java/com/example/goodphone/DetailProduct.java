@@ -118,7 +118,11 @@ public class DetailProduct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (user != null){
-                    openDialogQuantity();
+                    if(Quantity <= 0){
+                        Toast.makeText(DetailProduct.this, "Hết hàng", Toast.LENGTH_SHORT).show();
+                    }else {
+                        openDialogQuantity();
+                    }
                 }else {
                     dialogOpenLogin();
                 }
@@ -129,7 +133,12 @@ public class DetailProduct extends AppCompatActivity {
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialogOther();
+                if(Quantity <= 0){
+                    Toast.makeText(DetailProduct.this, "Hết hàng", Toast.LENGTH_SHORT).show();
+                }else {
+                    openDialogOther();
+                }
+
             }
         });
         btnDetail.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +203,12 @@ public class DetailProduct extends AppCompatActivity {
         tvRom.setText(rom );
         tvScreenTechnology.setText(screenTechnology);
         tvScreenFeature.setText(screenFeature);
-        tvQuantity.setText("Số Lượng còn lại: "+quantity);
+        if (Quantity== 0){
+            tvQuantity.setText("Hết hàng");
+        }else {
+            tvQuantity.setText("Số Lượng còn lại: "+quantity);
+        }
+
     }
     public void openDialogSpecifications(){
         Dialog_Specifications dialog_specifications = new Dialog_Specifications(DetailProduct.this, idProduct);
